@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/LlayFill"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:gravity="center">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="@dimen/wwpx150">
+        <TextView
+            android:id="@+id/tv_weixin_circle"
+            style="@style/ShareText"
+            android:drawableTop="@mipmap/share_weixin_circle_circle"
+            android:text="微信朋友圈"/>
+        <TextView
+            android:id="@+id/tv_weixin"
+            style="@style/ShareText"
+            android:drawableTop="@mipmap/share_weixin_circle"
+            android:text="微信"/>
+
+        <TextView
+            android:id="@+id/tv_sina"
+            style="@style/ShareText"
+            android:drawableTop="@mipmap/share_sina_circle"
+            android:text="微博"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="@dimen/wwpx150"
+                  android:layout_marginTop="@dimen/wwpx50">
+        <TextView
+            android:id="@+id/tv_qq"
+            style="@style/ShareText"
+            android:drawableTop="@mipmap/share_qq_circle"
+            android:text="QQ"/>
+        <TextView
+            android:id="@+id/tv_qzone"
+            style="@style/ShareText"
+            android:drawableTop="@mipmap/share_qzone_circle"
+            android:text="QQ空间"/>
+
+        <TextView
+            android:id="@+id/tv_copy"
+            style="@style/ShareText"
+            android:drawableTop="@mipmap/share_copy_circle"
+            android:text="复制链接"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_marginTop="@dimen/wwpx200"
+        android:src="@mipmap/share_cancel_circle"
+        android:layout_width="@dimen/wwpx83"
+        android:layout_height="@dimen/wwpx83"/>
+</LinearLayout>

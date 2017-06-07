@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/LlayFill">
+
+    <WebView 
+        android:id="@+id/webView"
+        android:layout_width="match_parent" 
+        android:layout_height="0px"
+        android:layout_weight="1"/>
+        
+    <LinearLayout android:layout_width="match_parent"
+                  android:gravity="center_vertical"
+                  android:background="@color/color_fbfcfd"
+                  android:orientation="horizontal"
+                  android:layout_height="@dimen/wwpx120">
+        <EditText android:layout_width="@dimen/wwpx611"
+                  android:layout_margin="@dimen/wwpx20"
+                  android:paddingLeft="@dimen/wwpx20"
+                  android:paddingRight="@dimen/wwpx20"
+                  android:hint="我也来说两句..."
+                  android:textColorHint="@color/color_e1e6eb"
+                  android:textSize="@dimen/wwpx25"
+                  android:background="@drawable/et_bg_shape"
+                  android:layout_height="match_parent"/>
+        <include layout="@layout/view_like"/>
+    </LinearLayout>
+</LinearLayout>

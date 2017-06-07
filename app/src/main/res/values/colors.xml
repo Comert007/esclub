@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#14191d</color>
+    <color name="colorPrimaryDark">#14191d</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="titlebar_bg_color3">#ff1930</color>
+    <color name="titlebar_bg_color4">#0b86ee</color>
+    <color name="main_layout_bg_color">#f5f5f9</color>
+
+    <!--文本描述文字颜色-->
+    <color name="colorTextHint">#acaaa6</color>
+    <!--文本默认颜色-->
+    <color name="colorTextNormal">#3c3c3c</color>
+
+    <color name="color_white">#ffffff</color>
+    <color name="color_primary">#14191d</color>
+
+    <color name="color_titleBar">#14191d</color>
+    <color name="color_tab_bg">#f9f9f9</color>
+    <color name="color_space_line">#b2b2b2</color>
+    <color name="color_tab_text">#acacac</color>
+    <color name="color_translate_normal">#646f7c</color>
+
+
+    <color name="color_f5f5f5">#f5f5f5</color>
+    <color name="color_0b86ee">#0b86ee</color>
+    <color name="color_8c96a0">#8c96a0</color>
+    <color name="color_e1e6eb">#e1e6eb</color>
+    <color name="color_fbfcfd">#fbfcfd</color>
+    <color name="color_bdc7d1">#bdc7d1</color>
+
+</resources>

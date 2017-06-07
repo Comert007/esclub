@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
+
+    <com.ww.android.esclub.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleText="@string/home_title"/>
+
+    <com.ww.android.esclub.widget.TranslateTabBar
+        android:id="@+id/translate_tab_home"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wwpx70"
+        android:background="@color/color_primary"
+        app:text="@array/test_tab"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_tab_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

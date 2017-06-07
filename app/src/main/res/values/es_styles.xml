@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TabLayout">
+        <item name="android:layout_width">0px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="TabText">
+        <item name="android:textColor">@drawable/tab_name_selector</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/wwpx28</item>
+        <item name="android:layout_marginTop">@dimen/wwpx10</item>
+    </style>
+    <style name="TabImage">
+        <item name="android:layout_width">@dimen/wwpx36</item>
+        <item name="android:layout_height">@dimen/wwpx36</item>
+
+    </style>
+
+
+    <style name="LlayFill">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@color/color_f5f5f5</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+    </style>
+
+
+    <style name="ContentText">
+        <item name="android:textColor">@color/color_primary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/wwpx28</item>
+    </style>
+
+    <style name="ContentText.ExPlain">
+        <item name="android:textColor">@color/color_0b86ee</item>
+        <item name="android:textSize">@dimen/wwpx24</item>
+    </style>
+
+    <style name="ShareText">
+        <item name="android:layout_width">0px</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/color_primary</item>
+        <item name="android:textSize">@dimen/wwpx24</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AnimationActivity" parent="AppTheme">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_bottom_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_bottom_exit</item>
+    </style>
+</resources>

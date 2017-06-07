@@ -1,0 +1,81 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="windowNoTitle">true</item>
+
+        <!-- 解决 5.0 button 背景有边框问题 -->
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <!--设置默认TextView样式-->
+        <item name="editTextStyle">@style/EditTextStyle</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+    </style>
+
+
+    <style name="TextViewStyle" parent="@android:style/Widget.Holo.Light.TextView">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textColorHint">@color/colorTextHint</item>
+        <item name="android:textSize">@dimen/wwpx32</item>
+    </style>
+
+    <style name="EditTextStyle" parent="@android:style/Widget.Holo.Light.EditText">
+        <item name="android:background">@drawable/edit_style_normal_shape</item>
+        <item name="android:gravity">center|left</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@android:style/Widget.Holo.Light.Button">
+        <item name="android:textSize">@dimen/wwpx32</item>
+        <item name="android:background">@drawable/btn_style_selector</item>
+        <item name="android:textColor">@color/color_white</item>
+    </style>
+
+    <style name="TitleBar">
+        <item name="android:layout_height">@dimen/wwpx90</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/color_titleBar</item>
+    </style>
+
+    <style name="TitleButtonStyle" parent="@android:style/Widget.Holo.Light.Button">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingRight">@dimen/wwpx24</item>
+        <item name="android:paddingLeft">@dimen/wwpx24</item>
+        <item name="android:textSize">@dimen/wwpx28</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:drawablePadding">@dimen/wwpx20</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TitleTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/wwpx36</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxWidth">200dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+
+
+    <style name="CustomerDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+
+
+</resources>

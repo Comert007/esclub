@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">电竞酒吧</string>
+    <string name="home_title">首页资讯</string>
+    <string name="guess_title">竞猜</string>
+    <string name="cart_title">购物车</string>
+    <string name="user_title">个人中心</string>
+    <string name="dialog_loding">Loding...</string>
+
+    <string name="news_es">ES 新闻</string>
+</resources>

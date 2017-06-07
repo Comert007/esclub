@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LlayFill">
+
+    <!--<com.ww.android.esclub.widget.TitleView-->
+        <!--android:id="@+id/title_view"-->
+        <!--style="@style/TitleBar"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--app:titleText="@string/index_info"/>-->
+
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"/>
+
+
+    <View android:layout_width="match_parent"
+          android:layout_height="2px"
+          android:background="@color/color_space_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wwpx97"
+        android:background="@color/color_tab_bg">
+
+        <LinearLayout
+            android:id="@+id/tab_home_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_home_image"
+                android:background="@drawable/tab_home_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_home_text"
+                android:text="首页"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/tab_guess_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_guess_image"
+                android:background="@drawable/tab_guess_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_guess_text"
+                android:text="竞猜"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/tab_cart_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_cart_image"
+                android:background="@drawable/tab_cart_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_cart_text"
+                android:text="商城"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_user_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_user_image"
+                android:background="@drawable/tab_user_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_user_text"
+                android:text="个人中心"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+        <RelativeLayout android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/wwpx15"
+                        android:layout_height="wrap_content">
+            <Button android:layout_width="@dimen/wwpx70"
+                    android:layout_height="@dimen/wwpx70"
+                    android:background="@drawable/like_bg_selector"/>
+            <ImageView
+                android:layout_width="@dimen/wwpx33"
+                android:layout_height="@dimen/wwpx33"
+                android:layout_centerInParent="true"
+                android:src="@drawable/like_gesture_selector"/>
+        </RelativeLayout>
+
+        <TextView android:layout_width="@dimen/wwpx45"
+                  android:text="23"
+                  android:gravity="center"
+                  android:layout_marginLeft="@dimen/wwpx35"
+                  android:textSize="@dimen/wwpx20"
+                  android:background="@drawable/like_num_selector"
+                  android:layout_height="@dimen/wwpx30"/>
+
+    </RelativeLayout>
+
+
+
+</merge>

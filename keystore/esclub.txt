@@ -1,0 +1,29 @@
+keypass:esclub
+keystore:esclub
+
+
+别名: esclub
+创建日期: 2017-6-11
+条目类型: PrivateKeyEntry
+证书链长度: 1
+证书[1]:
+所有者: CN=esclub, OU=esclub, O=esclub, L=成都, ST=四川, C=中国
+发布者: CN=esclub, OU=esclub, O=esclub, L=成都, ST=四川, C=中国
+序列号: 364f68c1
+有效期开始日期: Sun Jun 11 20:07:18 GMT+08:00 2017, 截止日期: Mon Mar 14 20:07:18 GMT+08:00 2072
+证书指纹:
+         MD5: 79:D8:81:AA:BC:70:8F:BD:54:AC:1D:A5:DE:59:C7:CF
+         SHA1: F2:92:F5:D4:81:6C:3E:CC:74:B2:2E:42:74:89:DA:2F:98:61:27:52
+         SHA256: 7E:97:EF:FC:CB:73:B8:8A:F2:29:89:76:A0:84:5D:30:37:23:69:56:2F:D5:AC:66:C4:A9:E8:93:33:A9:85:E7
+         签名算法名称: SHA256withRSA
+         版本: 3
+
+扩展:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 97 8E 33 13 66 4A B2 90   75 CA 4B CB C1 33 9B EE  ..3.fJ..u.K..3..
+0010: E9 44 8E 31                                        .D.1
+]
+]

@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'esclub'
+            keyPassword 'esclub2017'
+            storeFile file('D:/windward/android/EsClub/keystore/esclub.keystore')
+            storePassword 'esclub2017'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
@@ -16,7 +24,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+    }
+
+    lintOptions {
+        disable "ResourceType"
     }
 }
 
@@ -33,4 +46,5 @@ dependencies {
     compile 'com.ww.http:wwhttp:2.0.0'
     compile 'com.youth.banner:banner:1.4.9'
     compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile project(':sharelibrary')
 }

@@ -11,4 +11,11 @@
         <item>新闻</item>
         <item>评论</item>
     </string-array>
+
+    <string-array name="cart_classify">
+        <item>热销</item>
+        <item>折扣</item>
+        <item>酒水</item>
+        <item>水果</item>
+    </string-array>
 </resources>

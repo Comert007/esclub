@@ -1,5 +1,7 @@
 package com.ww.android.esclub.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
@@ -30,6 +32,11 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
 
     private MenuTabAdapter adapter;
     private List<Fragment> fragments;
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected int getLayoutResId() {

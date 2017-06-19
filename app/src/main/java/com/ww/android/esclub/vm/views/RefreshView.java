@@ -45,8 +45,8 @@ public class RefreshView implements IView {
     @Optional
     private void attach(){
         LinearLayoutManager manager = new LinearLayoutManager(context);
-        crv.setItemAnimator(new DefaultItemAnimator());
         crv.setLayoutManager(manager);
+        crv.setItemAnimator(new DefaultItemAnimator());
 
         View emptyView = LayoutInflater.from(context).inflate(R.layout.layout_empty,null);
         ScreenUtil.scale(emptyView);

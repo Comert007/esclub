@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_primary"
+              android:orientation="vertical"
+              >
+
+    <RelativeLayout
+        android:id="@+id/item_start"
+        android:layout_width="match_parent"
+                    android:padding="@dimen/wwpx20"
+                    android:gravity="bottom"
+                    android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_skip_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳过登录"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/wwpx28"/>
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_below="@id/tv_skip_login"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/wwpx2"
+                android:text="注册"
+                android:textColor="@color/color_primary"
+                android:background="@drawable/btn_white_shape"
+                android:layout_height="@dimen/wwpx90"/>
+
+
+        <Button
+            android:id="@+id/btn_login"
+            android:text="登录"
+            style="@style/BtnLogin"/>
+    </RelativeLayout>
+
+</merge>

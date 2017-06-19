@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+<LinearLayout
+    android:id="@+id/item_login"
+    android:visibility="gone"
+    android:translationX="2000px"
+    android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:gravity="bottom"
+              android:layout_height="match_parent">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="@dimen/wwpx200"
+                  android:layout_margin="@dimen/wwpx20"
+                  android:background="@drawable/btn_white_shape"
+                  android:orientation="vertical"
+                  android:padding="@dimen/wwpx5">
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="0px"
+                  android:paddingLeft="@dimen/wwpx10"
+                  android:paddingRight="@dimen/wwpx10"
+                  android:layout_weight="1"
+                  android:hint="输入您的手机号"
+                  android:maxLength="11"
+                  android:textSize="@dimen/wwpx28"
+                  android:singleLine="true"
+                  android:background="@android:color/transparent"/>
+        <View android:layout_width="match_parent"
+              android:layout_height="2px"
+              android:background="@color/color_8c96a0"/>
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="0px"
+                  android:layout_weight="1"
+                  android:textSize="@dimen/wwpx28"
+                  android:hint="输入您的密码"
+                  android:singleLine="true"
+                  android:paddingLeft="@dimen/wwpx10"
+                  android:paddingRight="@dimen/wwpx10"
+                  android:maxLength="16"
+                  android:inputType="textPassword"
+                  android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_start_login"
+        android:text="登录"
+        android:layout_margin="@dimen/wwpx20"
+        style="@style/BtnLogin"/>
+</LinearLayout>
+
+
+</merge>

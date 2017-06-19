@@ -75,7 +75,14 @@
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
-
+    <style name="BtnLogin">
+        <item name="android:layout_below">@id/btn_register</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/wwpx25</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:background">@drawable/btn_gray_shape</item>
+        <item name="android:layout_height">@dimen/wwpx90</item>
+    </style>
 
 
 </resources>

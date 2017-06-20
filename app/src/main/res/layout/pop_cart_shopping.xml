@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:background="@color/color_f5f5f5"
+                  android:orientation="horizontal"
+                  android:paddingLeft="@dimen/wwpx21"
+                  android:paddingRight="@dimen/wwpx21"
+                  android:layout_height="@dimen/wwpx105">
+
+        <TextView android:layout_width="0px"
+                  android:textSize="@dimen/wwpx28"
+                  android:layout_weight="3.3"
+                  android:text=". 1号口袋"
+                  android:gravity="center_vertical"
+                  android:textColor="@color/color_999999"
+                  android:layout_height="match_parent"/>
+
+        <TextView android:layout_width="0px"
+                  android:layout_weight="1"
+                  android:textSize="@dimen/wwpx28"
+                  android:text="清空购物车"
+                  android:drawableLeft="@mipmap/ic_delete"
+                  android:gravity="center_vertical|right"
+                  android:textColor="@color/color_999999"
+                  android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <ww.com.core.widget.CustomRecyclerView
+        android:id="@+id/crv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

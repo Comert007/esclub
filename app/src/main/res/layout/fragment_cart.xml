@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
-              android:gravity="center"
-              android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
 
     <com.ww.android.esclub.widget.TitleView
@@ -29,16 +31,18 @@
             <ww.com.core.widget.CustomRecyclerView
                 android:id="@+id/crv_items"
                 android:layout_width="match_parent"
+                android:background="@color/color_white"
                 android:layout_height="match_parent"/>
         </LinearLayout>
 
+
+        <include layout="@layout/layout_cart_shopping"/>
 
         <RelativeLayout
             android:id="@+id/rl_shop"
             android:layout_width="match_parent"
             android:layout_height="@dimen/wwpx113"
             android:layout_gravity="bottom"
-            android:background="@color/color_white"
             android:gravity="bottom"
             android:orientation="horizontal">
 
@@ -78,15 +82,15 @@
                 android:src="@mipmap/ic_shopping_cart_disable_icon"/>
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_num_tip"
-                android:layout_alignRight="@id/iv_shopping"
                 android:layout_width="@dimen/wwpx30"
+                android:layout_height="@dimen/wwpx30"
+                android:layout_alignRight="@id/iv_shopping"
                 android:background="@drawable/circle_red_shape"
-                tools:text="0"
-                android:textSize="@dimen/wwpx18"
                 android:gravity="center"
-                android:layout_height="@dimen/wwpx30"/>
+                android:textSize="@dimen/wwpx18"
+                android:visibility="gone"
+                tools:text="0"/>
 
         </RelativeLayout>
 

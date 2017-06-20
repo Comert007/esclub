@@ -1,11 +1,13 @@
 package com.ww.android.esclub.fragment;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.adapter.cart.CartItemAdapter;
+import com.ww.android.esclub.adapter.cart.CartShopAdapter;
 import com.ww.android.esclub.adapter.cart.ClassifyAdapter;
 import com.ww.android.esclub.bean.CartClassifyBean;
 import com.ww.android.esclub.fragment.base.BaseFragment;
@@ -19,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindArray;
 import ww.com.core.Debug;
+import ww.com.core.ScreenUtil;
 
 /**
  * Created by feng on 2017/6/7.
@@ -28,6 +31,7 @@ public class CartFragment extends BaseFragment<CartView, VoidModel> implements O
 
     private ClassifyAdapter classifyAdapter; //一级adapter
     private CartItemAdapter cartItemAdapter; //二级adapter
+    private CartShopAdapter cartShopAdapter; //商品袋详情adapter
 
     private List<String> shoppingResult; //已经添加的商品集合
 
@@ -45,6 +49,7 @@ public class CartFragment extends BaseFragment<CartView, VoidModel> implements O
         shoppingResult = new ArrayList<>();
         initLeft();
         initRight();
+        initShopContent();
     }
 
     //初始化左边列表
@@ -72,10 +77,29 @@ public class CartFragment extends BaseFragment<CartView, VoidModel> implements O
     private void initRight() {
         cartItemAdapter = new CartItemAdapter(getContext());
         cartItemAdapter.setOnCartAction(this);
+        View footView = LayoutInflater.from(getContext()).inflate(R.layout.layout_cart_empty,null);
+        ScreenUtil.scale(footView);
         v.getCrvItems().setAdapter(cartItemAdapter);
+        v.getCrvItems().addFooterView(footView);
         cartItemAdapter.addList(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
                 "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
                 "1", "1", "1", "1"));
+
+    }
+
+    private void initShopContent(){
+        cartShopAdapter = new CartShopAdapter(getContext());
+        v.getCrvShop().setAdapter(cartShopAdapter);
+       v.getIvShopping().setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View vi) {
+               v.showShoppingContent();
+               if (shoppingResult!=null&&shoppingResult.size()>0){
+                   cartShopAdapter.addList(shoppingResult);
+               }
+
+           }
+       });
     }
 
 

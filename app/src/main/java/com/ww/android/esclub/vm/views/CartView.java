@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,11 +42,19 @@ public class CartView implements IView {
     CustomRecyclerView crvClassify; //一级分类
     @BindView(R.id.crv_items)
     CustomRecyclerView crvItems; //二级分类
+    @BindView(R.id.crv_shop)
+    CustomRecyclerView crvShop; //商品袋
     @BindView(R.id.tv_num_tip)
     TextView tvNumTip; //小红点显示
+    @BindView(R.id.ll_shopping_content)
+    LinearLayout llShoppingContent;  //商品袋
 
+
+    private boolean visiable;
     private LinearLayoutManager classifyManager;
     private LinearLayoutManager itemManager;
+
+//    private PopupWindow popupWindow;
 
     private Context context;
 
@@ -55,6 +64,13 @@ public class CartView implements IView {
         context = view.getContext();
 
         deployCrv();
+
+//        ivShopping.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showShoppingContent();
+//            }
+//        });
     }
 
 
@@ -78,16 +94,35 @@ public class CartView implements IView {
         }
     }
 
+    //显示商品袋
+    public void showShoppingContent(){
+        TransitionManager.beginDelayedTransition(llShoppingContent);
+        visiable = !visiable;
+        llShoppingContent.setVisibility(visiable? View.VISIBLE : View.GONE);
+    }
+
     private void deployCrv() {
         classifyManager = new LinearLayoutManager(context);
         itemManager = new LinearLayoutManager(context);
+        LinearLayoutManager shopManager = new LinearLayoutManager(context);
+
         crvClassify.setLayoutManager(classifyManager);
         crvItems.setLayoutManager(itemManager);
+        crvShop.setLayoutManager(shopManager);
 
         crvClassify.setItemAnimator(new DefaultItemAnimator());
         crvItems.setItemAnimator(new DefaultItemAnimator());
+        crvShop.setItemAnimator(new DefaultItemAnimator());
     }
 
+
+    public ImageView getIvShopping() {
+        return ivShopping;
+    }
+
+    public CustomRecyclerView getCrvShop() {
+        return crvShop;
+    }
 
     public CustomRecyclerView getCrvClassify() {
         return crvClassify;
@@ -162,10 +197,43 @@ public class CartView implements IView {
         }
         tvNumTip.setText(text_num);
     }
+//
+//    private void createPopup(){
+//        if (popupWindow==null){
+//            View popView = LayoutInflater.from(context).inflate(R.layout.pop_cart_shopping,null);
+//            ScreenUtil.scale(popView);
+//            popupWindow = new PopupWindow(popView, LinearLayout.LayoutParams.MATCH_PARENT,
+//                    LinearLayout.LayoutParams.WRAP_CONTENT);
+//            popupWindow.setFocusable(true);
+//            popupWindow.setBackgroundDrawable(new BitmapDrawable());
+//            popupWindow.setAnimationStyle(R.style.anim_pop_bottom);
+//        }
+//
+//    }
+//
+//    public void showGoods(){
+//        if (popupWindow==null){
+//            createPopup();
+//        }
+//        if (popupWindow.isShowing()){
+//            dismissPopup();
+//        }else {
+//            showPopup();
+//        }
+//    }
+//
+//    private void showPopup(){
+//        if (popupWindow!=null){
+//            popupWindow.showAtLocation(flContent, Gravity.TOP,0,ScreenUtil.getScalePxValue(200));
+//        }
+//    }
+//
+//    private void dismissPopup(){
+//        if (popupWindow!=null){
+//            popupWindow.dismiss();
+//        }
+//    }
 
-    private void createPopup(){
-
-    }
 
     @Override
     public void onResume() {

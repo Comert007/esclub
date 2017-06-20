@@ -57,4 +57,10 @@
         <item name="android:activityOpenEnterAnimation">@anim/anim_bottom_enter</item>
         <item name="android:activityCloseExitAnimation">@anim/anim_bottom_exit</item>
     </style>
+
+
+    <style name="anim_pop_bottom">
+        <item name="android:windowEnterAnimation">@anim/pop_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_bottom_exit</item>
+    </style>
 </resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="@dimen/wwpx130"
+                  android:orientation="horizontal">
+        <TextView
+            style="@style/ShareText"
+            android:layout_height="match_parent"
+            android:text="泸州老窖"
+            android:textSize="@dimen/wwpx30"
+        />
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal">
+
+            <TextView android:layout_width="0px"
+                      android:layout_weight="1"
+                      android:text="￥78"
+                      android:textColor="@color/color_primary"
+
+                      android:layout_height="match_parent"
+            android:gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginRight="@dimen/wwpx21"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/ll_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btn_minus"
+                        android:layout_width="@dimen/wwpx50"
+                        android:layout_height="@dimen/wwpx50"
+                        android:background="@mipmap/ic_minus"/>
+
+                    <TextView
+                        android:id="@+id/tv_num"
+                        style="@style/ContentText"
+                        android:layout_width="@dimen/wwpx40"
+                        android:gravity="center"
+                        android:text="0"
+                    />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="@dimen/wwpx50"
+                    android:layout_height="@dimen/wwpx50"
+                    android:background="@mipmap/ic_add"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/layout_space_line"/>
+</LinearLayout>

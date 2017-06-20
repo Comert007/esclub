@@ -79,7 +79,7 @@ public class ClassifyAdapter extends RvAdapter<CartClassifyBean> {
         }
     }
 
-    private void recoverySelected(int position){
+    public void recoverySelected(int position){
         List<CartClassifyBean> been = getList();
         for (CartClassifyBean classifyBean : been) {
             classifyBean.setSelected(false);

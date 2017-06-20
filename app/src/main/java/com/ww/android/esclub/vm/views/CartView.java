@@ -21,8 +21,11 @@ import ww.com.core.widget.CustomRecyclerView;
 public class CartView implements IView {
     @BindView(R.id.crv_classify)
     CustomRecyclerView crvClassify; //一级分类
-//    @BindView(R.id.crv_items)
-//    CustomRecyclerView crvItems; //二级分类
+    @BindView(R.id.crv_items)
+    CustomRecyclerView crvItems; //二级分类
+
+    private LinearLayoutManager classifyManager;
+    private LinearLayoutManager itemManager;
 
     private Context context;
 
@@ -35,13 +38,13 @@ public class CartView implements IView {
     }
 
     private void deployCrv(){
-        LinearLayoutManager classifyManager = new LinearLayoutManager(context);
-//        LinearLayoutManager itemManager = new LinearLayoutManager(context);
+        classifyManager = new LinearLayoutManager(context);
+        itemManager = new LinearLayoutManager(context);
         crvClassify.setLayoutManager(classifyManager);
-//        crvItems.setLayoutManager(itemManager);
+        crvItems.setLayoutManager(itemManager);
 
         crvClassify.setItemAnimator(new DefaultItemAnimator());
-//        crvItems.setItemAnimator(new DefaultItemAnimator());
+        crvItems.setItemAnimator(new DefaultItemAnimator());
     }
 
 
@@ -49,9 +52,17 @@ public class CartView implements IView {
         return crvClassify;
     }
 
-//    public CustomRecyclerView getCrvItems() {
-//        return crvItems;
-//    }
+    public CustomRecyclerView getCrvItems() {
+        return crvItems;
+    }
+
+    public LinearLayoutManager getClassifyManager() {
+        return classifyManager;
+    }
+
+    public LinearLayoutManager getItemManager() {
+        return itemManager;
+    }
 
     @Override
     public void onResume() {
@@ -62,4 +73,6 @@ public class CartView implements IView {
     public void onDestroy() {
 
     }
+
+
 }

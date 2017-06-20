@@ -13,17 +13,38 @@
         app:titleText="@string/cart_title"/>
 
     <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                 android:layout_height="match_parent">
+                  android:layout_height="0px"
+                  android:layout_weight="1"
+                  android:orientation="horizontal">
         <ww.com.core.widget.CustomRecyclerView
             android:id="@+id/crv_classify"
             android:layout_width="@dimen/wwpx200"
             android:layout_height="match_parent"/>
 
-        <FrameLayout
-            android:id="@+id/fl_content"
+        <ww.com.core.widget.CustomRecyclerView
+            android:id="@+id/crv_items"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wwpx113"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/wwpx97"
+            android:layout_height="@dimen/wwpx97"
+            android:layout_marginLeft="@dimen/wwpx21"
+            android:layout_marginBottom="@dimen/wwpx14"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wwpx97"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_404040">
+
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/color_white"
+              android:orientation="vertical">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="@dimen/wwpx192"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal">
+        <ww.com.core.widget.RoundImageView
+            android:id="@+id/riv_thumb"
+            android:layout_width="@dimen/wwpx125"
+            android:layout_height="@dimen/wwpx125"
+            android:layout_marginLeft="@dimen/wwpx21"
+            android:src="@mipmap/ic_test_wine"
+            app:borderRadius="@dimen/wwpx10"
+            app:type="type_round"/>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_marginLeft="@dimen/wwpx21"
+                      android:gravity="center_vertical"
+                      android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/ContentText"
+                android:text="泸州老窖" android:textColor="@color/color_333333"/>
+            <TextView
+                android:id="@+id/tv_month_num"
+                style="@style/ContentText"
+                android:layout_marginTop="@dimen/wwpx20"
+                android:text="月售 68"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/wwpx24"/>
+
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/wwpx25">
+                <TextView android:id="@+id/tv_price"
+                          style="@style/ContentText"
+                          android:layout_marginTop="@dimen/wwpx20"
+                          android:text="￥ 73"
+                          android:textColor="@color/color_06c1ae"
+                          android:textStyle="bold"/>
+
+
+                <LinearLayout android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_alignParentRight="true"
+                              android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/ll_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/btn_minus"
+                            android:layout_width="@dimen/wwpx50"
+                            android:layout_height="@dimen/wwpx50"
+                            android:background="@mipmap/ic_minus"/>
+
+                        <TextView
+                            android:id="@+id/tv_num"
+                            style="@style/ContentText"
+                            android:layout_width="@dimen/wwpx40"
+                            android:gravity="center"
+                            android:text="0"
+                        />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_add"
+                        android:layout_width="@dimen/wwpx50"
+                        android:layout_height="@dimen/wwpx50"
+                        android:background="@mipmap/ic_add"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="2px"
+          android:background="@color/color_d8d8d8"/>
+</LinearLayout>

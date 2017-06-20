@@ -5,9 +5,6 @@
               android:background="@color/color_white"
               android:layout_height="match_parent">
 
-    <TextView android:layout_width="match_parent"
-              android:gravity="center"
-              android:textColor="@color/color_393a3d"
-              android:layout_height="match_parent"
-              android:text="购物列表"/>
+
+    <include layout="@layout/layout_refresh"/>
 </LinearLayout>

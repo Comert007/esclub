@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <TextView android:layout_width="match_parent"
+              android:background="@color/color_f5f5f5"
+              android:textSize="@dimen/wwpx25"
+              android:text="热销"
+              android:textColor="@color/color_393a3d"
+              android:gravity="center_vertical"
+              android:paddingLeft="@dimen/wwpx21"
+              android:layout_height="@dimen/wwpx52"/>
+</LinearLayout>

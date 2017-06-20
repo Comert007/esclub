@@ -2,6 +2,7 @@ package com.ww.android.esclub.fragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.adapter.cart.CartItemAdapter;
@@ -23,11 +24,12 @@ import ww.com.core.Debug;
  * Created by feng on 2017/6/7.
  */
 
-public class CartFragment extends BaseFragment<CartView, VoidModel> implements OnItemClickListener {
+public class CartFragment extends BaseFragment<CartView, VoidModel> implements OnItemClickListener,CartItemAdapter.OnCartAction {
 
     private ClassifyAdapter classifyAdapter; //一级adapter
     private CartItemAdapter cartItemAdapter; //二级adapter
 
+    private List<String> shoppingResult; //已经添加的商品集合
 
     int[] icons = {R.mipmap.ic_hot, R.mipmap.ic_discount, R.mipmap.ic_wine, R.mipmap.ic_fruit};
     @BindArray(R.array.cart_classify)
@@ -40,7 +42,7 @@ public class CartFragment extends BaseFragment<CartView, VoidModel> implements O
 
     @Override
     protected void init() {
-
+        shoppingResult = new ArrayList<>();
         initLeft();
         initRight();
     }
@@ -69,6 +71,7 @@ public class CartFragment extends BaseFragment<CartView, VoidModel> implements O
 
     private void initRight() {
         cartItemAdapter = new CartItemAdapter(getContext());
+        cartItemAdapter.setOnCartAction(this);
         v.getCrvItems().setAdapter(cartItemAdapter);
         cartItemAdapter.addList(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
                 "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
@@ -89,18 +92,43 @@ public class CartFragment extends BaseFragment<CartView, VoidModel> implements O
 
     }
 
+    @Override
+    public void onAdd(int position, View view) {
+        int[] loc = new int[2];
+        view.getLocationInWindow(loc);
+        v.playAnimation(loc, (ViewGroup) getActivity().getWindow().getDecorView());
+
+        shoppingResult.add(cartItemAdapter.getItem(position));
+        v.showShopRes(true);
+        v.setTip(shoppingResult.size()+"");
+
+    }
+
+    @Override
+    public void onMinus(int position, View view) {
+        shoppingResult.remove(cartItemAdapter.getItem(position));
+        if (shoppingResult.size()==0){
+            v.showShopRes(false);
+        }
+
+        v.setTip(shoppingResult.size()+"");
+    }
+
 
     class RecyclerViewListener extends RecyclerView.OnScrollListener {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
+            v.showShopping(newState);
             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+
                 int firstItem = v.getItemManager().findFirstVisibleItemPosition();
                 int lastItem = v.getItemManager().findLastVisibleItemPosition();
                 int leftPosition = lastItem / 10;
                 Debug.d("leftPosition:"+leftPosition);
                 classifyAdapter.recoverySelected(leftPosition);
             }
+
         }
     }
 

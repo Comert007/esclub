@@ -21,6 +21,13 @@ public class CartItemAdapter extends RvAdapter<String> {
     public int CART_LINE = 0;
     public int CART_ITEM = 1;
 
+
+    private OnCartAction onCartAction;
+
+    public void setOnCartAction(OnCartAction onCartAction) {
+        this.onCartAction = onCartAction;
+    }
+
     public CartItemAdapter(Context context) {
         super(context);
     }
@@ -68,9 +75,9 @@ public class CartItemAdapter extends RvAdapter<String> {
         @Override
         public void onBindData(int i, String s) {
             String text = tvNum.getText().toString();
-            if ("0".equals(text)){
+            if ("0".equals(text)) {
                 llLeft.setVisibility(View.GONE);
-            }else {
+            } else {
                 llLeft.setVisibility(View.VISIBLE);
             }
 
@@ -79,8 +86,11 @@ public class CartItemAdapter extends RvAdapter<String> {
                 public void onClick(View v) {
                     String text = tvNum.getText().toString();
                     int originalNum = Integer.valueOf(text);
-                    tvNum.setText((originalNum+1)+"");
+                    tvNum.setText((originalNum + 1) + "");
                     llLeft.setVisibility(View.VISIBLE);
+                    if (onCartAction!=null){
+                        onCartAction.onAdd(position,v);
+                    }
                 }
             });
 
@@ -89,9 +99,13 @@ public class CartItemAdapter extends RvAdapter<String> {
                 public void onClick(View v) {
                     String text = tvNum.getText().toString();
                     int originalNum = Integer.valueOf(text);
-                    tvNum.setText((originalNum-1)+"");
-                    if ("1".equals(text)){
+                    tvNum.setText((originalNum - 1) + "");
+                    if ("1".equals(text)) {
                         llLeft.setVisibility(View.GONE);
+                    }
+
+                    if (onCartAction!=null){
+                        onCartAction.onMinus(position,v);
                     }
                 }
             });
@@ -109,5 +123,11 @@ public class CartItemAdapter extends RvAdapter<String> {
         public void onBindData(int i, String s) {
 
         }
+    }
+
+   public interface OnCartAction {
+        void onAdd(int position, View view);
+
+        void onMinus(int position, View view);
     }
 }

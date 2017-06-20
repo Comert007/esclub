@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
               android:gravity="center"
               android:orientation="vertical">
 
@@ -12,39 +12,85 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:titleText="@string/cart_title"/>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="0px"
-                  android:layout_weight="1"
-                  android:orientation="horizontal">
-        <ww.com.core.widget.CustomRecyclerView
-            android:id="@+id/crv_classify"
-            android:layout_width="@dimen/wwpx200"
-            android:layout_height="match_parent"/>
 
-        <ww.com.core.widget.CustomRecyclerView
-            android:id="@+id/crv_items"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
-
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/wwpx113"
-        android:gravity="bottom"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="@dimen/wwpx97"
-            android:layout_height="@dimen/wwpx97"
-            android:layout_marginLeft="@dimen/wwpx21"
-            android:layout_marginBottom="@dimen/wwpx14"/>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="horizontal">
+            <ww.com.core.widget.CustomRecyclerView
+                android:id="@+id/crv_classify"
+                android:layout_width="@dimen/wwpx200"
+                android:layout_height="match_parent"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/wwpx97"
-            android:layout_alignParentBottom="true"
-            android:background="@color/color_404040">
-
+            <ww.com.core.widget.CustomRecyclerView
+                android:id="@+id/crv_items"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
-    </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_shop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wwpx113"
+            android:layout_gravity="bottom"
+            android:background="@color/color_white"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/wwpx97"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_404040">
+
+                <TextView
+                    style="@style/ShareText"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/wwpx118"
+                    android:text="亲，喜欢就多点两下吧"
+                    android:textColor="@color/color_white"/>
+
+                <TextView
+                    style="@style/ShareText"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_06c1ae"
+                    android:gravity="center"
+                    android:text="去结算"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/wwpx28"/>
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_shopping"
+                android:layout_width="@dimen/wwpx97"
+                android:layout_height="@dimen/wwpx97"
+                android:layout_marginBottom="@dimen/wwpx14"
+                android:layout_marginLeft="@dimen/wwpx21"
+                android:src="@mipmap/ic_shopping_cart_disable_icon"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_num_tip"
+                android:layout_alignRight="@id/iv_shopping"
+                android:layout_width="@dimen/wwpx30"
+                android:background="@drawable/circle_red_shape"
+                tools:text="0"
+                android:textSize="@dimen/wwpx18"
+                android:gravity="center"
+                android:layout_height="@dimen/wwpx30"/>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
 </LinearLayout>

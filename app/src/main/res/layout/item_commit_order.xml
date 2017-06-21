@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_marginTop="@dimen/wwpx10"
+              android:layout_height="wrap_content">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="@dimen/wwpx192"
+                  android:background="@color/color_f8f8f8"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal">
+        <ww.com.core.widget.RoundImageView
+            android:id="@+id/riv_thumb"
+            android:layout_width="@dimen/wwpx125"
+            android:layout_height="@dimen/wwpx125"
+            android:layout_marginLeft="@dimen/wwpx21"
+            android:src="@mipmap/ic_test_wine"
+            app:borderRadius="@dimen/wwpx10"
+            app:type="type_round"/>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_marginLeft="@dimen/wwpx21"
+                      android:gravity="center_vertical"
+                      android:orientation="vertical">
+           <LinearLayout android:layout_width="match_parent"
+                         android:gravity="center"
+                         android:layout_height="wrap_content">
+               <TextView
+                   android:id="@+id/tv_name"
+                   style="@style/ContentText"
+                   android:text="泸州老窖"
+                   android:textColor="@color/color_333333"/>
+
+
+
+               <RelativeLayout android:layout_width="match_parent"
+                               android:gravity="right"
+                               android:layout_height="wrap_content"
+                               android:layout_marginRight="@dimen/wwpx25">
+                   <TextView android:id="@+id/tv_price"
+                             style="@style/ContentText"
+                             android:text="￥ 73"
+                             android:textColor="@color/color_fb4e44"
+                             android:textStyle="bold"/>
+
+               </RelativeLayout>
+           </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_num"
+                style="@style/ContentText"
+                android:layout_marginTop="@dimen/wwpx10"
+                android:text="x1"
+                android:textColor="@color/color_999999"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

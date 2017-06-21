@@ -31,6 +31,8 @@
             android:theme="@style/AnimationActivity"
             android:name=".activity.home.ShareActivity"/>
 
+        <activity android:name=".activity.cart.CommitOrderActivity"/>
+
     </application>
 
 </manifest>

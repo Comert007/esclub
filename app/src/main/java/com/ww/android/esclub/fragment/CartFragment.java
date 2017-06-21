@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ww.android.esclub.R;
+import com.ww.android.esclub.activity.cart.CommitOrderActivity;
 import com.ww.android.esclub.adapter.cart.CartItemAdapter;
 import com.ww.android.esclub.adapter.cart.CartShopAdapter;
 import com.ww.android.esclub.adapter.cart.ClassifyAdapter;
@@ -50,6 +51,13 @@ public class CartFragment extends BaseFragment<CartView, VoidModel> implements O
         initLeft();
         initRight();
         initShopContent();
+
+        v.getBtnAccount().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommitOrderActivity.start(getContext());
+            }
+        });
     }
 
     //初始化左边列表

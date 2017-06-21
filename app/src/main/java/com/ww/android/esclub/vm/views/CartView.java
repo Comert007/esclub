@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,7 +49,8 @@ public class CartView implements IView {
     TextView tvNumTip; //小红点显示
     @BindView(R.id.ll_shopping_content)
     LinearLayout llShoppingContent;  //商品袋
-
+    @BindView(R.id.btn_account)
+    Button btnAccount; //去结算
 
     private boolean visiable;
     private LinearLayoutManager classifyManager;
@@ -138,6 +140,10 @@ public class CartView implements IView {
 
     public LinearLayoutManager getItemManager() {
         return itemManager;
+    }
+
+    public Button getBtnAccount() {
+        return btnAccount;
     }
 
     //添加进购物车 动画显示

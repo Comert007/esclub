@@ -61,7 +61,8 @@
                     android:text="亲，喜欢就多点两下吧"
                     android:textColor="@color/color_white"/>
 
-                <TextView
+                <Button
+                    android:id="@+id/btn_account"
                     style="@style/ShareText"
                     android:layout_height="match_parent"
                     android:background="@color/color_06c1ae"

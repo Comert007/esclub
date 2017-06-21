@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_efefef"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <com.ww.android.esclub.widget.TitleView
+            android:id="@+id/title_view"
+            style="@style/TitleBar"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:titleLeftIco="@mipmap/arrow_back_normal"
+            app:titleText="@string/cart_order_commit"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wwpx113"
+            android:background="@color/color_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ww.com.core.widget.RoundImageView
+                android:layout_width="@dimen/wwpx53"
+                android:layout_height="@dimen/wwpx53"
+                android:layout_marginLeft="@dimen/wwpx28"
+                android:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                style="@style/ContentText"
+                android:layout_marginLeft="@dimen/wwpx18"
+                android:text="e-sports"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/wwpx28"/>
+        </LinearLayout>
+
+        <ww.com.core.widget.CustomRecyclerView
+            android:id="@+id/crv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wwpx100"
+            android:background="@color/color_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/wwpx28"
+            android:paddingRight="@dimen/wwpx28">
+
+
+            <TextView
+                style="@style/ShareText"
+                android:gravity="left"
+                android:text="支付方式"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/wwpx25"/>
+            <TextView
+                style="@style/ShareText"
+                android:gravity="right"
+                android:text="在线支付"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/wwpx25"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wwpx118"
+            android:background="@color/color_f8f8f8"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/wwpx28"
+            android:paddingRight="@dimen/wwpx28">
+            <ww.com.core.widget.RoundImageView
+                android:layout_width="@dimen/wwpx44"
+                android:layout_height="@dimen/wwpx44"
+                android:src="@mipmap/ic_alipay"
+                app:borderRadius="@dimen/wwpx10"
+                app:type="type_round"/>
+
+            <TextView
+                style="@style/ShareText"
+                android:layout_marginLeft="@dimen/wwpx25"
+                android:gravity="left"
+                android:text="支付宝支付"
+                android:textSize="@dimen/wwpx28"/>
+
+            <RadioButton
+                android:id="@+id/rb_alipay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"/>
+
+        </LinearLayout>
+
+        <include layout="@layout/layout_space_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wwpx118"
+            android:background="@color/color_f8f8f8"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/wwpx28"
+            android:paddingRight="@dimen/wwpx28">
+            <ww.com.core.widget.RoundImageView
+                android:layout_width="@dimen/wwpx44"
+                android:layout_height="@dimen/wwpx44"
+                android:src="@mipmap/ic_weixin"
+                app:borderRadius="@dimen/wwpx10"
+                app:type="type_round"/>
+
+            <TextView
+                style="@style/ShareText"
+                android:layout_marginLeft="@dimen/wwpx25"
+                android:gravity="left"
+                android:text="微信支付"
+                android:textSize="@dimen/wwpx28"/>
+
+            <RadioButton
+                android:id="@+id/rb_weichat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wwpx103"
+        android:background="@color/color_white">
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待支付"
+                android:textColor="@color/color_393a3d"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/wwpx10"
+                android:text="￥78"
+                android:textColor="@color/color_fb4e44"/>
+        </LinearLayout>
+
+
+        <TextView style="@style/ShareText"
+                  android:layout_height="match_parent"/>
+
+        <TextView style="@style/ShareText"
+                  android:layout_height="match_parent"
+                  android:background="@color/color_ffd161"
+                  android:text="提交订单"
+                  android:textColor="@color/color_393a3d"
+                  android:textSize="@dimen/wwpx28"/>
+
+    </LinearLayout>
+</LinearLayout>

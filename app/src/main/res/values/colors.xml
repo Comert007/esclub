@@ -40,8 +40,14 @@
     <color name="color_fb4e44">#fb4e44</color>
     <color name="color_dadada">#dadada</color>
     <color name="color_7914191d">#7914191d</color>
+    <color name="color_14191d">#14191d</color>
     <color name="color_f8f8f8">#f8f8f8</color>
     <color name="color_666666">#666666</color>
     <color name="color_efefef">#efefef</color>
+    <color name="color_28323c">#28323c</color>
+    <color name="color_cccccc">#cccccc</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_3d9027">#3d9027</color>
+    <color name="color_9c3d27">#9c3d27</color>
 
 </resources>

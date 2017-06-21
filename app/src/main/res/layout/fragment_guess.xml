@@ -1,19 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center"
-              android:orientation="vertical">
+<LinearLayout style="@style/LlayFill"
+              xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.ww.android.esclub.widget.TitleView
         android:id="@+id/title_view"
         style="@style/TitleBar"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleRightIco="@mipmap/ic_history"
         app:titleText="@string/guess_title"/>
-    <TextView
+    <LinearLayout android:layout_width="match_parent"
+                  android:background="@color/color_14191d"
+                  android:orientation="vertical"
+                  android:gravity="center"
+                  android:layout_height="@dimen/wwpx200">
+
+        <ImageView
+            android:layout_width="@dimen/wwpx80"
+            android:src="@mipmap/ic_level_none"
+            android:layout_height="@dimen/wwpx80"/>
+
+        <TextView
+            android:text="暂无等级"
+            android:layout_marginTop="@dimen/wwpx10"
+            android:textColor="@color/color_666666"
+            style="@style/ContentText"/>
+
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content">
+            <TextView
+                android:text="0"
+                android:layout_marginTop="@dimen/wwpx10"
+                android:textColor="@color/color_0b86ee"
+                style="@style/ContentText"/>
+            <TextView
+                android:text="/100000"
+                android:layout_marginTop="@dimen/wwpx10"
+                android:textColor="@color/color_666666"
+                style="@style/ContentText"/>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:background="@color/color_e1e6eb"
+                  android:gravity="center_vertical"
+                  android:paddingLeft="@dimen/wwpx25"
+                  android:layout_height="wrap_content">
+        <ImageView
+            android:src="@mipmap/ic_guess_statistics"
+            android:layout_width="@dimen/wwpx30"
+                   android:layout_height="@dimen/wwpx30"/>
+        <TextView
+            android:layout_marginLeft="@dimen/wwpx10"
+            style="@style/TipText"
+            android:text="竞猜统计"/>
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="match_parent"
-        android:textColor="@color/color_space_line"
-        android:text="@string/guess_title"/>
+        android:layout_height="@dimen/wwpx146"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/ContentText"
+                android:text="0"
+                android:textColor="@color/color_000000"
+                android:textSize="@dimen/wwpx29"/>
+
+            <TextView
+                style="@style/ContentText"
+                android:layout_marginTop="@dimen/wwpx11"
+                android:text="竞猜场次"
+                android:textColor="@color/color_8c96a0"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="3px"
+              android:layout_height="@dimen/wwpx63"
+              android:background="@color/color_cccccc"/>
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/ContentText"
+                android:text="0%"
+                android:textColor="@color/color_000000"
+                android:textSize="@dimen/wwpx29"/>
+
+            <TextView
+                style="@style/ContentText"
+                android:layout_marginTop="@dimen/wwpx11"
+                android:text="胜率"
+                android:textColor="@color/color_8c96a0"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="3px"
+              android:layout_height="@dimen/wwpx63"
+              android:background="@color/color_cccccc"/>
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/ContentText"
+                android:text="0"
+                android:textColor="@color/color_0b86ee"
+                android:textSize="@dimen/wwpx29"/>
+
+            <TextView
+                style="@style/ContentText"
+                android:layout_marginTop="@dimen/wwpx11"
+                android:text="总积分"
+                android:textColor="@color/color_8c96a0"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:background="@color/color_e1e6eb"
+                  android:gravity="center_vertical"
+                  android:paddingLeft="@dimen/wwpx25"
+                  android:layout_height="wrap_content">
+        <ImageView
+            android:src="@mipmap/ic_guess_history"
+            android:layout_width="@dimen/wwpx30"
+            android:layout_height="@dimen/wwpx30"/>
+        <TextView
+            android:layout_marginLeft="@dimen/wwpx10"
+            style="@style/TipText"
+            android:text="当前竞猜"/>
+    </LinearLayout>
+
+    <include layout="@layout/layout_refresh"/>
+
+
 </LinearLayout>

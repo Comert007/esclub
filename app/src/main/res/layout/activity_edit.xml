@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/LlayFill"
+              xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.ww.android.esclub.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleLeftIco="@mipmap/arrow_back_normal"
+        app:titleText="@string/guess_edit"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wwpx90"
+        android:layout_margin="@dimen/wwpx20">
+
+        <EditText
+            android:id="@+id/et_scale_num"
+            android:layout_width="0px"
+            android:inputType="number"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edit_blue_border_shape"
+            android:hint="请输入投注的积分"
+            android:maxLength="5"
+            android:paddingLeft="@dimen/wwpx20"
+            android:paddingRight="@dimen/wwpx20"
+            android:singleLine="true"
+            android:textSize="@dimen/wwpx30"/>
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="@dimen/wwpx110"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/wwpx10"
+            android:layout_marginRight="@dimen/wwpx10"
+            android:background="@drawable/edit_black_shape"
+            android:text="确定"
+            android:textSize="@dimen/wwpx30"/>
+    </LinearLayout>
+</LinearLayout>

@@ -32,6 +32,8 @@
             android:name=".activity.home.ShareActivity"/>
 
         <activity android:name=".activity.cart.CommitOrderActivity"/>
+        <activity android:name=".activity.guess.GuessDetailActivity"/>
+        <activity android:name=".activity.guess.GuessEditActivity"/>
 
     </application>
 

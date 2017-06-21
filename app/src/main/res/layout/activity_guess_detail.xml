@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/LlayFill">
+
+    <com.ww.android.esclub.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleLeftIco="@mipmap/arrow_back_normal"
+        app:titleText="@string/guess_detail"/>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@color/color_white"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="@dimen/wwpx200"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ww.com.core.widget.RoundImageView
+                android:layout_width="@dimen/wwpx77"
+                android:layout_height="@dimen/wwpx77"
+                android:src="@mipmap/test"/>
+
+            <TextView
+                style="@style/ContentText"
+                android:layout_marginTop="@dimen/wwpx35"
+                android:text="ESTAR"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:gravity="center_horizontal"
+                      android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/wwpx100"
+                android:layout_height="@dimen/wwpx100"
+                android:src="@mipmap/ic_vs"/>
+
+            <TextView
+                android:id="@+id/tv_guess_tip"
+                style="@style/ContentText"
+                android:layout_marginTop="@dimen/wwpx5"
+                android:text="投注中"
+                android:textColor="@color/color_0b86ee"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="@dimen/wwpx200"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ww.com.core.widget.RoundImageView
+                android:layout_width="@dimen/wwpx77"
+                android:layout_height="@dimen/wwpx77"
+                android:src="@mipmap/ic_test_we"/>
+
+            <TextView
+                style="@style/ContentText"
+                android:layout_marginTop="@dimen/wwpx35"
+                android:text="WE"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:background="@color/color_e1e6eb"
+                  android:gravity="center_vertical"
+                  android:paddingLeft="@dimen/wwpx25"
+                  android:layout_height="wrap_content">
+        <ImageView
+            android:src="@mipmap/ic_guesses"
+            android:layout_width="@dimen/wwpx33"
+            android:layout_height="@dimen/wwpx33"/>
+        <TextView
+            android:layout_marginLeft="@dimen/wwpx10"
+            style="@style/TipText"
+            android:text="竞猜选项"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/wwpx28"
+        android:paddingRight="@dimen/wwpx28"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/wwpx56">
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="竞猜项"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/wwpx28"
+            android:textColor="@color/color_999999"/>
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:text="竞猜问题"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/wwpx28"
+            android:textColor="@color/color_999999"/>
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="竞猜量"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/wwpx28"
+            android:textColor="@color/color_999999"/>
+        <ImageView
+            android:layout_width="@dimen/wwpx30"
+            android:layout_height="@dimen/wwpx30"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_refresh"/>
+
+
+
+
+</LinearLayout>

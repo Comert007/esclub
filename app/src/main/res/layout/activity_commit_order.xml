@@ -7,17 +7,18 @@
     android:background="@color/color_efefef"
     android:orientation="vertical">
 
+    <com.ww.android.esclub.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleLeftIco="@mipmap/arrow_back_normal"
+        app:titleText="@string/cart_order_commit"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
         android:orientation="vertical">
-        <com.ww.android.esclub.widget.TitleView
-            android:id="@+id/title_view"
-            style="@style/TitleBar"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            app:titleLeftIco="@mipmap/arrow_back_normal"
-            app:titleText="@string/cart_order_commit"/>
 
         <LinearLayout
             android:layout_width="match_parent"

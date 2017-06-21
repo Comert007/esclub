@@ -8,4 +8,10 @@
 
     <string name="news_es">ES 新闻</string>
     <string name="cart_order_commit">订单提交</string>
+    <string name="guess_voting">投注中</string>
+    <string name="guess_visiting">比赛中</string>
+    <string name="guess_completed">已完结</string>
+    <string name="guess_history">竞猜历史</string>
+    <string name="guess_detail">竞猜详情</string>
+    <string name="guess_edit">积分编辑</string>
 </resources>

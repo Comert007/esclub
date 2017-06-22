@@ -6,6 +6,7 @@
     <string name="user_title">个人中心</string>
     <string name="dialog_loding">Loding...</string>
 
+    <string name="title_login">登录</string>
     <string name="news_es">ES 新闻</string>
     <string name="cart_order_commit">订单提交</string>
     <string name="guess_voting">投注中</string>

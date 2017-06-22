@@ -6,8 +6,6 @@
 
 <LinearLayout
     android:id="@+id/item_login"
-    android:visibility="gone"
-    android:translationX="2000px"
     android:layout_width="match_parent"
               android:orientation="vertical"
               android:gravity="bottom"
@@ -25,6 +23,7 @@
                   android:paddingLeft="@dimen/wwpx10"
                   android:paddingRight="@dimen/wwpx10"
                   android:layout_weight="1"
+                  android:inputType="number"
                   android:hint="输入您的手机号"
                   android:maxLength="11"
                   android:textSize="@dimen/wwpx28"

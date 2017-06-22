@@ -8,6 +8,14 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <com.ww.android.esclub.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleLeftIco="@mipmap/arrow_back_normal"
+        app:titleText="@string/title_login"/>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
@@ -30,8 +38,7 @@
         android:layout_gravity="bottom"
         android:layout_weight="1">
 
-        <include layout="@layout/item_start"/>
-        <!--<include layout="@layout/item_login"/>-->
+        <include layout="@layout/item_login"/>
     </FrameLayout>
 
 

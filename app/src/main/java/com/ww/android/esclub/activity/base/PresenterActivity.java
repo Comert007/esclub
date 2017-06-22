@@ -39,6 +39,7 @@ public abstract class PresenterActivity<V extends IView, M extends IModel> exten
         ScreenUtil.scale(rootView);
         this.setContentView(rootView);
         this.v.onAttach(this, rootView);
+        this.m.onAttach(this);
         ButterKnife.bind(this);
         this.init();
     }

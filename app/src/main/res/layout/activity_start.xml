@@ -14,25 +14,29 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ES"
-            android:textSize="@dimen/wwpx108"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="E-Sports为电竞而着迷"/>
-    </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_gravity="bottom"
-        android:layout_weight="1">
 
-        <include layout="@layout/item_start"/>
-        <!--<include layout="@layout/item_login"/>-->
-    </FrameLayout>
+        <com.eftimoff.androipathview.PathView
+            android:id="@+id/pathView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:pathColor="@android:color/white"
+            app:svg="@raw/es"/>
+
+        <!--<TextView-->
+            <!--android:layout_marginTop="@dimen/wwpx20"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="ES电竞酒吧"/>-->
+    </LinearLayout>
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0px"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<include layout="@layout/item_start"/>-->
+        <!--&lt;!&ndash;<include layout="@layout/item_login"/>&ndash;&gt;-->
+    <!--</FrameLayout>-->
 
 
 

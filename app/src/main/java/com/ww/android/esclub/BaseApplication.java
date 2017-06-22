@@ -10,6 +10,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.windward.sharelibrary.SharePlatConfig;
 import com.ww.android.esclub.config.AppConfig;
 import com.ww.mvp.WWApplication;
 
@@ -29,6 +30,7 @@ public class BaseApplication extends WWApplication {
         super.onCreate();
         instance = this;
         Debug.setTag("EsClub");
+        SharePlatConfig.setWeiXin(AppConfig.WECHAT_APPID,AppConfig.WECHAT_SECRET);
 
         initImageLoader(getApplicationContext());
 
@@ -39,6 +41,10 @@ public class BaseApplication extends WWApplication {
         return instance;
     }
 
+
+    public String getToken(){
+        return "";
+    }
 
     public static void initImageLoader(Context context) {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(

@@ -48,6 +48,7 @@ public abstract class PresenterFragment<V extends IView, M extends IModel> exten
         View rootView =inflater.inflate(getLayoutResId(),container,false);
         ScreenUtil.scale(rootView);
         this.v.onAttach(activity, rootView);
+        this.m.onAttach(activity);
         ButterKnife.bind(this,rootView);
         this.init();
 

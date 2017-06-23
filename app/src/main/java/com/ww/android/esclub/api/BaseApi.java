@@ -13,8 +13,13 @@ import com.ww.android.esclub.config.AppConfig;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
 import okhttp3.ResponseBody;
 import rx.Observable;
+import ww.com.core.utils.Base64;
 import ww.com.core.utils.PhoneUtils;
 import ww.com.http.OkHttpRequest;
 import ww.com.http.core.AjaxParams;
@@ -35,26 +40,41 @@ public class BaseApi {
         return String.format("%s%s", BASE_URL, action);
     }
 
+    /**
+     * 不使用框架方式加密
+     * @param content
+     * @param iv
+     * @param key
+     * @return
+     * @throws Exception
+     */
+    private static String encrypt(String content, String iv, String key) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+        int pad = 16 - (content.length() % 16);
+        StringBuffer buf = new StringBuffer(content);
+        for (int i = 0; i < pad; i++) {
+            buf.append((char) pad);
+        }
+        String data = buf.toString();
+
+        SecretKeySpec keyspec = new SecretKeySpec(key.getBytes(), "AES");
+        IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes());
+
+        cipher.init(Cipher.ENCRYPT_MODE, keyspec, ivspec);
+        byte[] encrypted = cipher.doFinal(data.getBytes());
+
+        return Base64.encode(encrypted);
+    }
+
+
     private static Map<String, String> getHeader(String factor) {
         Map<String, String> params = new HashMap<>();
-//        try {
-//
-//            String content = AppConfig.APP_ID + "," + factor;
-//            Debug.d("encode content:" + content);
-//            WWAESUtil wwaesUtil = new WWAESUtil(AppConfig.APP_IV, AppConfig.ENCRYPT_KEY);
-//            int pad = 16 - (content.length() % 16);
-//            StringBuffer buf = new StringBuffer(content);
-//            for (int i = 0; i < pad; i++) {
-//                buf.append((char) pad);
-//            }
-//            String strBuf = buf.toString();
-//            Debug.d("encode buff:\n" + strBuf);
-//            String encode = Base64.encode(wwaesUtil.encrypt(strBuf));
-//            //7MxyMI153lcsaFyUiYFt1g==
-//            params.put("APP_AUTH", encode);  // 加密后的数据
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            String content = AppConfig.APP_ID + "," + factor;
+            params.put("APP_AUTH", encrypt(content, AppConfig.APP_IV, AppConfig.ENCRYPT_KEY));  // 加密后的数据
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         params.put("APP_AUTH", AppConfig.APP_ID);
         params.put("APP_AUTH_IV", AppConfig.APP_IV);  // 私钥
         params.put("APP_VERSION", PhoneUtils.getAppVer(BaseApplication.getInstance()));  // APP版本
@@ -82,7 +102,7 @@ public class BaseApi {
     }
 
     //post
-    protected static Observable<ResponseBean> onPost(String url,AjaxParams params) {
+    protected static Observable<ResponseBean> onPost(String url, AjaxParams params) {
 
         String factor = url.replace(BASE_URL, "");
         Map<String, String> header = getHeader(factor);
@@ -96,7 +116,7 @@ public class BaseApi {
     }
 
     //get
-    protected static Observable<String> onGet(String url,AjaxParams params) {
+    protected static Observable<String> onGet(String url, AjaxParams params) {
 
         String factor = url.replace(BASE_URL, "");
         Map<String, String> header = getHeader(factor);

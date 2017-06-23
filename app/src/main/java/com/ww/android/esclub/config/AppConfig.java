@@ -9,7 +9,8 @@ public class AppConfig {
 
 
     public static final String APP_ID = "gamebar2017";
-    public static final String APP_IV = "gamebar000000000";
+        public static final String APP_IV = "gamebar000000000";
+//    public static final String APP_IV = "00000gamebar0000";
     public static final String ENCRYPT_KEY = "00000gamebar0000";
 
 

@@ -9,13 +9,14 @@ import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.trello.rxlifecycle.ActivityEvent;
 import com.windward.sharelibrary.wxapi.WW_WXUtils;
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.MainActivity;
 import com.ww.android.esclub.activity.base.BaseActivity;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
 import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.config.AppConfig;
-import com.ww.android.esclub.vm.models.LoginModel;
+import com.ww.android.esclub.vm.models.start.LoginModel;
 import com.ww.mvp.view.VoidView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -56,11 +57,6 @@ public class LoginActivity extends BaseActivity<VoidView, LoginModel> {
         });
     }
 
-    @Override
-    public void onTitleLeft() {
-        super.onTitleLeft();
-        onBackPressed();
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginEvent(SendAuth.Resp resp){
@@ -72,7 +68,7 @@ public class LoginActivity extends BaseActivity<VoidView, LoginModel> {
             public void onNext(UserBean userBean) {
 
                 MainActivity.start(LoginActivity.this);
-                Debug.d(userBean.toString());
+                BaseApplication.getInstance().setUserBean(userBean);
             }
         });
     }

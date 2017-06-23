@@ -32,28 +32,28 @@ public class RefreshView implements IView {
     @BindView(R.id.csr)
     CustomSwipeRefreshLayout csr;
 
-    private Context context;
+    protected Context context;
 
     @Override
     public void onAttach(@NonNull Activity activity, @NonNull View view) {
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         context = view.getContext();
         attach();
     }
 
 
     @Optional
-    private void attach(){
+    public void attach() {
         LinearLayoutManager manager = new LinearLayoutManager(context);
         crv.setLayoutManager(manager);
         crv.setItemAnimator(new DefaultItemAnimator());
 
-        View emptyView = LayoutInflater.from(context).inflate(R.layout.layout_empty,null);
+        View emptyView = LayoutInflater.from(context).inflate(R.layout.layout_empty, null);
         ScreenUtil.scale(emptyView);
         crv.addEmpty(emptyView);
 
-        csr.setEnableRefresh(false);
         csr.setRefreshView(crv);
+        csr.setEnableRefresh(false);
 
     }
 

@@ -10,8 +10,8 @@ import com.ww.android.esclub.fragment.base.BaseFragment;
 import com.ww.android.esclub.fragment.translate.EventFragment;
 import com.ww.android.esclub.fragment.translate.NewsFragment;
 import com.ww.android.esclub.fragment.translate.VideoFragment;
+import com.ww.android.esclub.vm.models.home.HomeModel;
 import com.ww.android.esclub.widget.TranslateTabBar;
-import com.ww.mvp.model.VoidModel;
 import com.ww.mvp.view.VoidView;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import butterknife.BindView;
  * Created by feng on 2017/6/7.
  */
 
-public class HomeFragment extends BaseFragment<VoidView,VoidModel> {
+public class HomeFragment extends BaseFragment<VoidView,HomeModel> {
 
     @BindView(R.id.translate_tab_home)
     TranslateTabBar translateTabBar;

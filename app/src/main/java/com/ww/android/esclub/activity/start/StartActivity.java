@@ -3,8 +3,11 @@ package com.ww.android.esclub.activity.start;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.eftimoff.androipathview.PathView;
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
+import com.ww.android.esclub.activity.MainActivity;
 import com.ww.android.esclub.activity.base.BaseActivity;
+import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.mvp.model.VoidModel;
 import com.ww.mvp.view.VoidView;
 
@@ -19,6 +22,7 @@ public class StartActivity extends BaseActivity<VoidView,VoidModel> {
 
     @BindView(R.id.pathView)
     PathView pathView;
+
 
     @Override
     protected int getLayoutResId() {
@@ -36,7 +40,13 @@ public class StartActivity extends BaseActivity<VoidView,VoidModel> {
         pathView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                LoginActivity.start(StartActivity.this);
+                UserBean user =BaseApplication.getInstance().getUserBean();
+                if (user!=null){
+                    MainActivity.start(StartActivity.this);
+                }else {
+                    LoginActivity.start(StartActivity.this);
+
+                }
                 finish();
             }
         },2200);

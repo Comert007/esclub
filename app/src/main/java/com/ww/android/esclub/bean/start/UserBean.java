@@ -1,10 +1,12 @@
 package com.ww.android.esclub.bean.start;
 
+import java.io.Serializable;
+
 /**
  * Created by feng on 2017/6/22.
  */
 
-public class UserBean {
+public class UserBean implements Serializable{
 
     /**
      * id : 1

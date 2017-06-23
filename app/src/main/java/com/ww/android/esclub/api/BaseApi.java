@@ -15,10 +15,7 @@ import java.util.Map;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
-import ww.com.core.Debug;
-import ww.com.core.utils.Base64;
 import ww.com.core.utils.PhoneUtils;
-import ww.com.core.utils.WWAESUtil;
 import ww.com.http.OkHttpRequest;
 import ww.com.http.core.AjaxParams;
 import ww.com.http.core.RequestMethod;
@@ -40,23 +37,25 @@ public class BaseApi {
 
     private static Map<String, String> getHeader(String factor) {
         Map<String, String> params = new HashMap<>();
-        try {
-
-            String content = AppConfig.APP_ID + "," + factor;
-            Debug.d("encode content:" + content);
-            WWAESUtil wwaesUtil = new WWAESUtil(AppConfig.APP_IV, AppConfig.ENCRYPT_KEY);
-            int pad = 16 - (content.length() % 16);
-            StringBuffer buf = new StringBuffer(content);
-            for (int i = 0; i < pad; i++) {
-                buf.append((char) pad);
-            }
-            String strBuf = buf.toString();
-            Debug.d("encode buff:\n" + strBuf);
-            String encode = Base64.encode(wwaesUtil.encrypt(strBuf));
-            params.put("APP_AUTH", encode);  // 加密后的数据
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//
+//            String content = AppConfig.APP_ID + "," + factor;
+//            Debug.d("encode content:" + content);
+//            WWAESUtil wwaesUtil = new WWAESUtil(AppConfig.APP_IV, AppConfig.ENCRYPT_KEY);
+//            int pad = 16 - (content.length() % 16);
+//            StringBuffer buf = new StringBuffer(content);
+//            for (int i = 0; i < pad; i++) {
+//                buf.append((char) pad);
+//            }
+//            String strBuf = buf.toString();
+//            Debug.d("encode buff:\n" + strBuf);
+//            String encode = Base64.encode(wwaesUtil.encrypt(strBuf));
+//            //7MxyMI153lcsaFyUiYFt1g==
+//            params.put("APP_AUTH", encode);  // 加密后的数据
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        params.put("APP_AUTH", AppConfig.APP_ID);
         params.put("APP_AUTH_IV", AppConfig.APP_IV);  // 私钥
         params.put("APP_VERSION", PhoneUtils.getAppVer(BaseApplication.getInstance()));  // APP版本
         params.put("DEVICE_UUID", PhoneUtils.getDeviceId(BaseApplication.getInstance()));  //
@@ -85,6 +84,12 @@ public class BaseApi {
     //post
     protected static Observable<ResponseBean> onPost(String url,AjaxParams params) {
 
+        String factor = url.replace(BASE_URL, "");
+        Map<String, String> header = getHeader(factor);
+        for (String key : header.keySet()) {
+            params.addHeaders(key, header.get(key));
+        }
+
         return post(url, params)
                 .map(new StringFunc())
                 .map(new ResponseFunc());
@@ -92,6 +97,13 @@ public class BaseApi {
 
     //get
     protected static Observable<String> onGet(String url,AjaxParams params) {
+
+        String factor = url.replace(BASE_URL, "");
+        Map<String, String> header = getHeader(factor);
+        for (String key : header.keySet()) {
+            params.addHeaders(key, header.get(key));
+        }
+
         return get(url, params)
                 .compose(RxHelper.<ResponseBody>cutMain())
                 .map(new StringFunc());

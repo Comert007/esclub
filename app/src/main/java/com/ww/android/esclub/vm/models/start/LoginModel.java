@@ -1,4 +1,4 @@
-package com.ww.android.esclub.vm.models;
+package com.ww.android.esclub.vm.models.start;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -49,4 +49,6 @@ public class LoginModel implements IModel {
                 .subscribe(httpSubscriber);
 
     }
+
+
 }

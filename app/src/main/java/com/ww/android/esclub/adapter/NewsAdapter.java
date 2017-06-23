@@ -5,9 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
+import com.ww.android.esclub.bean.home.NewsItem;
 import com.ww.android.esclub.listener.OnItemClickListener;
 
 import butterknife.BindView;
@@ -18,7 +17,7 @@ import ww.com.core.adapter.RvViewHolder;
  * Created by feng on 2017/6/7.
  */
 
-public class NewsAdapter extends RvAdapter<String> {
+public class NewsAdapter extends RvAdapter<NewsItem> {
 
     private OnItemClickListener onItemClickListener;
 
@@ -37,12 +36,12 @@ public class NewsAdapter extends RvAdapter<String> {
     }
 
     @Override
-    protected RvViewHolder<String> getViewHolder(int i, View view) {
+    protected RvViewHolder<NewsItem> getViewHolder(int i, View view) {
         return new NewsViewHolder(view);
     }
 
 
-    class NewsViewHolder extends RvViewHolder<String> {
+    class NewsViewHolder extends RvViewHolder<NewsItem> {
         @BindView(R.id.iv_thumb)
         ImageView ivThumb;
         @BindView(R.id.tv_title)
@@ -59,11 +58,15 @@ public class NewsAdapter extends RvAdapter<String> {
         }
 
         @Override
-        public void onBindData(int i, String s) {
+        public void onBindData(int i, NewsItem item) {
 
-            ImageLoader.getInstance().displayImage
-                    ("http://img0.178.com/overwatch/201706/290815621776/290816386308.jpg", ivThumb,
-                    BaseApplication.getDisplayImageOptions(R.mipmap.test));
+
+
+//            ImageLoader.getInstance().displayImage
+//                    ("http://img0.178.com/overwatch/201706/290815621776/290816386308.jpg", ivThumb,
+//                    BaseApplication.getDisplayImageOptions(R.mipmap.test));
+
+            tvRead.setText(item.getView_num());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

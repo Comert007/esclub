@@ -19,6 +19,7 @@ import com.ww.android.esclub.vm.views.BannerView;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ww.com.core.Debug;
@@ -61,7 +62,7 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
                 ".com/upload/adw/image/1496718634/1496718634.jpg?_r=1496822856");
 
 
-        footView = LayoutInflater.from(getContext()).inflate(R.layout.layout_foot_view,null);
+        footView = LayoutInflater.from(getContext()).inflate(R.layout.layout_foot_view, null);
         ScreenUtil.scale(footView);
 
         initData();
@@ -119,7 +120,8 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
                         List<NewsItem> banner = newsItemListBean.getBanner();
                         List<NewsItem> items = newsItemListBean.getItems();
                         int totalPages = Integer.valueOf(pagingBean.getTotal_page());
-                        int  nowPage = Integer.valueOf(newsItemListBean.getPaging().getCurrent_page());
+                        int nowPage = Integer.valueOf(newsItemListBean.getPaging()
+                                .getCurrent_page());
 
                         startBanner(banner);
                         if (items != null && items.size() > 0) {
@@ -127,7 +129,7 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
 //                            startBanner(banner);
                             adapter.appendList(items);
 
-                            if (currentPage != totalPages && currentPage== nowPage) {
+                            if (currentPage != totalPages && currentPage == nowPage) {
                                 v.getCsr().setFooterRefreshAble(true);
                                 currentPage++;
 
@@ -135,18 +137,33 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
                                 v.getCsr().setEnableRefresh(false);
                             }
 
-                            if (nowPage!=Constant.PAGE_ONE){
+                            if (nowPage != Constant.PAGE_ONE) {
                                 v.getCrv().removeFooterView(footView);
                             }
 
-                        }else {
+                        } else {
+                            test();
                             v.getCsr().setEnableRefresh(false);
                         }
 
 
-
                     }
                 });
+    }
+
+    private void test() {
+        List<NewsItem> items = new ArrayList<>();
+        List<String> titles = Arrays.asList(getResources().getStringArray(R.array.home_test));
+        for (int i = 0; i < 5; i++) {
+            NewsItem item = new NewsItem();
+            item.setCover(urls.get(i));
+            item.setNewstime((i + 1) + "小时前");
+            item.setTitle(titles.get(i));
+            item.setView_num(((i + 1) * 10 + 2) + "");
+            items.add(item);
+        }
+
+        adapter.addList(items);
     }
 
     @Override

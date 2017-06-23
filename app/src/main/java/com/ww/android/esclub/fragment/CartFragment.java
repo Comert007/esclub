@@ -28,7 +28,8 @@ import ww.com.core.ScreenUtil;
  * Created by feng on 2017/6/7.
  */
 
-public class CartFragment extends BaseFragment<CartView, VoidModel> implements OnItemClickListener,CartItemAdapter.OnCartAction {
+public class CartFragment extends BaseFragment<CartView, VoidModel> implements OnItemClickListener,
+        CartItemAdapter.OnCartAction {
 
     private ClassifyAdapter classifyAdapter; //一级adapter
     private CartItemAdapter cartItemAdapter; //二级adapter

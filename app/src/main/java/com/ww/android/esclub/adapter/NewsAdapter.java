@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.bean.home.NewsItem;
 import com.ww.android.esclub.listener.OnItemClickListener;
@@ -62,11 +64,12 @@ public class NewsAdapter extends RvAdapter<NewsItem> {
 
 
 
-//            ImageLoader.getInstance().displayImage
-//                    ("http://img0.178.com/overwatch/201706/290815621776/290816386308.jpg", ivThumb,
-//                    BaseApplication.getDisplayImageOptions(R.mipmap.test));
+            ImageLoader.getInstance().displayImage
+                    (item.getCover(), ivThumb,
+                    BaseApplication.getDisplayImageOptions(R.mipmap.test));
 
             tvRead.setText(item.getView_num());
+            tvTime.setText(item.getNewstime());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

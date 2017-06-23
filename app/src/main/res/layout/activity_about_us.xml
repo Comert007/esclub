@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.ww.android.esclub.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleLeftIco="@mipmap/arrow_back_normal"
+        app:titleText="@string/about_us"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0px"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:orientation="vertical">
+        <ww.com.core.widget.RoundImageView
+            android:layout_width="@dimen/wwpx180"
+            android:layout_height="@dimen/wwpx180"
+            android:src="@mipmap/ic_launcher"
+            app:borderRadius="@dimen/wwpx10"
+            app:type="type_round"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/wwpx20"
+            android:text="ES电竞酒吧"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/wwpx40"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
+    <TextView android:layout_width="match_parent"
+              android:textColor="@color/color_b3b3b3"
+              android:gravity="center"
+              android:layout_marginBottom="@dimen/wwpx20"
+              android:text="Copyright © 2017 E-Sports.All Rights Reserved"
+              android:layout_height="wrap_content"/>
+
+</LinearLayout>

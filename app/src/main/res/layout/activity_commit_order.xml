@@ -152,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/wwpx10"
-                android:text="￥78"
+                android:text="￥114"
                 android:textColor="@color/color_fb4e44"/>
         </LinearLayout>
 

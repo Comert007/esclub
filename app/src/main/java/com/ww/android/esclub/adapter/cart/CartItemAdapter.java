@@ -6,11 +6,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.esclub.R;
 
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
+import ww.com.core.widget.RoundImageView;
 
 /**
  * Created by feng on 2017/6/20.
@@ -59,6 +61,14 @@ public class CartItemAdapter extends RvAdapter<String> {
     }
 
     class CartItemViewHolder extends RvViewHolder<String> {
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.tv_month_num)
+        TextView tvMonthNum;
+        @BindView(R.id.tv_price)
+        TextView tvPrice;
+        @BindView(R.id.riv_thumb)
+        RoundImageView rivThumb;
         @BindView(R.id.tv_num)
         TextView tvNum;
         @BindView(R.id.btn_minus)
@@ -74,6 +84,40 @@ public class CartItemAdapter extends RvAdapter<String> {
 
         @Override
         public void onBindData(int i, String s) {
+            switch (i) {
+
+                case 2:
+                    ImageLoader.getInstance().
+                            displayImage("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy" +
+                                    "/it/u=1095058939,3797564670&fm=26&gp=0.jpg", rivThumb);
+                    tvMonthNum.setText("月售 "+34);
+                    tvPrice.setText("￥ "+67);
+                    tvName.setText("Dolcetto");
+                    break;
+                case 3:
+                    //https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3735227461,2457058780&fm=26&gp=0.jpg
+                    ImageLoader.getInstance().
+                            displayImage("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3735227461,2457058780&fm=26&gp=0.jpg", rivThumb);
+                    tvMonthNum.setText("月售 "+15);
+                    tvPrice.setText("￥ "+47);
+                    tvName.setText("Barbera");
+                    break;
+                case 4:
+                    ImageLoader.getInstance().
+                            displayImage("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=21558253,3349323006&fm=26&gp=0.jpg", rivThumb);
+                    tvMonthNum.setText("月售 "+25);
+                    tvPrice.setText("￥ "+57);
+                    tvName.setText("Brunello");
+                    break;
+                case 5:
+                    ImageLoader.getInstance().
+                            displayImage("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4266070482,2976323236&fm=26&gp=0.jpg", rivThumb);
+
+                    tvMonthNum.setText("月售 "+34);
+                    tvPrice.setText("￥ "+63);
+                    tvName.setText("Cabernet Franc");
+                    break;
+            }
             String text = tvNum.getText().toString();
             if ("0".equals(text)) {
                 llLeft.setVisibility(View.GONE);
@@ -88,8 +132,8 @@ public class CartItemAdapter extends RvAdapter<String> {
                     int originalNum = Integer.valueOf(text);
                     tvNum.setText((originalNum + 1) + "");
                     llLeft.setVisibility(View.VISIBLE);
-                    if (onCartAction!=null){
-                        onCartAction.onAdd(position,v);
+                    if (onCartAction != null) {
+                        onCartAction.onAdd(position, v);
                     }
                 }
             });
@@ -104,8 +148,8 @@ public class CartItemAdapter extends RvAdapter<String> {
                         llLeft.setVisibility(View.GONE);
                     }
 
-                    if (onCartAction!=null){
-                        onCartAction.onMinus(position,v);
+                    if (onCartAction != null) {
+                        onCartAction.onMinus(position, v);
                     }
                 }
             });
@@ -125,7 +169,7 @@ public class CartItemAdapter extends RvAdapter<String> {
         }
     }
 
-   public interface OnCartAction {
+    public interface OnCartAction {
         void onAdd(int position, View view);
 
         void onMinus(int position, View view);

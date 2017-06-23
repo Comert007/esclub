@@ -44,7 +44,9 @@
                              style="@style/ContentText"
                              android:text="￥ 73"
                              android:textColor="@color/color_fb4e44"
-                             android:textStyle="bold"/>
+                             android:textStyle="bold" android:layout_alignParentTop="true"
+                             android:layout_alignParentRight="true"
+                             android:layout_alignParentEnd="true"/>
 
                </RelativeLayout>
            </LinearLayout>

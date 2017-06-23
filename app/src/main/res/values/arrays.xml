@@ -18,4 +18,12 @@
         <item>酒水</item>
         <item>水果</item>
     </string-array>
+
+    <string-array name="home_test">
+        <item>您可能觉得LOL不好玩，但这不是坏事</item>
+        <item>末日人工智能</item>
+        <item>SPL 常规赛</item>
+        <item>英雄皮肤五折销售</item>
+        <item>海克斯科技风</item>
+    </string-array>
 </resources>

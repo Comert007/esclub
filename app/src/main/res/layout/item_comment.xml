@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@color/color_white"
+                  android:orientation="horizontal"
+                  android:padding="@dimen/wwpx21">
+
+        <ww.com.core.widget.RoundImageView
+            android:id="@+id/riv_header"
+            android:layout_width="@dimen/wwpx87"
+            android:layout_height="@dimen/wwpx87"
+            android:src="@mipmap/ic_header_default"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/wwpx20"
+            android:orientation="vertical">
+
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="@dimen/wwpx87"
+                          android:gravity="center_vertical"
+                          android:orientation="vertical">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center_vertical"
+                              android:orientation="horizontal">
+                    <TextView style="@style/ContentText"
+                              android:id="@+id/tv_name"
+                              android:text="君莫愁"
+                              android:textSize="@dimen/wwpx24"/>
+
+                    <TextView
+                        android:id="@+id/tv_level"
+                        android:layout_width="@dimen/wwpx56"
+                        android:layout_height="@dimen/wwpx30"
+                        android:layout_marginLeft="@dimen/wwpx20"
+                        android:background="@drawable/bg_blue_shape"
+                        android:gravity="center"
+                        android:text="LV.6" android:textSize="@dimen/wwpx20"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/wwpx10"
+                    android:text="1天前"
+                    android:textColor="@color/color_bdc7d1"
+                    android:textSize="@dimen/wwpx22"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="君莫愁君莫愁君莫愁"
+                android:textColor="@color/color_323c46"
+                android:textSize="@dimen/wwpx24"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/layout_space_line"/>
+</LinearLayout>

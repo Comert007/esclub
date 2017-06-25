@@ -69,16 +69,23 @@ public class LoginActivity extends BaseActivity<VoidView, LoginModel> {
 
                 MainActivity.start(LoginActivity.this);
                 BaseApplication.getInstance().setUserBean(userBean);
+                finish();
             }
         });
     }
 
     //微信授权
     private void onWeChatLogin() {
+        IWXAPI api = WW_WXUtils.getInstance(this);
+        if (!api.isWXAppInstalled()){
+            showToast("您还未安装微信客户端,请安装后再使用");
+            return;
+        }
+
         SendAuth.Req req = new SendAuth.Req();
         req.scope = AppConfig.WECHAT_SCOPE;
         req.state = AppConfig.WECHAT_STATE;
-        IWXAPI api = WW_WXUtils.getInstance(this);
+
         api.sendReq(req);
     }
 

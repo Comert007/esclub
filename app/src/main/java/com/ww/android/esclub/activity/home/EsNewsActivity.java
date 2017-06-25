@@ -2,6 +2,7 @@ package com.ww.android.esclub.activity.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.BaseActivity;
 import com.ww.android.esclub.adapter.TranslateTabAdapter;
+import com.ww.android.esclub.fragment.home.CommentFragment;
 import com.ww.android.esclub.fragment.home.EsNewsFragment;
 import com.ww.android.esclub.widget.TranslateTabBar;
 import com.ww.mvp.model.VoidModel;
@@ -36,8 +38,10 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
     private FragmentManager fragmentManager;
     private TranslateTabAdapter adapter;
 
-    public static void start(Context context) {
+    public static void start(Context context,String url,String id) {
         Intent intent = new Intent(context, EsNewsActivity.class);
+        intent.putExtra("id",id);
+        intent.putExtra("content_url",url);
         context.startActivity(intent);
     }
 
@@ -80,9 +84,18 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
         if (fragments==null){
             fragments = new ArrayList<>();
         }
+        String id = getIntent().getStringExtra("id");
+        String contentUrl = getIntent().getStringExtra("content_url");
+        fragments.add(createFragment(new EsNewsFragment(),id,contentUrl));
+        fragments.add(createFragment(new CommentFragment(),id,contentUrl));
+    }
 
-        fragments.add(new EsNewsFragment());
-        fragments.add(new Fragment());
+    private Fragment createFragment(Fragment fragment,String id,String content_url){
+        Bundle bundle = new Bundle();
+        bundle.putString("id",id);
+        bundle.putString("content_url",content_url);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {

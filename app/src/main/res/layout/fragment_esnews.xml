@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              style="@style/LlayFill">
+<LinearLayout style="@style/LlayFill"
+              xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <WebView 
+    <WebView
         android:id="@+id/webView"
-        android:layout_width="match_parent" 
+        android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"/>
-        
+
     <LinearLayout android:layout_width="match_parent"
-                  android:gravity="center_vertical"
+                  android:layout_height="@dimen/wwpx120"
                   android:background="@color/color_fbfcfd"
-                  android:orientation="horizontal"
-                  android:layout_height="@dimen/wwpx120">
-        <EditText android:layout_width="@dimen/wwpx611"
-                  android:layout_margin="@dimen/wwpx20"
-                  android:paddingLeft="@dimen/wwpx20"
-                  android:paddingRight="@dimen/wwpx20"
-                  android:hint="我也来说两句..."
-                  android:textColorHint="@color/color_e1e6eb"
-                  android:textSize="@dimen/wwpx25"
-                  android:background="@drawable/et_bg_shape"
-                  android:layout_height="match_parent"/>
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal">
+        <EditText
+            android:id="@+id/et_comment"
+            android:layout_width="@dimen/wwpx611"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/wwpx20"
+            android:background="@drawable/et_bg_shape"
+            android:hint="我也来说两句..."
+            android:imeOptions="actionSend"
+            android:singleLine="true"
+            android:paddingLeft="@dimen/wwpx20"
+            android:paddingRight="@dimen/wwpx20"
+            android:textColorHint="@color/color_e1e6eb"
+            android:textSize="@dimen/wwpx25"/>
         <include layout="@layout/view_like"/>
     </LinearLayout>
 </LinearLayout>

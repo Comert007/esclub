@@ -24,4 +24,23 @@ public class HomeApi extends BaseApi {
 
         return onPost(getActionUrl("/news/list"),params);
     }
+
+    public static final Observable<ResponseBean> onCommentList(String page,String perpage,String id){
+        AjaxParams params = new AjaxParams();
+        params.addParameters("page",page);
+        if (!TextUtils.isEmpty(perpage)) {
+            params.addParameters("perpage", perpage);
+        }
+        params.addParameters("id",id);
+
+        return onPost(getActionUrl("/news/commentList"),params);
+    }
+
+    public static final Observable<ResponseBean> onComment(String id,String comment){
+        AjaxParams params = new AjaxParams();
+        params.addParameters("id",id);
+        params.addParameters("comment",comment);
+
+        return onPost(getActionUrl("/news/comment"),params);
+    }
 }

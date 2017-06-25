@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.ww.android.esclub.R;
+import com.ww.android.esclub.bean.cart.GoodsItem;
 
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
@@ -12,7 +13,7 @@ import ww.com.core.adapter.RvViewHolder;
  * Created by feng on 2017/6/21.
  */
 
-public class CartShopAdapter extends RvAdapter<String> {
+public class CartShopAdapter extends RvAdapter<GoodsItem> {
 
     public CartShopAdapter(Context context) {
         super(context);
@@ -24,18 +25,18 @@ public class CartShopAdapter extends RvAdapter<String> {
     }
 
     @Override
-    protected RvViewHolder<String> getViewHolder(int i, View view) {
+    protected RvViewHolder<GoodsItem> getViewHolder(int i, View view) {
         return new CartShopViewHolder(view);
     }
 
-    class CartShopViewHolder  extends RvViewHolder<String>{
+    class CartShopViewHolder  extends RvViewHolder<GoodsItem>{
 
         public CartShopViewHolder(View itemView) {
             super(itemView);
         }
 
         @Override
-        public void onBindData(int i, String s) {
+        public void onBindData(int i, GoodsItem item) {
 
         }
     }

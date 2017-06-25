@@ -16,4 +16,8 @@
     <string name="guess_detail">竞猜详情</string>
     <string name="guess_edit">积分编辑</string>
     <string name="about_us">关于我们</string>
+    <string name="dialog_title_tip">温馨提示</string>
+    <string name="dialog_btn_repay">重试</string>
+    <string name="dialog_btn_cancel">取消</string>
+    <string name="dialog_btn_ver_update_sure">更新</string>
 </resources>

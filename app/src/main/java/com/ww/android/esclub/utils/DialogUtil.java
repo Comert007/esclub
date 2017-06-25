@@ -46,7 +46,7 @@ public class DialogUtil {
                 if (!TextUtils.isEmpty(cancel)) {
                     builder.setNegativeButton(cancel, cancelListener);
                 }
-                return show(builder);
+                return showColor(builder);
             }
         } catch (Exception e) {
             e.printStackTrace();

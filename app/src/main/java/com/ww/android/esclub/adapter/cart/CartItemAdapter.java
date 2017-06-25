@@ -7,7 +7,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
+import com.ww.android.esclub.bean.cart.GoodsItem;
 
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
@@ -18,10 +20,10 @@ import ww.com.core.widget.RoundImageView;
  * Created by feng on 2017/6/20.
  */
 
-public class CartItemAdapter extends RvAdapter<String> {
+public class CartItemAdapter extends RvAdapter<GoodsItem> {
 
-    public int CART_LINE = 0;
-    public int CART_ITEM = 1;
+    public static int CART_LINE = 0;
+    public static int CART_ITEM = 1;
 
 
     private OnCartAction onCartAction;
@@ -36,7 +38,7 @@ public class CartItemAdapter extends RvAdapter<String> {
 
     @Override
     public int getItemViewType(int position) {
-        return position % 10 == 0 ? CART_LINE : CART_ITEM;
+        return getList().get(position).getCartType();
     }
 
 
@@ -50,7 +52,7 @@ public class CartItemAdapter extends RvAdapter<String> {
     }
 
     @Override
-    protected RvViewHolder<String> getViewHolder(int viewType, View view) {
+    protected RvViewHolder<GoodsItem> getViewHolder(int viewType, View view) {
         if (viewType == CART_LINE)
             return new CartLineViewHolder(view);
         else if (viewType == CART_ITEM) {
@@ -60,7 +62,7 @@ public class CartItemAdapter extends RvAdapter<String> {
                     "viewHolder is exist.");
     }
 
-    class CartItemViewHolder extends RvViewHolder<String> {
+    class CartItemViewHolder extends RvViewHolder<GoodsItem> {
         @BindView(R.id.tv_name)
         TextView tvName;
         @BindView(R.id.tv_month_num)
@@ -83,41 +85,15 @@ public class CartItemAdapter extends RvAdapter<String> {
         }
 
         @Override
-        public void onBindData(int i, String s) {
-            switch (i) {
+        public void onBindData(int i, GoodsItem item) {
 
-                case 2:
-                    ImageLoader.getInstance().
-                            displayImage("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy" +
-                                    "/it/u=1095058939,3797564670&fm=26&gp=0.jpg", rivThumb);
-                    tvMonthNum.setText("月售 "+34);
-                    tvPrice.setText("￥ "+67);
-                    tvName.setText("Dolcetto");
-                    break;
-                case 3:
-                    //https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3735227461,2457058780&fm=26&gp=0.jpg
-                    ImageLoader.getInstance().
-                            displayImage("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3735227461,2457058780&fm=26&gp=0.jpg", rivThumb);
-                    tvMonthNum.setText("月售 "+15);
-                    tvPrice.setText("￥ "+47);
-                    tvName.setText("Barbera");
-                    break;
-                case 4:
-                    ImageLoader.getInstance().
-                            displayImage("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=21558253,3349323006&fm=26&gp=0.jpg", rivThumb);
-                    tvMonthNum.setText("月售 "+25);
-                    tvPrice.setText("￥ "+57);
-                    tvName.setText("Brunello");
-                    break;
-                case 5:
-                    ImageLoader.getInstance().
-                            displayImage("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4266070482,2976323236&fm=26&gp=0.jpg", rivThumb);
+            ImageLoader.getInstance().displayImage(item.getCover(),rivThumb,
+                    BaseApplication.getDisplayImageOptions(R.mipmap.ic_default));
 
-                    tvMonthNum.setText("月售 "+34);
-                    tvPrice.setText("￥ "+63);
-                    tvName.setText("Cabernet Franc");
-                    break;
-            }
+            tvName.setText(item.getName());
+            tvMonthNum.setText("月销 "+item.getMonth_sale());
+            tvPrice.setText("￥ "+item.getPrice());
+
             String text = tvNum.getText().toString();
             if ("0".equals(text)) {
                 llLeft.setVisibility(View.GONE);
@@ -157,15 +133,17 @@ public class CartItemAdapter extends RvAdapter<String> {
 
     }
 
-    class CartLineViewHolder extends RvViewHolder<String> {
+    class CartLineViewHolder extends RvViewHolder<GoodsItem> {
+        @BindView(R.id.tv_classify)
+        TextView tvClassify;
 
         public CartLineViewHolder(View itemView) {
             super(itemView);
         }
 
         @Override
-        public void onBindData(int i, String s) {
-
+        public void onBindData(int i, GoodsItem item) {
+            tvClassify.setText(item.getClassifyName());
         }
     }
 

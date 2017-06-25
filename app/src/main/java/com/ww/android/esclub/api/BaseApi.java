@@ -75,7 +75,7 @@ public class BaseApi {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        params.put("APP_AUTH", AppConfig.APP_ID);
+//        params.put("APP_AUTH", AppConfig.APP_ID);
         params.put("APP_AUTH_IV", AppConfig.APP_IV);  // 私钥
         params.put("APP_VERSION", PhoneUtils.getAppVer(BaseApplication.getInstance()));  // APP版本
         params.put("DEVICE_UUID", PhoneUtils.getDeviceId(BaseApplication.getInstance()));  //

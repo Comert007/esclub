@@ -13,7 +13,7 @@ import com.ww.android.esclub.config.Constant;
 public class ResponseBean {
 
     private String status;
-    private int code;
+    private String code;
     private String msg;
     private String data;
     private String need_relogin;
@@ -30,9 +30,9 @@ public class ResponseBean {
         }
 
         try {
-            bean.setCode(json.getInteger("code"));
+            bean.setCode(json.getString("code"));
         } catch (Exception e) {
-            bean.setCode(Constant.CODE_ERROR);
+            bean.setCode(Constant.CODE_ERROR+"");
         }
 
 
@@ -94,11 +94,11 @@ public class ResponseBean {
         this.status = status;
     }
 
-    public int getCode() {
+       public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

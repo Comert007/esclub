@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.windward.sharelibrary.ShareResponse;
+import com.windward.sharelibrary.wxapi.WW_WXUtils;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.BaseActivity;
 import com.ww.mvp.model.VoidModel;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.BindViews;
+import butterknife.OnClick;
 import ww.com.core.ScreenUtil;
 
 /**
@@ -55,6 +58,31 @@ public class ShareActivity extends BaseActivity<VoidView,VoidModel> {
                 onBackPressed();
             }
         });
+    }
+
+    @OnClick({R.id.tv_weixin_circle,R.id.tv_weixin,R.id.tv_qq,R.id.tv_qzone})
+    public void onShare(View view){
+        switch (view.getId()){
+            case R.id.tv_weixin_circle:
+                WW_WXUtils.shareWebToWx(this,1,createShare());
+                break;
+            case R.id.tv_weixin:
+                WW_WXUtils.shareWebToWx(this,0,createShare());
+                break;
+            case R.id.tv_qq:
+                break;
+            case R.id.tv_qzone:
+                break;
+        }
+
+    }
+
+    private ShareResponse createShare(){
+        ShareResponse shareResponse = new ShareResponse();
+        shareResponse.setTitle("微信分享测试");
+        shareResponse.setDescription("微信分享测试描述");
+        shareResponse.setTarget_url("http://news.maxjia.com/maxnews/app/detail/ow/71579");
+        return shareResponse;
     }
 
     @Override

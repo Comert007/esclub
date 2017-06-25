@@ -10,6 +10,7 @@
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:paddingLeft="@dimen/wwpx21"
                   android:background="@color/color_white"
                   android:orientation="horizontal">
 

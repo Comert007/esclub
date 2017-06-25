@@ -1,5 +1,6 @@
 package com.ww.android.esclub.fragment.translate;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -168,6 +169,11 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
 
     @Override
     public void onItemClick(int position, View v) {
-        EsNewsActivity.start(getContext());
+        String url = adapter.getItem(position).getContent_url();
+        String id = adapter.getItem(position).getId();
+        if (TextUtils.isEmpty(url)){
+            url = "http://news.maxjia.com/maxnews/app/detail/ow/71579";
+        }
+        EsNewsActivity.start(getContext(),url,id);
     }
 }

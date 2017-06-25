@@ -2,6 +2,7 @@ package com.ww.android.esclub;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.text.TextUtils;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DefaultConfigurationFactory;
@@ -11,12 +12,15 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.windward.sharelibrary.SharePlatConfig;
+import com.ww.android.esclub.bean.start.SystemConfigBean;
+import com.ww.android.esclub.bean.start.SystemFlagBean;
 import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.config.AppConfig;
 import com.ww.mvp.WWApplication;
 
 import ww.com.core.Debug;
 import ww.com.core.utils.ACache;
+import ww.com.core.utils.PhoneUtils;
 import ww.com.http.OkHttpRequest;
 
 /**
@@ -29,6 +33,12 @@ public class BaseApplication extends WWApplication {
     private ACache cache;
     private UserBean userBean;
     private static final String KEY_USER_CACHE = "auth_cache";
+    private static final String KEY_CONFIG_CACHE = "system_init_params";
+    private static final String KEY_CONFIG_FLAG_CACHE = "system_flag";
+
+    private SystemConfigBean systemConfigBean;
+    private SystemFlagBean flagBean;
+
 
     @Override
     public void onCreate() {
@@ -50,6 +60,50 @@ public class BaseApplication extends WWApplication {
 
     public String getToken(){
         return "";
+    }
+
+    public void setSystemFlagBean(SystemFlagBean flagBean) {
+        if (flagBean == null) {
+            cache.remove(KEY_CONFIG_FLAG_CACHE);
+        } else {
+            flagBean.appVer = PhoneUtils.getAppVer(this);
+            cache.put(KEY_CONFIG_FLAG_CACHE, flagBean);
+        }
+
+        this.flagBean = flagBean;
+    }
+
+    public SystemFlagBean getSystemFlagBean() {
+        if (flagBean != null) {
+            return flagBean;
+        }
+        String currVer = PhoneUtils.getAppVer(this);
+        if (TextUtils.isEmpty(currVer)) {
+            return null;
+        }
+        flagBean = cache.getAsObject(KEY_CONFIG_FLAG_CACHE);
+        if (flagBean != null && !currVer.equals(flagBean.appVer)) {
+            flagBean = null;
+        }
+        return flagBean;
+    }
+
+    public void setSystemConfigBean(SystemConfigBean configBean) {
+        if (configBean == null) {
+            cache.remove(KEY_CONFIG_CACHE);
+        } else {
+            cache.put(KEY_CONFIG_CACHE, configBean);
+        }
+
+        this.systemConfigBean = configBean;
+    }
+
+    public SystemConfigBean getSystemConfigBean() {
+        if (systemConfigBean != null) {
+            return systemConfigBean;
+        }
+        systemConfigBean = cache.getAsObject(KEY_CONFIG_CACHE);
+        return systemConfigBean;
     }
 
     public void setUserBean(UserBean userBean) {

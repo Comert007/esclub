@@ -37,9 +37,9 @@ public class ApiException extends RuntimeException {
         return response;
     }
 
-    public int getCode() {
+    public String getCode() {
         if (response == null)
-            return Constant.CODE_ERROR;
+            return Constant.CODE_ERROR+"";
         else
             return response.getCode();
     }

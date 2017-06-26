@@ -149,6 +149,7 @@
                 android:text="待支付"
                 android:textColor="@color/color_393a3d"/>
             <TextView
+                android:id="@+id/tv_total_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/wwpx10"
@@ -160,7 +161,9 @@
         <TextView style="@style/ShareText"
                   android:layout_height="match_parent"/>
 
-        <TextView style="@style/ShareText"
+        <TextView
+            android:id="@+id/tv_commit"
+            style="@style/ShareText"
                   android:layout_height="match_parent"
                   android:background="@color/color_ffd161"
                   android:text="提交订单"

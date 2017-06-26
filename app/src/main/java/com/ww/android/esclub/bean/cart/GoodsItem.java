@@ -1,11 +1,14 @@
 package com.ww.android.esclub.bean.cart;
 
+import java.io.Serializable;
+
 /**
  * Created by feng on 2017/6/25.
  */
 
-public class GoodsItem {
+public class GoodsItem implements Serializable{
 
+    private static final long serialVersionUID = 2727301786427029286L;
     /**
      * id : 1
      * name : 红酒
@@ -22,7 +25,8 @@ public class GoodsItem {
     private String classifyId;
     private String classifyName;
     private int cartType = 1;
-    private int num;
+    private int num =0;
+    private int position=-1;//商品位置
 
     public String getId() {
         return id;
@@ -94,5 +98,13 @@ public class GoodsItem {
 
     public void setClassifyName(String classifyName) {
         this.classifyName = classifyName;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

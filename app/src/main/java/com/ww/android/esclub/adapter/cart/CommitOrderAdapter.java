@@ -5,18 +5,22 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
+import com.ww.android.esclub.bean.cart.GoodsItem;
 
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
 import ww.com.core.widget.RoundImageView;
 
+import static com.ww.android.esclub.R.id.tv_num;
+
 /**
  * Created by feng on 2017/6/21.
  */
 
-public class CommitOrderAdapter extends RvAdapter<String> {
+public class CommitOrderAdapter extends RvAdapter<GoodsItem> {
 
     public CommitOrderAdapter(Context context) {
         super(context);
@@ -28,14 +32,14 @@ public class CommitOrderAdapter extends RvAdapter<String> {
     }
 
     @Override
-    protected RvViewHolder<String> getViewHolder(int i, View view) {
+    protected RvViewHolder<GoodsItem> getViewHolder(int i, View view) {
         return new CommitOrderViewHolder(view);
     }
 
-    class CommitOrderViewHolder extends RvViewHolder<String>{
+    class CommitOrderViewHolder extends RvViewHolder<GoodsItem>{
         @BindView(R.id.riv_thumb)
         RoundImageView rivThumb;
-        @BindView(R.id.tv_num)
+        @BindView(tv_num)
         TextView tvNum;
         @BindView(R.id.tv_name)
         TextView tvName;
@@ -47,25 +51,12 @@ public class CommitOrderAdapter extends RvAdapter<String> {
         }
 
         @Override
-        public void onBindData(int i, String s) {
-            switch (i){
-                case 0:
-                    ImageLoader.getInstance().
-                            displayImage("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy" +
-                                    "/it/u=1095058939,3797564670&fm=26&gp=0.jpg", rivThumb);
-                    tvPrice.setText("￥ 67");
-                    tvName.setText("Dolcetto");
-                    break;
-                case 1:
-                    ImageLoader.getInstance().
-                            displayImage("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3735227461,2457058780&fm=26&gp=0.jpg", rivThumb);
-
-                    tvPrice.setText("￥ "+47);
-                    tvName.setText("Barbera");
-
-                    break;
-
-            }
+        public void onBindData(int i, GoodsItem item) {
+            ImageLoader.getInstance().
+                    displayImage(item.getCover(), rivThumb, BaseApplication.getDisplayImageOptions(R.mipmap.ic_default));
+            tvPrice.setText("￥ "+item.getPrice());
+            tvName.setText(item.getName());
+            tvNum.setText("x"+item.getNum());
         }
     }
 }

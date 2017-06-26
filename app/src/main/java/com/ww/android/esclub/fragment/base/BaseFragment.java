@@ -82,4 +82,6 @@ public abstract class BaseFragment<V extends IView,M extends IModel> extends Pre
             tvTitle.setText(titleText);
         }
     }
+
+
 }

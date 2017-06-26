@@ -20,4 +20,9 @@
     <string name="dialog_btn_repay">重试</string>
     <string name="dialog_btn_cancel">取消</string>
     <string name="dialog_btn_ver_update_sure">更新</string>
+    <string name="cart_is_empty">购物车没有你喜欢的物品哦</string>
+    <string name="str_wx_no_install">请确认微信是否安装</string>
+    <string name="toast_recharge_success">支付成功</string>
+    <string name="toast_recharge_fail">支付失败</string>
+    <string name="error_of_application">Error of Application</string>
 </resources>

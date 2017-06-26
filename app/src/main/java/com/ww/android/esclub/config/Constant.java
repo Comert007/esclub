@@ -20,5 +20,7 @@ public class Constant {
 
     public static final int PAGE_ONE =1;
 
+    public static String ALIPAY ="alipay";
+    public static String WEICHAT ="weichat";
 }
 

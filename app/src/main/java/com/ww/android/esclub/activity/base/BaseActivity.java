@@ -1,5 +1,6 @@
 package com.ww.android.esclub.activity.base;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -97,4 +98,5 @@ public abstract class BaseActivity<V extends IView,M extends IModel> extends Pre
             tvTitle.setText(titleText);
         }
     }
+
 }

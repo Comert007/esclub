@@ -85,7 +85,7 @@ public class CartItemAdapter extends RvAdapter<GoodsItem> {
         }
 
         @Override
-        public void onBindData(int i, GoodsItem item) {
+        public void onBindData(int i, final GoodsItem item) {
 
             ImageLoader.getInstance().displayImage(item.getCover(),rivThumb,
                     BaseApplication.getDisplayImageOptions(R.mipmap.ic_default));
@@ -93,9 +93,10 @@ public class CartItemAdapter extends RvAdapter<GoodsItem> {
             tvName.setText(item.getName());
             tvMonthNum.setText("月销 "+item.getMonth_sale());
             tvPrice.setText("￥ "+item.getPrice());
+            tvNum.setText(item.getNum()+"");
 
-            String text = tvNum.getText().toString();
-            if ("0".equals(text)) {
+
+            if (0==item.getNum()) {
                 llLeft.setVisibility(View.GONE);
             } else {
                 llLeft.setVisibility(View.VISIBLE);
@@ -104,9 +105,10 @@ public class CartItemAdapter extends RvAdapter<GoodsItem> {
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String text = tvNum.getText().toString();
-                    int originalNum = Integer.valueOf(text);
-                    tvNum.setText((originalNum + 1) + "");
+//                    String text = tvNum.getText().toString();
+//                    int originalNum = Integer.valueOf(text);
+//                    tvNum.setText((originalNum + 1) + "");
+                    item.setNum(item.getNum()+1);
                     llLeft.setVisibility(View.VISIBLE);
                     if (onCartAction != null) {
                         onCartAction.onAdd(position, v);
@@ -117,13 +119,11 @@ public class CartItemAdapter extends RvAdapter<GoodsItem> {
             btnMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String text = tvNum.getText().toString();
-                    int originalNum = Integer.valueOf(text);
-                    tvNum.setText((originalNum - 1) + "");
-                    if ("1".equals(text)) {
+
+                    item.setNum(item.getNum()-1);
+                    if (0 == item.getNum()) {
                         llLeft.setVisibility(View.GONE);
                     }
-
                     if (onCartAction != null) {
                         onCartAction.onMinus(position, v);
                     }

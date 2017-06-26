@@ -1,5 +1,6 @@
 package com.ww.android.esclub.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.ww.android.esclub.activity.cart.CommitOrderActivity;
 import com.ww.android.esclub.adapter.cart.CartItemAdapter;
 import com.ww.android.esclub.adapter.cart.CartShopAdapter;
 import com.ww.android.esclub.adapter.cart.ClassifyAdapter;
+import com.ww.android.esclub.api.ApiException;
 import com.ww.android.esclub.bean.CartClassifyBean;
 import com.ww.android.esclub.bean.cart.GoodsBean;
 import com.ww.android.esclub.bean.cart.GoodsItem;
@@ -32,13 +34,13 @@ import ww.com.core.ScreenUtil;
  */
 
 public class CartFragment extends BaseFragment<CartView, CartModel> implements OnItemClickListener,
-        CartItemAdapter.OnCartAction {
+        CartItemAdapter.OnCartAction, CartShopAdapter.OnShopAction {
 
     private ClassifyAdapter classifyAdapter; //一级adapter
     private CartItemAdapter cartItemAdapter; //二级adapter
     private CartShopAdapter cartShopAdapter; //商品袋详情adapter
 
-    private List<GoodsItem> shoppingResult; //已经添加的商品集合
+    private ArrayList<GoodsItem> shoppingResult; //已经添加的商品集合
 
     int[] icons = {R.mipmap.ic_hot, R.mipmap.ic_discount, R.mipmap.ic_wine, R.mipmap.ic_fruit};
 //    @BindArray(R.array.cart_classify)
@@ -63,23 +65,30 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
         v.getBtnAccount().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommitOrderActivity.start(getContext());
+                if (shoppingResult.size() == 0) {
+                    showToast(getString(R.string.cart_is_empty));
+                } else {
+                    CommitOrderActivity.start(getActivity(), shoppingResult);
+                }
+
             }
         });
 
         onGoods();
     }
 
-    private void onGoods(){
-        m.onGoods(bindUntilEvent(FragmentEvent.DESTROY), new HttpSubscriber<List<GoodsBean>>(getContext(),true) {
+    private void onGoods() {
+        m.onGoods(bindUntilEvent(FragmentEvent.DESTROY), new HttpSubscriber<List<GoodsBean>>
+                (getContext(), true) {
             @Override
             public void onNext(List<GoodsBean> goodsBeen) {
-                if (goodsBeen==null||goodsBeen.size()==0){
+                if (goodsBeen == null || goodsBeen.size() == 0) {
                     return;
                 }
                 List<String> names = new ArrayList<>();
                 List<GoodsItem> goodsItems = new ArrayList<>();
                 for (int i = 0; i < goodsBeen.size(); i++) {
+                    int position = 0;
                     GoodsBean goodsBean = goodsBeen.get(i);
                     names.add(goodsBean.getName());
                     //每组开头加上title
@@ -87,10 +96,12 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
                     item.setCartType(CartItemAdapter.CART_LINE);
                     item.setClassifyName(goodsBean.getName());
                     //将内容按分类加入List<GoodsItem>
-                    List<GoodsItem> perGoods =goodsBean.getGoods();
+                    List<GoodsItem> perGoods = goodsBean.getGoods();
                     for (GoodsItem perGood : perGoods) {
+                        perGood.setPosition(position);
                         perGood.setClassifyId(goodsBean.getId());
                         perGood.setClassifyName(goodsBean.getName());
+                        position++;
                     }
                     goodsItems.addAll(perGoods);
                 }
@@ -102,7 +113,7 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
     }
 
 
-    private void initAdapter(){
+    private void initAdapter() {
         classifyAdapter = new ClassifyAdapter(getContext());
         classifyAdapter.setOnItemClickListener(this);
 
@@ -117,6 +128,7 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
         v.getCrvItems().addFooterView(footView);
 
     }
+
     //初始化左边列表
     private void initLeft(List<String> names) {
         List<CartClassifyBean> classifyBeen = new ArrayList<>();
@@ -137,9 +149,9 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
     }
 
 
-
     private void initShopContent() {
         cartShopAdapter = new CartShopAdapter(getContext());
+        cartShopAdapter.setOnShopAction(this);
         v.getCrvShop().setAdapter(cartShopAdapter);
         v.getIvShopping().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,11 +169,11 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
 
     @Override
     public void onItemClick(int position, View view) {
-         List<GoodsItem> goods =  cartItemAdapter.getList();
+        List<GoodsItem> goods = cartItemAdapter.getList();
         List<Integer> jumpPoints = new ArrayList<>();
 
         for (int i = 0; i < goods.size(); i++) {
-            if (goods.get(i).getCartType()== CartItemAdapter.CART_LINE){
+            if (goods.get(i).getCartType() == CartItemAdapter.CART_LINE) {
                 jumpPoints.add(i);
             }
         }
@@ -180,27 +192,88 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
 
     }
 
+
+    //大于0 说明有相同的存在
+    private int checkIsSame(List<GoodsItem> goodsItems, GoodsItem item) {
+        int index = -1;
+        for (int i = 0; i < goodsItems.size(); i++) {
+            GoodsItem goodsItem = goodsItems.get(i);
+            if (goodsItem.getPosition() == item.getPosition()) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
     @Override
     public void onAdd(int position, View view) {
         int[] loc = new int[2];
         view.getLocationInWindow(loc);
         v.playAnimation(loc, (ViewGroup) getActivity().getWindow().getDecorView());
 
-        shoppingResult.add(cartItemAdapter.getItem(position));
+        GoodsItem item = cartItemAdapter.getItem(position);
+        int index = checkIsSame(shoppingResult, item);
+        if (index> 0) {
+            shoppingResult.set(index,item);
+        } else {
+            shoppingResult.add(item);
+        }
+
+
         v.showShopRes(true);
         v.setTip(shoppingResult.size() + "");
 
+        cartShopAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onMinus(int position, View view) {
-        shoppingResult.remove(cartItemAdapter.getItem(position));
-        cartShopAdapter.notifyItemChanged(position);
+        GoodsItem item = cartItemAdapter.getItem(position);
+        int index = checkIsSame(shoppingResult, item);
+        if (index>0){
+            if (0==item.getNum()){
+                shoppingResult.remove(index);
+            }else
+                shoppingResult.set(index,item);
+        }else {
+            throw new ApiException(getString(R.string.error_of_application));
+        }
+
         if (shoppingResult.size() == 0) {
             v.showShopRes(false);
         }
 
         v.setTip(shoppingResult.size() + "");
+
+        cartShopAdapter.notifyDataSetChanged();
+    }
+
+    //商品袋
+    @Override
+    public void onShopAdd(int position, View view) {
+
+        GoodsItem item = shoppingResult.get(position);
+        int index = checkIsSame(cartItemAdapter.getList(),item);
+        if (index>0){
+            cartItemAdapter.notifyItemChanged(index,item);
+        }else {
+            throw new ApiException(getString(R.string.error_of_application));
+        }
+
+        cartItemAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onShopMinus(int position, View view) {
+        GoodsItem item = cartItemAdapter.getItem(position);
+        int index = checkIsSame(cartItemAdapter.getList(),item);
+        if (index > 0){
+            cartItemAdapter.notifyItemChanged(index,item);
+        }else {
+            throw new ApiException(getString(R.string.error_of_application));
+        }
+
+        cartItemAdapter.notifyDataSetChanged();
     }
 
 
@@ -213,10 +286,10 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
 
                 int lastItem = v.getItemManager().findLastVisibleItemPosition();
                 int count = cartItemAdapter.getItemCount();
-                if (lastItem<count){
+                if (lastItem < count) {
                     String classifyName = cartItemAdapter.getItem(lastItem).getClassifyName();
                     for (int i = 0; i < classifyNames.size(); i++) {
-                        if (TextUtils.equals(classifyNames.get(i),classifyName)){
+                        if (TextUtils.equals(classifyNames.get(i), classifyName)) {
                             Debug.d("leftPosition:" + i);
                             classifyAdapter.recoverySelected(i);
                         }
@@ -229,4 +302,13 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
         }
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            shoppingResult.clear();
+            cartShopAdapter.notifyDataSetChanged();
+        }
+    }
 }

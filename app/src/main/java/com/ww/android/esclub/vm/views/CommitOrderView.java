@@ -8,13 +8,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.ww.android.esclub.R;
+import com.ww.android.esclub.config.Constant;
 import com.ww.mvp.view.IView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ww.com.core.widget.CustomRecyclerView;
+
+import static com.ww.android.esclub.config.Constant.ALIPAY;
+import static com.ww.android.esclub.config.Constant.WEICHAT;
 
 /**
  * Created by feng on 2017/6/21.
@@ -28,9 +33,10 @@ public class CommitOrderView implements IView {
     RadioButton rbWeiChat;
     @BindView(R.id.rb_alipay)
     RadioButton rbAlipay;
+    @BindView(R.id.tv_total_price)
+    TextView tvTotalPrice;
 
-    public String ALIPAY ="alipay";
-    public String WEICHAT ="weichat";
+
 
     private Context context;
 
@@ -56,14 +62,14 @@ public class CommitOrderView implements IView {
         rbWeiChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPayWay(WEICHAT);
+                setPayWay(Constant.WEICHAT);
             }
         });
 
         rbAlipay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPayWay(ALIPAY);
+                setPayWay(Constant.ALIPAY);
             }
         });
     }
@@ -74,7 +80,7 @@ public class CommitOrderView implements IView {
     }
 
     public void setPayWay(String payWay){
-        if (TextUtils.equals(payWay,ALIPAY)){
+        if (TextUtils.equals(payWay,Constant.ALIPAY)){
             rbWeiChat.setChecked(false);
             rbAlipay.setChecked(true);
         }else {
@@ -85,10 +91,14 @@ public class CommitOrderView implements IView {
 
     public String getPayway(){
         if (rbWeiChat.isChecked()){
-            return WEICHAT;
+            return Constant.WEICHAT;
         }else {
-            return ALIPAY;
+            return Constant.ALIPAY;
         }
+    }
+
+    public void setTotalPrice(String totalPrice){
+        tvTotalPrice.setText(totalPrice);
     }
 
     @Override

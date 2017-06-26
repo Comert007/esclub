@@ -83,7 +83,12 @@
         <item name="android:background">@drawable/btn_gray_shape</item>
         <item name="android:layout_height">@dimen/wwpx90</item>
     </style>
-
+    <style name="OrderDetailLlay">
+        <item name="android:background">@color/color_white</item>
+        <item name="android:paddingLeft">@dimen/wwpx21</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
 
 </resources>

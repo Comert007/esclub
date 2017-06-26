@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/LlayFill"
+              xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.ww.android.esclub.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleLeftIco="@mipmap/arrow_back_normal"
+        app:titleText="@string/user_order_detail"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/wwpx21"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/wwpx10"
+                android:paddingTop="@dimen/wwpx10">
+                <LinearLayout
+                    style="@style/OrderDetailLlay">
+                    <TextView
+                        android:id="@+id/tv_title"
+                        style="@style/OrderDetailText"
+                        android:text="内容：xxxxxx"/>
+                    <TextView
+                        android:id="@+id/tv_total_price"
+                        style="@style/RightText"
+                        android:textColor="@color/color_fb4e44"
+                        android:text="￥ 198"/>
+                </LinearLayout>
+
+
+                <include layout="@layout/layout_space_line"/>
+
+                <LinearLayout
+                    style="@style/OrderDetailLlay">
+                    <TextView
+                        style="@style/OrderDetailText"
+                        android:text="数量："/>
+
+                    <TextView
+                        android:id="@+id/tv_num"
+                        style="@style/RightText"
+                        android:text="x5"/>
+                </LinearLayout>
+
+                <include layout="@layout/layout_space_line"/>
+                <LinearLayout
+                    style="@style/OrderDetailLlay">
+                    <TextView
+                        style="@style/OrderDetailText"
+                        android:text="支付方式："/>
+
+                    <TextView
+                        android:id="@+id/tv_pay_way"
+                        style="@style/RightText"
+                        android:text="支付宝"/>
+                </LinearLayout>
+
+
+                <include layout="@layout/layout_space_line"/>
+                <LinearLayout
+                    style="@style/OrderDetailLlay">
+                    <TextView
+                        style="@style/OrderDetailText"
+                        android:text="订单状态："/>
+
+                    <TextView
+                        android:id="@+id/tv_pay_status"
+                        style="@style/RightText"
+                        android:text="已完结"/>
+                </LinearLayout>
+
+                <include layout="@layout/layout_space_line"/>
+                <LinearLayout
+                    style="@style/OrderDetailLlay">
+                    <TextView
+                        style="@style/OrderDetailText"
+                        android:text="送达座号："/>
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        style="@style/RightText"
+                        android:textColor="@color/color_fb4e44"
+                        android:text="A区15座"/>
+                </LinearLayout>
+
+                <include layout="@layout/layout_space_line"/>
+                <LinearLayout
+                    style="@style/OrderDetailLlay">
+                    <TextView
+                        style="@style/OrderDetailText"
+                        android:text="下单时间："/>
+
+                    <TextView
+                        android:id="@+id/tv_created"
+                        style="@style/RightText"
+                        android:text="2017-06-23 12:00:00"/>
+                </LinearLayout>
+
+                <ww.com.core.widget.CustomRecyclerView
+                    android:id="@+id/crv"
+                    android:layout_marginTop="@dimen/wwpx21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

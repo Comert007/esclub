@@ -11,6 +11,7 @@
                   android:background="@color/color_f8f8f8"
                   android:gravity="center_vertical"
                   android:orientation="horizontal">
+
         <ww.com.core.widget.RoundImageView
             android:id="@+id/riv_thumb"
             android:layout_width="@dimen/wwpx125"

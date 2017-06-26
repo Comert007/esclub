@@ -8,6 +8,7 @@ import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.BuildConfig;
 import com.ww.android.esclub.api.convert.ResponseFunc;
 import com.ww.android.esclub.bean.ResponseBean;
+import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.config.AppConfig;
 
 import java.util.HashMap;
@@ -82,9 +83,11 @@ public class BaseApi {
         // 客户端UUID
         params.put("DEVICE_MODEL", "2");  // 设备(1:iphone;2:android)
         params.put("DEVICE_VERSION", PhoneUtils.getPhoneModel());  //客户端版本
-        String token = BaseApplication.getInstance().getToken();
-        if (!TextUtils.isEmpty(token))
-            params.put("APP_TOKEN", token);  //登录后生成的会话token，注册流程，找回密码，登录等不传
+        UserBean user = BaseApplication.getInstance().getUserBean();
+        if (user!=null&& !TextUtils.isEmpty(user.getToken())){
+            params.put("APP_TOKEN", user.getToken());  //登录后生成的会话token，注册流程，找回密码，登录等不传
+        }
+
         return params;
 
 

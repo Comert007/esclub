@@ -53,6 +53,11 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="UserText" parent="ShareText">
+        <item name="android:textSize">@dimen/wwpx28</item>
+        <item name="android:gravity">left</item>
+    </style>
+
     <style name="AnimationActivity" parent="AppTheme">
         <item name="android:activityOpenEnterAnimation">@anim/anim_bottom_enter</item>
         <item name="android:activityCloseExitAnimation">@anim/anim_bottom_exit</item>
@@ -79,4 +84,33 @@
         <item name="android:minHeight">20dip</item>
         <item name="android:maxHeight">20dip</item>
     </style>
+
+    <style name="UserImage">
+        <item name="android:layout_width">@dimen/wwpx40</item>
+        <item name="android:layout_height">@dimen/wwpx40</item>
+    </style>
+    <style name="UserLLay">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingRight">@dimen/wwpx21</item>
+        <item name="android:background">@color/color_white</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/wwpx21</item>
+        <item name="android:layout_height">@dimen/wwpx98</item>
+    </style>
+
+    <style name="OrderDetailText" parent="ContentText">
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_height">@dimen/wwpx70</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="RightText" parent="OrderDetailText">
+        <item name="android:layout_width">0px</item>
+        <item name="android:paddingRight">@dimen/wwpx21</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical|right</item>
+    </style>
+
 </resources>

@@ -1,19 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center"
-              android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              style="@style/LlayFill">
 
     <com.ww.android.esclub.widget.TitleView
         android:id="@+id/title_view"
         style="@style/TitleBar"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:titleText="@string/user_title"/>
-    <TextView
+
+
+    <LinearLayout
+        android:layout_marginBottom="@dimen/wwpx21"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="match_parent"
-        android:textColor="@color/color_space_line"
-        android:text="@string/user_title"/>
+        android:layout_height="@dimen/wwpx236"
+        android:background="@color/color_primary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/wwpx21">
+
+            <ww.com.core.widget.RoundImageView
+                android:id="@+id/riv_header"
+                android:layout_width="@dimen/wwpx120"
+                android:layout_height="@dimen/wwpx120"
+                android:src="@mipmap/ic_header_default"
+                app:borderRadius="@dimen/wwpx10"
+                app:type="type_round"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:paddingLeft="@dimen/wwpx21"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    style="@style/ContentText"
+                          android:textColor="@color/color_white"
+                        android:text="昵称：xxx"/>
+                <TextView
+                    android:id="@+id/tv_point"
+                    style="@style/ContentText"
+                          android:textColor="@color/color_white"
+                          android:layout_marginTop="@dimen/wwpx10"
+                          android:text="积分：xxx"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="@dimen/wwpx139"
+            android:layout_height="@dimen/wwpx139"
+            android:src="@mipmap/ic_user_right"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_order"
+        style="@style/UserLLay">
+
+        <ImageView
+            android:layout_width="@dimen/wwpx40"
+            android:src="@mipmap/ic_user_order"
+            android:layout_height="@dimen/wwpx40"/>
+
+        <TextView style="@style/UserText"
+                  android:text="订单中心"
+                    android:layout_marginLeft="@dimen/wwpx15"/>
+        <ImageView
+            android:src="@mipmap/ic_arrow_right"
+            style="@style/UserImage"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_online"
+        style="@style/UserLLay">
+
+        <ImageView
+            android:layout_width="@dimen/wwpx40"
+            android:src="@mipmap/ic_user_online"
+            android:layout_height="@dimen/wwpx40"/>
+
+        <TextView style="@style/UserText"
+                  android:text="在线订座"
+                  android:layout_marginLeft="@dimen/wwpx15"/>
+        <ImageView
+            android:src="@mipmap/ic_arrow_right"
+            style="@style/UserImage"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_recharge"
+        style="@style/UserLLay">
+
+        <ImageView
+            android:layout_width="@dimen/wwpx40"
+            android:src="@mipmap/ic_user_recharge"
+            android:layout_height="@dimen/wwpx40"/>
+
+        <TextView style="@style/UserText"
+                  android:text="充值"
+                  android:layout_marginLeft="@dimen/wwpx15"/>
+        <ImageView
+            android:src="@mipmap/ic_arrow_right"
+            style="@style/UserImage"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_setting"
+        style="@style/UserLLay">
+
+        <ImageView
+            android:layout_width="@dimen/wwpx40"
+            android:src="@mipmap/ic_user_setting"
+            android:layout_height="@dimen/wwpx40"/>
+
+        <TextView style="@style/UserText"
+                  android:text="设置"
+                  android:layout_marginLeft="@dimen/wwpx15"/>
+
+        <ImageView
+            android:src="@mipmap/ic_arrow_right"
+            style="@style/UserImage"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_about_us"
+        style="@style/UserLLay">
+
+        <ImageView
+            android:layout_width="@dimen/wwpx40"
+            android:src="@mipmap/ic_user_about_us"
+            android:layout_height="@dimen/wwpx40"/>
+
+        <TextView style="@style/UserText"
+                  android:text="关于我们"
+                  android:layout_marginLeft="@dimen/wwpx15"/>
+
+        <ImageView
+            android:src="@mipmap/ic_arrow_right"
+            style="@style/UserImage"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
 </LinearLayout>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/LlayFill"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.ww.android.esclub.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleLeftIco="@mipmap/arrow_back_normal"
+        app:titleText="@string/user_recharge"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/wwpx21"
+        android:background="@drawable/btn_white_shape"
+        android:orientation="vertical"
+        android:padding="@dimen/wwpx21">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/wwpx21">
+            <TextView style="@style/ContentText"
+                      android:text="充值金额(元)"/>
+
+            <TextView
+                style="@style/ContentText.ExPlain"
+                android:layout_marginLeft="@dimen/wwpx20"
+                android:text="充值金额最小为1元"
+                android:textColor="@color/color_b3b3b3"/>
+
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="@dimen/wwpx90">
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_border_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:text="10"
+                android:textColor="@color/color_primary"/>
+
+            <View
+                android:layout_width="@dimen/wwpx20"
+                android:layout_height="@dimen/wwpx20"/>
+
+            <EditText
+                android:id="@+id/et_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_border_selector"
+                android:digits="1234567890"
+                android:gravity="center"
+                android:hint="其他"
+                android:inputType="number"
+                android:maxLength="5"
+                android:maxLines="1"
+                android:textSize="@dimen/wwpx28"/>
+
+        </LinearLayout>
+
+        <TextView style="@style/ContentText"
+                  android:layout_marginTop="@dimen/wwpx21"
+                  android:text="支付方式"
+                  android:textSize="@dimen/wwpx24"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wwpx90"
+            android:layout_marginTop="@dimen/wwpx21"
+            android:background="@drawable/btn_gray_border_shape"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/wwpx21"
+            android:paddingRight="@dimen/wwpx21">
+
+            <ww.com.core.widget.RoundImageView
+                android:layout_width="@dimen/wwpx44"
+                android:layout_height="@dimen/wwpx44"
+                android:src="@mipmap/ic_alipay"
+                app:borderRadius="@dimen/wwpx10"
+                app:type="type_round"/>
+
+            <TextView
+                style="@style/ShareText"
+                android:layout_marginLeft="@dimen/wwpx25"
+                android:gravity="left"
+                android:text="支付宝支付"
+                android:textSize="@dimen/wwpx28"/>
+
+            <RadioButton
+                android:id="@+id/rb_alipay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wwpx90"
+            android:layout_marginTop="@dimen/wwpx21"
+            android:background="@drawable/btn_gray_border_shape"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/wwpx21"
+            android:paddingRight="@dimen/wwpx21">
+
+            <ww.com.core.widget.RoundImageView
+                android:layout_width="@dimen/wwpx44"
+                android:layout_height="@dimen/wwpx44"
+                android:src="@mipmap/ic_weixin"
+                app:borderRadius="@dimen/wwpx10"
+                app:type="type_round"/>
+
+            <TextView
+                style="@style/ShareText"
+                android:layout_marginLeft="@dimen/wwpx25"
+                android:gravity="left"
+                android:text="微信支付"
+                android:textSize="@dimen/wwpx28"/>
+
+            <RadioButton
+                android:id="@+id/rb_weichat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:gravity="center_horizontal|bottom">
+            <Button
+                android:id="@+id/btn_recharge"
+                android:layout_width="@dimen/wwpx190"
+                android:enabled="true"
+                android:layout_height="@dimen/wwpx70"
+                android:background="@drawable/btn_black_shape"
+                android:text="去充值"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

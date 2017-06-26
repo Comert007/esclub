@@ -4,84 +4,85 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.trello.rxlifecycle.LifecycleTransformer;
+import com.ww.android.esclub.ListBean;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
 import com.ww.android.esclub.api.ApiException;
-import com.ww.android.esclub.api.CartApi;
-import com.ww.android.esclub.api.PayApi;
+import com.ww.android.esclub.api.convert.UserApi;
 import com.ww.android.esclub.bean.ResponseBean;
-import com.ww.android.esclub.bean.cart.GoodsBean;
-import com.ww.android.esclub.bean.cart.GoodsItem;
-import com.ww.android.esclub.bean.cart.GoodsPayCallBean;
 import com.ww.android.esclub.bean.pay.AlipayBean;
 import com.ww.android.esclub.bean.pay.WechatPayBean;
+import com.ww.android.esclub.bean.user.OrderCentreBean;
+import com.ww.android.esclub.bean.user.OrderDetailBean;
 import com.ww.mvp.model.IModel;
-
-import java.util.List;
 
 import rx.functions.Func1;
 import ww.com.http.rx.RxHelper;
 
 /**
- * Created by feng on 2017/6/25.
+ * Created by feng on 2017/6/26.
  */
 
-public class CartModel implements IModel {
+public class UserModel implements IModel {
+
     @Override
     public void onAttach(@NonNull Context context) {
 
     }
 
-    public void onGoods(LifecycleTransformer transformer, HttpSubscriber<List<GoodsBean>>
-            httpSubscriber) {
-        CartApi.onGoods()
-                .map(new Func1<ResponseBean, List<GoodsBean>>() {
+    public void onOrders(String page, String perpage, LifecycleTransformer transformer,
+                         HttpSubscriber<ListBean<OrderCentreBean>> httpSubscriber) {
+
+        UserApi.onOrders(page, perpage)
+                .map(new Func1<ResponseBean, ListBean<OrderCentreBean>>() {
                     @Override
-                    public List<GoodsBean> call(ResponseBean responseBean) {
+                    public ListBean<OrderCentreBean> call(ResponseBean responseBean) {
                         try {
-//                            JSONObject data = JSON.parseObject(responseBean.getData());
-                            List<GoodsBean> goodsBeen = JSONArray.parseArray(responseBean.getData(), GoodsBean.class);
-                            return goodsBeen;
+                            ListBean<OrderCentreBean> listBean = JSON.parseObject(responseBean
+                                    .getData(), ListBean.class);
+                            return listBean;
                         } catch (Exception e) {
                             throw new ApiException(responseBean);
                         }
-
-                    }
-                }).compose(RxHelper.<List<GoodsBean>>cutMain())
-                .compose(transformer)
-                .subscribe(httpSubscriber);
-    }
-
-
-    public void onPay(String seat_id, List<GoodsItem> goodsItems, LifecycleTransformer transformer,
-                      HttpSubscriber<GoodsPayCallBean> httpSubscriber) {
-
-        CartApi.onPay(seat_id, goodsItems)
-                .map(new Func1<ResponseBean, GoodsPayCallBean>() {
-                    @Override
-                    public GoodsPayCallBean call(ResponseBean responseBean) {
-                        try {
-                            JSONObject data = JSON.parseObject(responseBean.getData());
-                            GoodsPayCallBean bean = data.getObject("obj", GoodsPayCallBean.class);
-                            return bean;
-                        }catch (Exception e){
-                           throw  new ApiException(responseBean);
-                        }
                     }
                 })
-                .compose(RxHelper.<GoodsPayCallBean>cutMain())
+                .compose(RxHelper.<ListBean<OrderCentreBean>>cutMain())
                 .compose(transformer)
                 .subscribe(httpSubscriber);
 
     }
 
+    public void onOrders(String page, LifecycleTransformer transformer,
+                         HttpSubscriber<ListBean<OrderCentreBean>> httpSubscriber) {
+        onOrders(page, null, transformer, httpSubscriber);
+    }
 
-    public void onWeChat(String seat_id, List<GoodsItem> goodsItems, LifecycleTransformer transformer,
+    public void onOrderDetail(String id, LifecycleTransformer transformer,
+                              HttpSubscriber<ListBean<OrderDetailBean>> httpSubscriber) {
+        UserApi.onOrderDetail(id)
+                .map(new Func1<ResponseBean, ListBean<OrderDetailBean>>() {
+                    @Override
+                    public ListBean<OrderDetailBean> call(ResponseBean responseBean) {
+                        try {
+                            ListBean<OrderDetailBean> listBean = JSON.parseObject(responseBean
+                                    .getData(), ListBean.class);
+                            return listBean;
+
+                        } catch (Exception e) {
+                            throw new ApiException(responseBean);
+                        }
+                    }
+                }).compose(RxHelper.<ListBean<OrderDetailBean>>cutMain())
+                .compose(transformer)
+                .subscribe(httpSubscriber);
+    }
+
+
+    public void onWeChat(String price, LifecycleTransformer transformer,
                          HttpSubscriber<WechatPayBean> httpSubscriber){
 
-        PayApi.onweChat(seat_id,goodsItems)
+        UserApi.onWeChat(price)
                 .map(new Func1<ResponseBean, WechatPayBean>() {
                     @Override
                     public WechatPayBean call(ResponseBean responseBean) {
@@ -99,9 +100,9 @@ public class CartModel implements IModel {
 
     }
 
-    public void onAlipay(String seat_id, List<GoodsItem> goodsItems, LifecycleTransformer transformer,
+    public void onAlipay(String price, LifecycleTransformer transformer,
                          HttpSubscriber<AlipayBean> httpSubscriber){
-        PayApi.onAliPay(seat_id,goodsItems)
+        UserApi.onAliPay(price)
                 .map(new Func1<ResponseBean, AlipayBean>() {
                     @Override
                     public AlipayBean call(ResponseBean responseBean) {
@@ -113,4 +114,5 @@ public class CartModel implements IModel {
                 .compose(transformer)
                 .subscribe(httpSubscriber);
     }
+
 }

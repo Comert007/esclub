@@ -36,6 +36,7 @@ public class UserBean implements Serializable{
     private String member_type;
     private String guess_num;
     private String guess_win_rate;
+    private String token;
 
     private BookTableBean book_table;
 
@@ -136,4 +137,11 @@ public class UserBean implements Serializable{
         this.book_table = book_table;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

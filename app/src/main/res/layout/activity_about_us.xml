@@ -39,6 +39,7 @@
     <TextView android:layout_width="match_parent"
               android:textColor="@color/color_b3b3b3"
               android:gravity="center"
+              android:textSize="@dimen/wwpx24"
               android:layout_marginBottom="@dimen/wwpx20"
               android:text="Copyright © 2017 E-Sports.All Rights Reserved"
               android:layout_height="wrap_content"/>

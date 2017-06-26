@@ -41,6 +41,12 @@
         <activity android:name=".activity.start.LoginActivity"/>
 
         <activity android:name=".activity.user.AboutUsActivity"/>
+        <activity android:name=".activity.user.OrderCentreActivity"/>
+        <activity android:name=".activity.user.OrderDetailActivity"/>
+        <activity android:name=".activity.user.ReChargeActivity"/>
+        <activity android:name=".activity.user.SettingActivity"/>
+        <activity android:name=".activity.user.BookSeatActivity"/>
+
         <activity android:name=".wxapi.WXEntryActivity"
                   android:label="@string/app_name"
                   android:exported="true"

@@ -9,23 +9,23 @@ import com.ww.mvp.model.VoidModel;
 import com.ww.mvp.view.VoidView;
 
 /**
- * Created by feng on 2017/6/23.
+ * Created by feng on 2017/6/26.
  */
 
-public class AboutUsActivity extends BaseActivity<VoidView,VoidModel> {
-
+public class SettingActivity extends BaseActivity<VoidView,VoidModel> {
     public static void start(Context context) {
-        Intent intent = new Intent(context, AboutUsActivity.class);
+        Intent intent = new Intent(context, SettingActivity.class);
         context.startActivity(intent);
     }
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_about_us;
+        return R.layout.activity_setting;
     }
 
     @Override
     protected void init() {
+
     }
 
     @Override

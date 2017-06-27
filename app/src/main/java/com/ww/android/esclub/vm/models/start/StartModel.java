@@ -56,8 +56,8 @@ public class StartModel implements IModel {
                         if (dataJson.containsKey("version_info")) {
                             JSONObject versionInfoJson = dataJson.getJSONObject("version_info");
                             if (!versionInfoJson.isEmpty()) {
-                                VersionInfoBean viewInfoBean = versionInfoJson
-                                        .getObject("obj", VersionInfoBean.class);
+                                VersionInfoBean viewInfoBean =
+                                        JSONObject.parseObject(versionInfoJson.getString("obj"),VersionInfoBean.class);
                                 flagBean.version_flag = versionInfoJson.getString("version_flag");
                                 configBean.version_info = viewInfoBean;
                             }
@@ -71,6 +71,7 @@ public class StartModel implements IModel {
                                         (ArrayList<TableAreaInfoBean>) JSONArray.parseArray
                                                 (tableAreaInfoJson.getString("items"),
                                                         TableAreaInfoBean.class);
+
                                 flagBean.table_area_flag = tableAreaInfoJson.getString
                                         ("table_area_flag");
                                 configBean.table_area_info = tableAreaInfoBeen;
@@ -95,9 +96,8 @@ public class StartModel implements IModel {
                             JSONObject bookTableInfoJson = dataJson.getJSONObject
                                     ("book_table_info");
                             if (!bookTableInfoJson.isEmpty()) {
-                                BookTableInfoBean bookTableInfoBean = bookTableInfoJson.getObject
-                                        (bookTableInfoJson.getString("obj"), BookTableInfoBean
-                                                .class);
+                                BookTableInfoBean bookTableInfoBean =
+                                        JSONObject.parseObject(bookTableInfoJson.getString("obj"),BookTableInfoBean.class);
 
                                 flagBean.book_table_flag = bookTableInfoJson.getString
                                         ("book_table_flag");
@@ -110,10 +110,8 @@ public class StartModel implements IModel {
                             JSONObject webviewInfoJson = dataJson.getJSONObject
                                     ("webview_info");
                             if (!webviewInfoJson.isEmpty()) {
-                                WebViewInfoBean webviewInfoBean = webviewInfoJson.getObject
-                                        (webviewInfoJson.getString("obj"), WebViewInfoBean
-                                                .class);
-
+                                WebViewInfoBean webviewInfoBean =
+                                        JSONObject.parseObject(webviewInfoJson.getString("obj"),WebViewInfoBean.class);
                                 flagBean.webview_flag = webviewInfoJson.getString("webview_flag");
                                 configBean.webview_info = webviewInfoBean;
                             }

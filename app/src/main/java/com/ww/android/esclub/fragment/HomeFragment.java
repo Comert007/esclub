@@ -1,15 +1,15 @@
 package com.ww.android.esclub.fragment;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.adapter.TranslateTabAdapter;
+import com.ww.android.esclub.config.Constant;
 import com.ww.android.esclub.fragment.base.BaseFragment;
-import com.ww.android.esclub.fragment.translate.EventFragment;
 import com.ww.android.esclub.fragment.translate.NewsFragment;
-import com.ww.android.esclub.fragment.translate.VideoFragment;
 import com.ww.android.esclub.vm.models.home.HomeModel;
 import com.ww.android.esclub.widget.TranslateTabBar;
 import com.ww.mvp.view.VoidView;
@@ -63,9 +63,17 @@ public class HomeFragment extends BaseFragment<VoidView,HomeModel> {
             fragments = new ArrayList<>();
         }
 
-        fragments.add(new NewsFragment());
-        fragments.add(new EventFragment());
-        fragments.add(new VideoFragment());
+        fragments.add(createFragment(Constant.NEWS_LATEST));
+        fragments.add(createFragment(Constant.NEWS_ACTIVITIES));
+        fragments.add(createFragment(Constant.NEWS_VIDEO));
+    }
+
+    private NewsFragment createFragment(String type){
+        NewsFragment newsFragment = new NewsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("type", type);
+        newsFragment.setArguments(bundle);
+        return newsFragment;
     }
 
     ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {

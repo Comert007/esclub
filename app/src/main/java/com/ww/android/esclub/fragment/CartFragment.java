@@ -87,14 +87,15 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
                 }
                 List<String> names = new ArrayList<>();
                 List<GoodsItem> goodsItems = new ArrayList<>();
+                int position = 0;
                 for (int i = 0; i < goodsBeen.size(); i++) {
-                    int position = 0;
                     GoodsBean goodsBean = goodsBeen.get(i);
                     names.add(goodsBean.getName());
                     //每组开头加上title
                     GoodsItem item = new GoodsItem();
                     item.setCartType(CartItemAdapter.CART_LINE);
                     item.setClassifyName(goodsBean.getName());
+                    goodsItems.add(item);
                     //将内容按分类加入List<GoodsItem>
                     List<GoodsItem> perGoods = goodsBean.getGoods();
                     for (GoodsItem perGood : perGoods) {
@@ -202,6 +203,7 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
                 index = i;
             }
         }
+        Debug.d("index:"+index);
         return index;
     }
 
@@ -213,9 +215,11 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
 
         GoodsItem item = cartItemAdapter.getItem(position);
         int index = checkIsSame(shoppingResult, item);
-        if (index> 0) {
+        if (index>= 0) {
+            Debug.d("set---->>>");
             shoppingResult.set(index,item);
         } else {
+            Debug.d("add---->>>");
             shoppingResult.add(item);
         }
 
@@ -230,7 +234,7 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
     public void onMinus(int position, View view) {
         GoodsItem item = cartItemAdapter.getItem(position);
         int index = checkIsSame(shoppingResult, item);
-        if (index>0){
+        if (index>=0){
             if (0==item.getNum()){
                 shoppingResult.remove(index);
             }else
@@ -254,7 +258,7 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
 
         GoodsItem item = shoppingResult.get(position);
         int index = checkIsSame(cartItemAdapter.getList(),item);
-        if (index>0){
+        if (index>=0){
             cartItemAdapter.notifyItemChanged(index,item);
         }else {
             throw new ApiException(getString(R.string.error_of_application));
@@ -267,13 +271,33 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
     public void onShopMinus(int position, View view) {
         GoodsItem item = cartItemAdapter.getItem(position);
         int index = checkIsSame(cartItemAdapter.getList(),item);
-        if (index > 0){
+        if (index >= 0){
             cartItemAdapter.notifyItemChanged(index,item);
         }else {
             throw new ApiException(getString(R.string.error_of_application));
         }
 
+        if (isListNull()){
+            shoppingResult.clear();
+            v.showShopRes(false);
+            v.setTip(shoppingResult.size() + "");
+            v.showShoppingContent();
+            cartShopAdapter.notifyDataSetChanged();
+        }
+
         cartItemAdapter.notifyDataSetChanged();
+    }
+
+    private boolean isListNull(){
+        boolean isNull = true;
+        for (GoodsItem goodsItem : cartShopAdapter.getList()) {
+            Debug.d(goodsItem.getNum()+"");
+            if (0!=goodsItem.getNum()){
+                isNull = false;
+            }
+        }
+        Debug.d("---->>>>isnull:"+isNull);
+        return isNull;
     }
 
 

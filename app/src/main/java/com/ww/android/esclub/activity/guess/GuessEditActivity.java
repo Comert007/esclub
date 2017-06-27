@@ -28,10 +28,9 @@ public class GuessEditActivity extends BaseActivity<VoidView,VoidModel> {
     EditText etScaleNum;
 
 
-    public static void start(Activity context,int requestCode,int position) {
+    public static void start(Activity context) {
         Intent intent = new Intent(context, GuessEditActivity.class);
-        intent.putExtra("position",position);
-        context.startActivityForResult(intent,requestCode);
+        context.startActivityForResult(intent,REQUEST_EDIT_CODE);
     }
 
     @Override
@@ -44,21 +43,14 @@ public class GuessEditActivity extends BaseActivity<VoidView,VoidModel> {
         btnCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String scale = etScaleNum.getText().toString().trim();
-                if (TextUtils.isEmpty(scale)){
-                    showToast("请确认是否输入了积分");
+                String text = etScaleNum.getText().toString().trim();
+                if (TextUtils.isEmpty(text)){
+                    showToast("请确认是否输入了内容");
                     return;
                 }
-                if (TextUtils.equals("10",scale)||TextUtils.equals("20",scale)||
-                        TextUtils.equals("30",scale)||TextUtils.equals("40",scale)){
-                    showToast("输入积分值可直接进行选择");
-                    return;
-                }
-                if (TextUtils.equals("0",scale)){
-                    scale="其他";
-                }
+
                 Intent intent = getIntent();
-                intent.putExtra("scale",scale);
+                intent.putExtra("text",text);
                 GuessEditActivity.this.setResult(Activity.RESULT_OK,intent);
                 onBackPressed();
             }

@@ -17,6 +17,7 @@ import com.ww.android.esclub.vm.models.home.HomeModel;
 import com.ww.mvp.view.VoidView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by feng on 2017/6/7.
@@ -54,23 +55,32 @@ public class EsNewsFragment extends BaseFragment<VoidView, HomeModel> implements
         });
     }
 
+    @OnClick(R.id.btn_send)
+    public void onSend(){
+        onComment();
+    }
+
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_SEND) {
-            String text = etComment.getText().toString();
-            if (!TextUtils.isEmpty(text)) {
-                m.onComment(id, text, bindUntilEvent(FragmentEvent.DESTROY), new HttpSubscriber<String>(getContext(),true) {
-                    @Override
-                    public void onNext(String s) {
-                        if (!TextUtils.isEmpty(s)){
-                            showToast("评论成功");
-                        }
-                    }
-                });
-            } else {
-                showToast("评论不能为空");
-            }
+            onComment();
         }
         return true;
+    }
+
+    private void onComment(){
+        String text = etComment.getText().toString();
+        if (!TextUtils.isEmpty(text)) {
+            m.onComment(id, text, bindUntilEvent(FragmentEvent.DESTROY), new HttpSubscriber<String>(getContext(),true) {
+                @Override
+                public void onNext(String s) {
+                    if (!TextUtils.isEmpty(s)){
+                        showToast("评论成功");
+                    }
+                }
+            });
+        } else {
+            showToast("评论不能为空");
+        }
     }
 }

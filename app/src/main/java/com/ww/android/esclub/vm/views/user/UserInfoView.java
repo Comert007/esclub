@@ -16,10 +16,10 @@ import butterknife.ButterKnife;
 import ww.com.core.widget.RoundImageView;
 
 /**
- * Created by feng on 2017/6/26.
+ * Created by feng on 2017/6/27.
  */
 
-public class UserView implements IView {
+public class UserInfoView implements IView {
     @BindView(R.id.riv_header)
     RoundImageView rivHeader;
     @BindView(R.id.tv_nickname)
@@ -30,17 +30,6 @@ public class UserView implements IView {
     @Override
     public void onAttach(@NonNull Activity activity, @NonNull View view) {
         ButterKnife.bind(this,view);
-
-    }
-
-    public void showInfo(){
-        UserBean user = BaseApplication.getInstance().getUserBean();
-        if (user!=null){
-            ImageLoader.getInstance().displayImage(user.getAvatar(),rivHeader,
-                    BaseApplication.getDisplayImageOptions(R.mipmap.ic_header_default));
-            tvNickname.setText("昵称："+user.getNickname());
-            tvPoint.setText("积分："+user.getPoint());
-        }
     }
 
     @Override
@@ -51,5 +40,41 @@ public class UserView implements IView {
     @Override
     public void onDestroy() {
 
+    }
+
+    public void showInfo(){
+        UserBean user = BaseApplication.getInstance().getUserBean();
+        if (user!=null){
+            setHeader(user.getAvatar());
+            setNickname(user.getNickname());
+            setPoint(user.getPoint());
+        }
+    }
+
+    public void setHeader(String path){
+        if (path.startsWith("http://")||path.startsWith("https://")){
+            ImageLoader.getInstance().displayImage(path,rivHeader,
+                    BaseApplication.getDisplayImageOptions(R.mipmap.ic_header_default));
+        }else {
+            ImageLoader.getInstance().displayImage("file://"+path,rivHeader,
+                    BaseApplication.getDisplayImageOptions(R.mipmap.ic_header_default));
+        }
+
+    }
+
+    public void setPoint(String point){
+        tvPoint.setText(point);
+    }
+
+    public void setNickname(String nickname){
+        tvNickname.setText(nickname);
+    }
+
+    public TextView getTvNickname() {
+        return tvNickname;
+    }
+
+    public RoundImageView getRivHeader() {
+        return rivHeader;
     }
 }

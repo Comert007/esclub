@@ -15,7 +15,8 @@
                   android:orientation="horizontal">
         <EditText
             android:id="@+id/et_comment"
-            android:layout_width="@dimen/wwpx611"
+            android:layout_width="0px"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/wwpx20"
             android:background="@drawable/et_bg_shape"
@@ -26,6 +27,14 @@
             android:paddingRight="@dimen/wwpx20"
             android:textColorHint="@color/color_e1e6eb"
             android:textSize="@dimen/wwpx25"/>
-        <include layout="@layout/view_like"/>
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="@dimen/wwpx110"
+            android:layout_height="@dimen/wwpx80"
+            android:layout_marginLeft="@dimen/wwpx10"
+            android:layout_marginRight="@dimen/wwpx10"
+            android:background="@drawable/edit_black_shape"
+            android:text="发送"
+            android:textSize="@dimen/wwpx30"/>
     </LinearLayout>
 </LinearLayout>

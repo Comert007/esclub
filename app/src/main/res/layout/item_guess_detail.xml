@@ -5,17 +5,16 @@
               android:orientation="vertical">
 
 
-
     <!--<View-->
-        <!--android:background="@color/color_e1e6eb"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/wwpx10"/>-->
+    <!--android:background="@color/color_e1e6eb"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/wwpx10"/>-->
     <include layout="@layout/layout_space_line"/>
     <LinearLayout
         android:id="@+id/ll_guess_content"
-        android:layout_marginBottom="@dimen/wwpx10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/wwpx10"
         android:orientation="vertical">
         <LinearLayout
             android:id="@+id/ll_guess_title"
@@ -29,6 +28,7 @@
 
 
             <TextView
+                android:id="@+id/tv_id"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -37,6 +37,7 @@
                 android:textSize="@dimen/wwpx28"/>
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -45,6 +46,7 @@
                 android:textSize="@dimen/wwpx28"/>
 
             <TextView
+                android:id="@+id/tv_total_num"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -58,8 +60,8 @@
                 android:layout_height="@dimen/wwpx30"/>
         </LinearLayout>
 
+        <!--android:visibility="gone"-->
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/ll_guess_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,16 +76,19 @@
                           android:gravity="center_vertical"
                           android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/tv_team_one"
                     style="@style/ShareText"
                     android:gravity="left"
                     android:text="ESTAR"/>
                 <TextView
+                    android:id="@+id/tv_team_two"
                     style="@style/ShareText"
                     android:gravity="right"
                     android:text="WE"/>
             </LinearLayout>
 
             <ProgressBar
+                android:id="@+id/pb_guess"
                 style="@style/pb_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="10px"
@@ -101,6 +106,7 @@
                                   android:layout_height="wrap_content"
                                   android:layout_weight="1">
                         <TextView
+                            android:id="@+id/tv_team_one_favorer"
                             style="@style/ContentText"
                             android:text="50%"
                             android:textColor="@color/color_3d9027"
@@ -124,6 +130,7 @@
                             android:textSize="@dimen/wwpx20"/>
 
                         <TextView
+                            android:id="@+id/tv_team_two_favorer"
                             style="@style/ContentText"
                             android:text="50%"
                             android:textColor="@color/color_9c3d27"
@@ -132,30 +139,35 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="@dimen/wwpx80"
-                          android:gravity="center_vertical">
+            <LinearLayout
+                android:id="@+id/ll_vote"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/wwpx80"
+                android:gravity="center_vertical">
 
-                <RadioGroup android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                <RadioGroup
+                    android:id="@+id/rg_team"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                     <RadioButton
+                        android:id="@+id/rb_team1"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="ESTAR"/>
+                        android:layout_weight="1"/>
 
                     <RadioButton
+                        android:id="@+id/rb_team2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="WE"/>
+                        android:layout_height="wrap_content"/>
                 </RadioGroup>
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_guess_tip"
                 style="@style/ContentText"
-                android:layout_marginBottom="@dimen/wwpx10"
+                android:layout_marginBottom="@dimen/wwpx15"
                 android:text="投注积分选择"
                 android:textColor="@color/color_b3b3b3"
                 android:textSize="@dimen/wwpx20"/>
@@ -166,8 +178,45 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_vote1"
+                    style="@style/ViewBubble"
+                    android:text="1"/>
+                <TextView
+                    android:id="@+id/tv_vote2"
+                    style="@style/ViewBubble"
+                    android:text="5"/>
 
+                <TextView
+                    android:id="@+id/tv_vote3"
+                    style="@style/ViewBubble"
+                    android:text="10"/>
+
+                <TextView
+                    android:id="@+id/tv_vote4"
+                    style="@style/ViewBubble"
+                    android:text="20"/>
+
+
+                <EditText
+                    android:id="@+id/et_vote"
+                    style="@style/ViewBubble"
+                    android:text="其他"/>
             </LinearLayout>
+
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:gravity="center"
+                          android:layout_marginTop="@dimen/wwpx21"
+                          android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_vote"
+                    android:text="投注"
+                    android:background="@drawable/btn_black_shape"
+                    android:layout_width="@dimen/wwpx210"
+                    android:layout_height="@dimen/wwpx70"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 

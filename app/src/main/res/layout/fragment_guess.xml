@@ -8,54 +8,57 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:titleRightIco="@mipmap/ic_history"
         app:titleText="@string/guess_title"/>
-    <LinearLayout android:layout_width="match_parent"
-                  android:background="@color/color_14191d"
-                  android:orientation="vertical"
-                  android:gravity="center"
-                  android:layout_height="@dimen/wwpx200">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wwpx200"
+        android:background="@color/color_14191d"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/iv_level"
             android:layout_width="@dimen/wwpx80"
-            android:src="@mipmap/ic_level_none"
-            android:layout_height="@dimen/wwpx80"/>
+            android:layout_height="@dimen/wwpx80"
+            android:src="@mipmap/ic_level_none"/>
 
         <TextView
-            android:text="暂无等级"
+            android:id="@+id/tv_rank"
+            style="@style/ContentText"
             android:layout_marginTop="@dimen/wwpx10"
-            android:textColor="@color/color_666666"
-            style="@style/ContentText"/>
+            android:text="暂无等级"
+            android:textColor="@color/color_666666"/>
 
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tv_exp"
+                style="@style/ContentText"
+                android:layout_marginTop="@dimen/wwpx10"
                 android:text="0"
-                android:layout_marginTop="@dimen/wwpx10"
-                android:textColor="@color/color_0b86ee"
-                style="@style/ContentText"/>
+                android:textColor="@color/color_0b86ee"/>
             <TextView
-                android:text="/100000"
+                android:id="@+id/tv_critical_exp"
+                style="@style/ContentText"
                 android:layout_marginTop="@dimen/wwpx10"
-                android:textColor="@color/color_666666"
-                style="@style/ContentText"/>
+                android:text="/100000"
+                android:textColor="@color/color_666666"/>
         </LinearLayout>
-
-
 
 
     </LinearLayout>
 
     <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
                   android:background="@color/color_e1e6eb"
                   android:gravity="center_vertical"
-                  android:paddingLeft="@dimen/wwpx25"
-                  android:layout_height="wrap_content">
+                  android:paddingLeft="@dimen/wwpx25">
         <ImageView
-            android:src="@mipmap/ic_guess_statistics"
             android:layout_width="@dimen/wwpx30"
-                   android:layout_height="@dimen/wwpx30"/>
+            android:layout_height="@dimen/wwpx30"
+            android:src="@mipmap/ic_guess_statistics"/>
         <TextView
-            android:layout_marginLeft="@dimen/wwpx10"
             style="@style/TipText"
+            android:layout_marginLeft="@dimen/wwpx10"
             android:text="竞猜统计"/>
     </LinearLayout>
 
@@ -76,6 +79,7 @@
 
 
             <TextView
+                android:id="@+id/tv_guess_num"
                 style="@style/ContentText"
                 android:text="0"
                 android:textColor="@color/color_000000"
@@ -102,6 +106,7 @@
 
 
             <TextView
+                android:id="@+id/tv_guess_win_rate"
                 style="@style/ContentText"
                 android:text="0%"
                 android:textColor="@color/color_000000"
@@ -128,6 +133,7 @@
 
 
             <TextView
+                android:id="@+id/tv_point"
                 style="@style/ContentText"
                 android:text="0"
                 android:textColor="@color/color_0b86ee"
@@ -145,17 +151,17 @@
 
 
     <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
                   android:background="@color/color_e1e6eb"
                   android:gravity="center_vertical"
-                  android:paddingLeft="@dimen/wwpx25"
-                  android:layout_height="wrap_content">
+                  android:paddingLeft="@dimen/wwpx25">
         <ImageView
-            android:src="@mipmap/ic_guess_history"
             android:layout_width="@dimen/wwpx30"
-            android:layout_height="@dimen/wwpx30"/>
+            android:layout_height="@dimen/wwpx30"
+            android:src="@mipmap/ic_guess_history"/>
         <TextView
-            android:layout_marginLeft="@dimen/wwpx10"
             style="@style/TipText"
+            android:layout_marginLeft="@dimen/wwpx10"
             android:text="当前竞猜"/>
     </LinearLayout>
 

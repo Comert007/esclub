@@ -16,11 +16,11 @@
         <EditText
             android:id="@+id/et_scale_num"
             android:layout_width="0px"
-            android:inputType="number"
+            android:inputType="text"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/edit_blue_border_shape"
-            android:hint="请输入投注的积分"
+            android:hint="请输入编辑内容"
             android:maxLength="5"
             android:paddingLeft="@dimen/wwpx20"
             android:paddingRight="@dimen/wwpx20"

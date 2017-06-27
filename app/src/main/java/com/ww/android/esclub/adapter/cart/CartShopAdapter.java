@@ -76,6 +76,7 @@ public class CartShopAdapter extends RvAdapter<GoodsItem> {
                 @Override
                 public void onClick(View v) {
                     item.setNum(item.getNum()+1);
+                    tvNum.setText(item.getNum()+"");
                     if (item.getNum()>=1){
                         llLeft.setVisibility(View.VISIBLE);
                     }
@@ -90,6 +91,8 @@ public class CartShopAdapter extends RvAdapter<GoodsItem> {
                 public void onClick(View v) {
 
                     item.setNum(item.getNum()-1);
+                    tvNum.setText(item.getNum()+"");
+
                     if (0 ==item.getNum()) {
                         llLeft.setVisibility(View.GONE);
                     }

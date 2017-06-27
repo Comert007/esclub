@@ -23,11 +23,13 @@
             android:orientation="vertical">
 
             <ww.com.core.widget.RoundImageView
+                android:id="@+id/riv_team_one"
                 android:layout_width="@dimen/wwpx77"
                 android:layout_height="@dimen/wwpx77"
                 android:src="@mipmap/test"/>
 
             <TextView
+                android:id="@+id/tv_team_one"
                 style="@style/ContentText"
                 android:layout_marginTop="@dimen/wwpx35"
                 android:text="ESTAR"/>
@@ -59,11 +61,13 @@
             android:orientation="vertical">
 
             <ww.com.core.widget.RoundImageView
+                android:id="@+id/riv_team_two"
                 android:layout_width="@dimen/wwpx77"
                 android:layout_height="@dimen/wwpx77"
                 android:src="@mipmap/ic_test_we"/>
 
             <TextView
+                android:id="@+id/tv_team_two"
                 style="@style/ContentText"
                 android:layout_marginTop="@dimen/wwpx35"
                 android:text="WE"/>
@@ -115,7 +119,7 @@
             android:layout_width="0px"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="竞猜量"
+            android:text="投注积分"
             android:gravity="center_vertical"
             android:textSize="@dimen/wwpx28"
             android:textColor="@color/color_999999"/>

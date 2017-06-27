@@ -40,6 +40,7 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
 
     private NewsAdapter adapter;
     private View footView;
+    private String type;
 
     @Override
     protected int getLayoutResId() {
@@ -70,6 +71,7 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
     }
 
     private void initData() {
+        type = getArguments().getString("type");
         adapter = new NewsAdapter(getContext());
         adapter.setOnItemClickListener(this);
         v.getCsr().setEnableRefresh(true);
@@ -110,7 +112,7 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
     }
 
     private void onNews(boolean showDialog) {
-        m.onNews(currentPage + "", null, Constant.NEWS_LATEST, bindUntilEvent(FragmentEvent
+        m.onNews(currentPage + "", null, type, bindUntilEvent(FragmentEvent
                         .DESTROY),
                 new HttpSubscriber<ListBean<NewsItem>>(getContext(), showDialog) {
                     @Override

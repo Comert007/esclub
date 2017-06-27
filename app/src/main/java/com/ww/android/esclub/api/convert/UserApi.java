@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.ww.android.esclub.api.BaseApi;
 import com.ww.android.esclub.bean.ResponseBean;
 
+import java.io.File;
+
 import rx.Observable;
 import ww.com.http.core.AjaxParams;
 
@@ -50,5 +52,18 @@ public class UserApi extends BaseApi {
 
         return onPost(getActionUrl("/payment/wechatForPoint"),params);
     }
+
+    public static final Observable<ResponseBean> onModify(String path, String nickname){
+        AjaxParams params = new AjaxParams();
+        if (!TextUtils.isEmpty(path)) {
+            params.addParametersPNG("avatar", new File(path));
+        }
+        if (!TextUtils.isEmpty(nickname)) {
+            params.addParameters("nickname", nickname);
+        }
+
+        return onPost(getActionUrl("/user/modify"),params);
+    }
+
 
 }

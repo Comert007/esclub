@@ -89,6 +89,19 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+    <style name="ViewBubble">
+        <item name="android:layout_width">@dimen/wwpx110</item>
+        <item name="android:paddingTop">@dimen/wwpx3</item>
+        <item name="android:paddingBottom">@dimen/wwpx3</item>
+        <item name="android:background">@drawable/bubble_selector</item>
+        <item name="android:paddingLeft">@dimen/wwpx20</item>
+        <item name="android:layout_marginRight">@dimen/wwpx20</item>
+        <item name="android:paddingRight">@dimen/wwpx20</item>
+        <item name="android:textSize">@dimen/wwpx26</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
 
 </resources>

@@ -26,4 +26,13 @@
         <item>英雄皮肤五折销售</item>
         <item>海克斯科技风</item>
     </string-array>
+
+    <string-array name="web_list">
+        <item>contact_us</item>
+        <item>about_us</item>
+        <item>terms_of_use</item>
+        <item>guess_rules</item>
+        <item>recharge_explain</item>
+        <item>book_table_explain</item>
+    </string-array>
 </resources>

@@ -13,6 +13,7 @@ import com.ww.android.esclub.api.convert.UserApi;
 import com.ww.android.esclub.bean.ResponseBean;
 import com.ww.android.esclub.bean.pay.AlipayBean;
 import com.ww.android.esclub.bean.pay.WechatPayBean;
+import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.bean.user.OrderCentreBean;
 import com.ww.android.esclub.bean.user.OrderDetailBean;
 import com.ww.mvp.model.IModel;
@@ -111,6 +112,26 @@ public class UserModel implements IModel {
                         return alipayBean;
                     }
                 }).compose(RxHelper.<AlipayBean>cutMain())
+                .compose(transformer)
+                .subscribe(httpSubscriber);
+    }
+
+    public void onModify(String path, String nickname, LifecycleTransformer transformer,
+                         HttpSubscriber<UserBean> httpSubscriber){
+        UserApi.onModify(path,nickname)
+                .map(new Func1<ResponseBean, UserBean>() {
+                    @Override
+                    public UserBean call(ResponseBean responseBean) {
+                        try {
+                            JSONObject json = JSON.parseObject(responseBean.getData());
+                            UserBean userBean = JSONObject.parseObject(json.getString("obj"),UserBean.class);
+                            return userBean;
+                        }catch (Exception e){
+                            throw new ApiException(responseBean);
+                        }
+                    }
+                })
+                .compose(RxHelper.<UserBean>cutMain())
                 .compose(transformer)
                 .subscribe(httpSubscriber);
     }

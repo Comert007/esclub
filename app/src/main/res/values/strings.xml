@@ -15,11 +15,12 @@
     <string name="news_es">ES 新闻</string>
     <string name="cart_order_commit">订单提交</string>
     <string name="guess_voting">投注中</string>
-    <string name="guess_visiting">比赛中</string>
-    <string name="guess_completed">已完结</string>
+    <string name="guess_visiting">进行中</string>
+    <string name="guess_completed">已结束</string>
     <string name="guess_history">竞猜历史</string>
     <string name="guess_detail">竞猜详情</string>
-    <string name="guess_edit">积分编辑</string>
+    <string name="user_info">个人信息</string>
+    <string name="guess_edit">编辑</string>
     <string name="about_us">关于我们</string>
     <string name="dialog_title_tip">温馨提示</string>
     <string name="dialog_btn_repay">重试</string>
@@ -30,4 +31,7 @@
     <string name="toast_recharge_success">支付成功</string>
     <string name="toast_recharge_fail">支付失败</string>
     <string name="error_of_application">Error of Application</string>
+    <string name="vote_success">投注成功</string>
+    <string name="vote_fail">投注失败</string>
+    <string name="toast_sdcard_exception">sd卡异常</string>
 </resources>

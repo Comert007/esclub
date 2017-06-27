@@ -9,6 +9,7 @@ import com.ww.android.esclub.activity.user.BookSeatActivity;
 import com.ww.android.esclub.activity.user.OrderCentreActivity;
 import com.ww.android.esclub.activity.user.ReChargeActivity;
 import com.ww.android.esclub.activity.user.SettingActivity;
+import com.ww.android.esclub.activity.user.UserInfoActivity;
 import com.ww.android.esclub.fragment.base.BaseFragment;
 import com.ww.android.esclub.vm.views.user.UserView;
 import com.ww.mvp.model.VoidModel;
@@ -33,7 +34,7 @@ public class UserFragment extends BaseFragment<UserView,VoidModel> {
     }
 
 
-    @OnClick({R.id.ll_order,R.id.ll_online,R.id.ll_recharge,R.id.ll_setting,R.id.ll_about_us})
+    @OnClick({R.id.ll_order,R.id.ll_online,R.id.ll_recharge,R.id.ll_setting,R.id.ll_about_us,R.id.ll_header})
     public void onUserClick(View view){
         switch (view.getId()){
             case R.id.ll_order:
@@ -51,6 +52,10 @@ public class UserFragment extends BaseFragment<UserView,VoidModel> {
                 break;
             case R.id.ll_about_us:
                 AboutUsActivity.start(getContext());
+//                WebViewActivity.start(getContext(), Constant.ABOUT_US);
+                break;
+            case R.id.ll_header:
+                UserInfoActivity.start(getContext());
                 break;
         }
     }
@@ -62,5 +67,11 @@ public class UserFragment extends BaseFragment<UserView,VoidModel> {
         if (data != null) {
 
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        v.showInfo();
     }
 }

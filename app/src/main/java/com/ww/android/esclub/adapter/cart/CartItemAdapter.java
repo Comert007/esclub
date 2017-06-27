@@ -105,10 +105,8 @@ public class CartItemAdapter extends RvAdapter<GoodsItem> {
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    String text = tvNum.getText().toString();
-//                    int originalNum = Integer.valueOf(text);
-//                    tvNum.setText((originalNum + 1) + "");
                     item.setNum(item.getNum()+1);
+                    tvNum.setText(item.getNum()+"");
                     llLeft.setVisibility(View.VISIBLE);
                     if (onCartAction != null) {
                         onCartAction.onAdd(position, v);
@@ -121,6 +119,7 @@ public class CartItemAdapter extends RvAdapter<GoodsItem> {
                 public void onClick(View v) {
 
                     item.setNum(item.getNum()-1);
+                    tvNum.setText(item.getNum()+"");
                     if (0 == item.getNum()) {
                         llLeft.setVisibility(View.GONE);
                     }

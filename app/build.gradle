@@ -69,4 +69,5 @@ dependencies {
     compile "com.andkulikov:transitionseverywhere:1.7.4"
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.eftimoff:android-pathview:1.0.8@aar'
+    compile 'com.github.lovetuzitong:MultiImageSelector:1.2'
 }

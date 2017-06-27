@@ -17,6 +17,7 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
+        maven { url "https://jitpack.io" }
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
         maven { url "http://121.40.51.40:8082/nexus/content/repositories/ww/"}
     }

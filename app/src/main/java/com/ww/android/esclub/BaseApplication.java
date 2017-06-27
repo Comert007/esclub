@@ -132,6 +132,10 @@ public class BaseApplication extends WWApplication {
         return userBean;
     }
 
+    public ArrayList<Activity> getRunActivity() {
+        return runActivity;
+    }
+
     public void exitApp(Activity activity) {
         if(this.runActivity != null) {
             Iterator var1 = this.runActivity.iterator();

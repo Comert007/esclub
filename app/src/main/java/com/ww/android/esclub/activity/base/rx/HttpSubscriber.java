@@ -1,15 +1,19 @@
 package com.ww.android.esclub.activity.base.rx;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Looper;
 
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.activity.start.LoginActivity;
 import com.ww.android.esclub.api.ApiException;
 import com.ww.android.esclub.bean.ResponseBean;
 import com.ww.android.esclub.utils.DialogUtil;
 import com.ww.android.esclub.utils.ToastUtil;
 import com.ww.android.esclub.widget.EsProgressDialog;
+
+import java.util.List;
 
 import rx.Subscriber;
 
@@ -85,11 +89,22 @@ public abstract class HttpSubscriber<T> extends Subscriber<T> {
         if (e instanceof ApiException) {
             ResponseBean responseBean = ((ApiException) e).getResponseBean();
             if (responseBean.isNeedRelogin()){
-                //TODO 清除登录信息
+                BaseApplication.getInstance().setUserBean(null);
                 DialogUtil.showDialog(context, "温馨提示", responseBean.getMsg(), "确定",
                         new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        List<Activity> actys = BaseApplication
+                                .getInstance().getRunActivity();
+                        for (Activity activity : actys) {
+                            if (!activity.isFinishing()&& !activity
+                                    .getClass()
+                                    .getCanonicalName()
+                                    .equals(LoginActivity.class
+                                            .getCanonicalName())) {
+                                activity.finish();
+                            }
+                        }
                         LoginActivity.start(context);
                     }
                 });

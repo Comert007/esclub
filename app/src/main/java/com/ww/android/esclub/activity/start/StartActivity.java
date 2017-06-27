@@ -76,7 +76,6 @@ public class StartActivity extends BaseActivity<VoidView,StartModel> {
             SystemFlagBean flagBean = null;
             m.onSysParams(flagBean, bindUntilEvent(ActivityEvent.DESTROY), new HttpSubscriber<SystemConfigBean>(this, true) {
 
-
                 @Override
                 public void onNext(SystemConfigBean systemConfigBean) {
                     startActivity();

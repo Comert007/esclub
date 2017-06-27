@@ -3,8 +3,11 @@ package com.ww.android.esclub.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Toast;
 
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.BaseActivity;
 import com.ww.android.esclub.fragment.CartFragment;
@@ -104,4 +107,22 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
         }
     }
 
+
+    private long exitTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 3000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出应用", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                BaseApplication.getInstance().exitApp(MainActivity.this);
+                onBackPressed();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

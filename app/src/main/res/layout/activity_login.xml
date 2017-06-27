@@ -65,6 +65,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_marginTop="@dimen/wwpx25"
             android:layout_width="@dimen/wwpx400"
             android:layout_height="@dimen/wwpx80"

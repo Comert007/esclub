@@ -1,6 +1,5 @@
 package com.ww.android.esclub.activity.base;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -39,7 +38,6 @@ public abstract class BaseActivity<V extends IView,M extends IModel> extends Pre
         // 设置屏幕固定为竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         baseApp = (BaseApplication) getApplication();
-
         super.onCreate(savedInstanceState);
 
     }

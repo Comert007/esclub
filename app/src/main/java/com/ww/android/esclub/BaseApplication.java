@@ -1,5 +1,6 @@
 package com.ww.android.esclub;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
@@ -18,6 +19,9 @@ import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.config.AppConfig;
 import com.ww.mvp.WWApplication;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import ww.com.core.Debug;
 import ww.com.core.utils.ACache;
 import ww.com.core.utils.PhoneUtils;
@@ -30,6 +34,8 @@ import ww.com.http.OkHttpRequest;
 public class BaseApplication extends WWApplication {
 
     private static BaseApplication instance;
+    private ArrayList<Activity> runActivity = new ArrayList<Activity>();
+
     private ACache cache;
     private UserBean userBean;
     private static final String KEY_USER_CACHE = "auth_cache";
@@ -45,11 +51,13 @@ public class BaseApplication extends WWApplication {
         super.onCreate();
         instance = this;
         cache = ACache.get(this);
+        boolean debug = BuildConfig.DEBUG;
+
+        Debug.setDebug(debug);
         Debug.setTag("EsClub");
         SharePlatConfig.setWeiXin(AppConfig.WECHAT_APPID,AppConfig.WECHAT_SECRET);
 
         initImageLoader(getApplicationContext());
-
         OkHttpRequest.setLogging(AppConfig.Debug);
     }
 
@@ -124,6 +132,18 @@ public class BaseApplication extends WWApplication {
         return userBean;
     }
 
+    public void exitApp(Activity activity) {
+        if(this.runActivity != null) {
+            Iterator var1 = this.runActivity.iterator();
+
+            while(var1.hasNext()) {
+                Activity act = (Activity)var1.next();
+                if (act != activity) {
+                    act.finish();
+                }
+            }
+        }
+    }
 
     public static void initImageLoader(Context context) {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(

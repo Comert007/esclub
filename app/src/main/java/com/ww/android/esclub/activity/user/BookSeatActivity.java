@@ -44,6 +44,8 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
     private String timestamp;
     private int  index = -1;
 
+    private List<String> ids = new ArrayList<>();
+
     public static void start(Context context) {
         Intent intent = new Intent(context, BookSeatActivity.class);
         context.startActivity(intent);
@@ -104,7 +106,9 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
             public void onSeleted(int type, TableAreaInfoEntity entity, int position) {
                 if ("1".equals(entity.getStatus())) {
                     index = position;
+                    ids.clear();
                     tableId = entity.getId();
+                    ids.add(tableId);
                     v.setTable(entity.getName());
                 } else {
                     showToast("当前座位号已被预约或已被使用");
@@ -193,7 +197,7 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
 
 
     private void onBookTable(String name, String num, String phone) {
-        m.onBookTable(name, num, areaId, index+"",timestamp, phone, bindUntilEvent
+        m.onBookTable(name, num, ids,timestamp, phone, bindUntilEvent
                         (ActivityEvent.DESTROY),
                 new HttpSubscriber<Boolean>(this, true) {
 
@@ -254,7 +258,7 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
     public String date2TimeStamp(String date_str, String format) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(format);
-            return String.valueOf(sdf.parse(date_str).getTime() / 1000);
+            return String.valueOf(sdf.parse(date_str).getTime());
         } catch (Exception e) {
             e.printStackTrace();
         }

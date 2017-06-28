@@ -183,13 +183,12 @@ public class UserModel implements IModel {
 
     public void onBookTable(String name,
                             String num,
-                            String id,
-                            String index,
+                           List<String> ids,
                             String arrive_time,
                             String mobile,
                             LifecycleTransformer transformer,
                             HttpSubscriber<Boolean> httpSubscriber){
-        UserApi.onBookTable(name, num, id, index,arrive_time, mobile)
+        UserApi.onBookTable(name, num, ids,arrive_time, mobile)
                 .map(new Func1<ResponseBean, Boolean>() {
                     @Override
                     public Boolean call(ResponseBean responseBean) {

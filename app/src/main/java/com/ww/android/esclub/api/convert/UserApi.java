@@ -6,6 +6,7 @@ import com.ww.android.esclub.api.BaseApi;
 import com.ww.android.esclub.bean.ResponseBean;
 
 import java.io.File;
+import java.util.List;
 
 import rx.Observable;
 import ww.com.http.core.AjaxParams;
@@ -80,14 +81,18 @@ public class UserApi extends BaseApi {
 
     public static final Observable<ResponseBean> onBookTable(String name,
                                                              String num,
-                                                             String id,
-                                                             String index,
+                                                             List<String> ids,
                                                              String arrive_time,
                                                              String mobile){
+
         AjaxParams params = new AjaxParams();
         params.addParameters("name",name);
         params.addParameters("num",num);
-        params.addParameters("id["+index+"]",id);
+        for (int i = 0; i < ids.size(); i++) {
+            params.addParameters("id["+i+"]",ids.get(i));
+        }
+
+//        params.addParameters("id[]",id);
         params.addParameters("arrive_time",arrive_time);
         params.addParameters("mobile",mobile);
 

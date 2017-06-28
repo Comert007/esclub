@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              style="@style/LlayFill">
+<LinearLayout style="@style/LlayFill"
+              xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.ww.android.esclub.widget.TitleView
         android:id="@+id/title_view"
@@ -8,4 +8,86 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:titleLeftIco="@mipmap/arrow_back_normal"
         app:titleText="@string/user_setting"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_contact_us"
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="联系我们"/>
+        <ImageView
+            style="@style/UserImage"
+            android:src="@mipmap/ic_arrow_right"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_about_es"
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="关于E-Sports"/>
+        <ImageView
+            style="@style/UserImage"
+            android:src="@mipmap/ic_arrow_right"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/wwpx30"
+        android:id="@+id/ll_guess_rules"
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="竞猜规则"/>
+        <ImageView
+            style="@style/UserImage"
+            android:src="@mipmap/ic_arrow_right"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_use_term"
+        android:layout_marginTop="@dimen/wwpx30"
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="使用说明"/>
+        <ImageView
+            style="@style/UserImage"
+            android:src="@mipmap/ic_arrow_right"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_update_version"
+        style="@style/UserLLay">
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="版本更新"/>
+        <ImageView
+            style="@style/UserImage"
+            android:src="@mipmap/ic_arrow_right"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+
+    <Button
+        android:id="@+id/tv_login_out"
+        android:layout_marginTop="@dimen/wwpx30"
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:textColor="@color/color_fb4e44"
+        android:text="退出登录"
+        android:textSize="@dimen/wwpx28"
+        android:layout_height="@dimen/wwpx98"/>
+
 </LinearLayout>

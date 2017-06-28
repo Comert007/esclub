@@ -98,13 +98,20 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
     }
 
 
-    private void startBanner(List<NewsItem> banner) {
+    private void startBanner(final List<NewsItem> banner) {
         v.setUrls(urls);
         v.startBanner();
         v.getBanner().setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                showToast("banner's onclick in position of " + position);
+                if (banner.size()>0) {
+                    NewsItem item = banner.get(position);
+                    String url = item.getContent_url();
+                    if (TextUtils.isEmpty(url)) {
+                        url = "http://news.maxjia.com/maxnews/app/detail/ow/71579";
+                    }
+                    EsNewsActivity.start(getContext(), url, item.getId());
+                }
             }
         });
         v.addBanner();

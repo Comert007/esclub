@@ -34,6 +34,7 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
     @BindView(R.id.viewpager_tab_home)
     ViewPager viewPager;
 
+    private String contentUrl;
     private List<Fragment> fragments;
     private FragmentManager fragmentManager;
     private TranslateTabAdapter adapter;
@@ -59,7 +60,7 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
     @Override
     public void onTitleRight() {
         super.onTitleRight();
-        ShareActivity.start(this);
+        ShareActivity.start(this,contentUrl);
     }
 
     @Override
@@ -85,7 +86,7 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
             fragments = new ArrayList<>();
         }
         String id = getIntent().getStringExtra("id");
-        String contentUrl = getIntent().getStringExtra("content_url");
+        contentUrl = getIntent().getStringExtra("content_url");
         fragments.add(createFragment(new EsNewsFragment(),id,contentUrl));
         fragments.add(createFragment(new CommentFragment(),id,contentUrl));
     }

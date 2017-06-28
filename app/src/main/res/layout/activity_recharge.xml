@@ -137,13 +137,34 @@
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent"
+                      android:gravity="center"
+                      android:layout_marginTop="@dimen/wwpx21"
+                      android:layout_height="wrap_content">
+            <TextView
+                android:text="点击充值即表示您阅读并同意"
+                android:textSize="@dimen/wwpx24"
+                android:layout_width="wrap_content"
+                android:textColor="@color/color_primary"
+                android:layout_marginRight="@dimen/wwpx21"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_recharge_explain"
+                android:text="充值协议"
+                android:textColor="@color/color_0b86ee"
+                android:textSize="@dimen/wwpx24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:gravity="center_horizontal|bottom">
             <Button
                 android:id="@+id/btn_recharge"
-                android:layout_width="@dimen/wwpx190"
+                android:layout_width="@dimen/wwpx300"
                 android:enabled="true"
-                android:layout_height="@dimen/wwpx70"
+                android:layout_height="@dimen/wwpx80"
                 android:background="@drawable/btn_black_shape"
                 android:text="去充值"/>
         </LinearLayout>

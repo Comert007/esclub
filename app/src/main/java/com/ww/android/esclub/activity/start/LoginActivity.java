@@ -14,8 +14,10 @@ import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.MainActivity;
 import com.ww.android.esclub.activity.base.BaseActivity;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
+import com.ww.android.esclub.activity.user.WebViewActivity;
 import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.config.AppConfig;
+import com.ww.android.esclub.config.Constant;
 import com.ww.android.esclub.vm.models.start.LoginModel;
 import com.ww.mvp.view.VoidView;
 
@@ -24,6 +26,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import ww.com.core.Debug;
 
 /**
@@ -72,6 +75,11 @@ public class LoginActivity extends BaseActivity<VoidView, LoginModel> {
                 finish();
             }
         });
+    }
+
+    @OnClick(R.id.tv_use_terms)
+    public void onUserTerms(){
+        WebViewActivity.start(this, Constant.TERMS_OF_USE);
     }
 
     //微信授权

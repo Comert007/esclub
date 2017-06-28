@@ -152,4 +152,10 @@ public class UserInfoActivity extends BaseActivity<UserInfoView,UserModel> imple
         super.onDestroy();
         ImagePick.clearImgCache(this);
     }
+
+    @Override
+    public void onTitleLeft() {
+        super.onTitleLeft();
+        onBackPressed();
+    }
 }

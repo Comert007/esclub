@@ -8,8 +8,8 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.TextView;
-
 
 import com.ww.android.esclub.widget.EsProgressDialog;
 
@@ -112,12 +112,26 @@ public class DialogUtil {
     }
 
 
+    public static Dialog showDialogList(Context context, String title, ListAdapter adapter,
+                                        DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setAdapter(adapter, listener);
+        return builder.show();
+    }
+
+
     public static AlertDialog showColor(AlertDialog.Builder builder) {
         AlertDialog dialog = builder.show();
         Button btnPositive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
         int btnSize = ScreenUtil.getScalePxValue(42);
         int textSize = ScreenUtil.getScalePxValue(46);
-
+        try {
+            TextView title = (TextView) dialog.findViewById(android.support.v7.appcompat.R.id.alertTitle);
+            title.setTextColor(Color.parseColor("#14191d"));
+            title.setTextSize(TypedValue.COMPLEX_UNIT_PX, ScreenUtil.getScalePxValue(60));
+        } catch (Exception e) {
+        }
         if (btnPositive != null) {
             btnPositive.setTextColor(Color.parseColor("#53a9ff"));
             btnPositive.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnSize);

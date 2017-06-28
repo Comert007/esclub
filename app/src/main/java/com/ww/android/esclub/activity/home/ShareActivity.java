@@ -28,8 +28,9 @@ import ww.com.core.ScreenUtil;
 
 public class ShareActivity extends BaseActivity<VoidView,VoidModel> {
 
-    public static void start(Context context) {
+    public static void start(Context context,String contentUrl) {
         Intent intent = new Intent(context, ShareActivity.class);
+        intent.putExtra("contentUrl",contentUrl);
         context.startActivity(intent);
         ((Activity) context).overridePendingTransition(R.anim.anim_bottom_enter,R.anim.anim_bottom_exit);
     }
@@ -81,7 +82,7 @@ public class ShareActivity extends BaseActivity<VoidView,VoidModel> {
         ShareResponse shareResponse = new ShareResponse();
         shareResponse.setTitle("微信分享测试");
         shareResponse.setDescription("微信分享测试描述");
-        shareResponse.setTarget_url("http://news.maxjia.com/maxnews/app/detail/ow/71579");
+        shareResponse.setTarget_url(getIntent().getStringExtra("contentUrl"));
         return shareResponse;
     }
 

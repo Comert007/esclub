@@ -2,8 +2,10 @@ package com.ww.android.esclub.vm.models;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.trello.rxlifecycle.LifecycleTransformer;
 import com.ww.android.esclub.ListBean;
@@ -13,10 +15,13 @@ import com.ww.android.esclub.api.convert.UserApi;
 import com.ww.android.esclub.bean.ResponseBean;
 import com.ww.android.esclub.bean.pay.AlipayBean;
 import com.ww.android.esclub.bean.pay.WechatPayBean;
+import com.ww.android.esclub.bean.start.TableAreaInfoEntity;
 import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.bean.user.OrderCentreBean;
 import com.ww.android.esclub.bean.user.OrderDetailBean;
 import com.ww.mvp.model.IModel;
+
+import java.util.List;
 
 import rx.functions.Func1;
 import ww.com.http.rx.RxHelper;
@@ -132,6 +137,94 @@ public class UserModel implements IModel {
                     }
                 })
                 .compose(RxHelper.<UserBean>cutMain())
+                .compose(transformer)
+                .subscribe(httpSubscriber);
+    }
+
+
+    public void onLoginOut(LifecycleTransformer transformer,HttpSubscriber<Boolean> httpSubscriber){
+        UserApi.onLoginOut()
+                .map(new Func1<ResponseBean, Boolean>() {
+                    @Override
+                    public Boolean call(ResponseBean responseBean) {
+                        try {
+                            return true;
+                        }catch (Exception e){
+                            throw new ApiException(responseBean);
+                        }
+                    }
+                }).compose(RxHelper.<Boolean>cutMain())
+                .compose(transformer)
+                .subscribe(httpSubscriber);
+    }
+
+
+    public void onLeastTable(String id, LifecycleTransformer transformer, 
+                             HttpSubscriber<List<TableAreaInfoEntity>> httpSubscriber){
+        
+        UserApi.onLastetTable(id)
+                .map(new Func1<ResponseBean, List<TableAreaInfoEntity>>() {
+                    @Override
+                    public List<TableAreaInfoEntity> call(ResponseBean responseBean) {
+                        try {
+                            JSONObject data = JSON.parseObject(responseBean.getData());
+                            List<TableAreaInfoEntity> entities = JSONArray.parseArray(data.getString("items"),
+                                    TableAreaInfoEntity.class);
+
+                            return entities;
+                        }catch (Exception e){
+                            throw new ApiException(responseBean);
+                        }
+                    }
+                }).compose(RxHelper.<List<TableAreaInfoEntity>>cutMain())
+                .compose(transformer)
+                .subscribe(httpSubscriber);
+    }
+
+    public void onBookTable(String name,
+                            String num,
+                            String id,
+                            String index,
+                            String arrive_time,
+                            String mobile,
+                            LifecycleTransformer transformer,
+                            HttpSubscriber<Boolean> httpSubscriber){
+        UserApi.onBookTable(name, num, id, index,arrive_time, mobile)
+                .map(new Func1<ResponseBean, Boolean>() {
+                    @Override
+                    public Boolean call(ResponseBean responseBean) {
+                        try {
+                            JSONObject data = JSON.parseObject(responseBean.getData());
+                            JSONObject obj = JSON.parseObject(data.getString("obj"));
+                            String id = obj.getString("id");
+                            if (!TextUtils.isEmpty(id)){
+                                return true;
+                            }else {
+                                return false;
+                            }
+                        }catch (Exception e){
+                            throw new ApiException(responseBean);
+                        }
+                    }
+                }).compose(RxHelper.<Boolean>cutMain())
+                .compose(transformer)
+                .subscribe(httpSubscriber);
+    }
+
+    public void onUserInfo(LifecycleTransformer transformer,HttpSubscriber<UserBean> httpSubscriber){
+        UserApi.onUserInfo()
+                .map(new Func1<ResponseBean, UserBean>() {
+                    @Override
+                    public UserBean call(ResponseBean responseBean) {
+                        try {
+                            JSONObject json = JSON.parseObject(responseBean.getData());
+                            UserBean userBean = JSONObject.parseObject(json.getString("obj"),UserBean.class);
+                            return userBean;
+                        }catch (Exception e){
+                            throw new ApiException(responseBean);
+                        }
+                    }
+                }).compose(RxHelper.<UserBean>cutMain())
                 .compose(transformer)
                 .subscribe(httpSubscriber);
     }

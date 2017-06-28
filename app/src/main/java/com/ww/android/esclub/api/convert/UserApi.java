@@ -66,4 +66,38 @@ public class UserApi extends BaseApi {
     }
 
 
+    public static final Observable<ResponseBean> onLoginOut(){
+        AjaxParams params = new AjaxParams();
+        return onPost(getActionUrl("/user/logout"),params);
+    }
+
+    public static final Observable<ResponseBean> onLastetTable(String id){
+        AjaxParams params = new AjaxParams();
+        params.addParameters("id",id);
+
+        return onPost(getActionUrl("/table/latestTable"),params);
+    }
+
+    public static final Observable<ResponseBean> onBookTable(String name,
+                                                             String num,
+                                                             String id,
+                                                             String index,
+                                                             String arrive_time,
+                                                             String mobile){
+        AjaxParams params = new AjaxParams();
+        params.addParameters("name",name);
+        params.addParameters("num",num);
+        params.addParameters("id["+index+"]",id);
+        params.addParameters("arrive_time",arrive_time);
+        params.addParameters("mobile",mobile);
+
+        return onPost(getActionUrl("/table/book"),params);
+    }
+
+    public static final Observable<ResponseBean> onUserInfo(){
+        AjaxParams params = new AjaxParams();
+
+        return onPost(getActionUrl("/user/info"),params);
+    }
+
 }

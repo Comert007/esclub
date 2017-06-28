@@ -7,19 +7,19 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
+import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.config.Constant;
 import com.ww.mvp.view.IView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ww.com.core.widget.CustomRecyclerView;
-
-import static com.ww.android.esclub.config.Constant.ALIPAY;
-import static com.ww.android.esclub.config.Constant.WEICHAT;
 
 /**
  * Created by feng on 2017/6/21.
@@ -35,7 +35,10 @@ public class CommitOrderView implements IView {
     RadioButton rbAlipay;
     @BindView(R.id.tv_total_price)
     TextView tvTotalPrice;
-
+    @BindView(R.id.et_seat)
+    EditText etSeat;
+    @BindView(R.id.tv_seat_tip)
+    TextView tvSeatTip;
 
 
     private Context context;
@@ -51,6 +54,7 @@ public class CommitOrderView implements IView {
 
         onRadioListener();
     }
+
 
     private void deployCrv(){
         LinearLayoutManager manager = new LinearLayoutManager(context);
@@ -74,9 +78,25 @@ public class CommitOrderView implements IView {
         });
     }
 
+    public void setSeat(){
+        UserBean user = BaseApplication.getInstance().getUserBean();
+        if (user!=user && user.getBook_table()!=null){
+            tvSeatTip.setVisibility(View.GONE);
+            etSeat.setText(user.getBook_table().getId());
+            etSeat.setEnabled(false);
+        }else {
+            tvSeatTip.setVisibility(View.VISIBLE);
+            etSeat.setEnabled(true);
+        }
+    }
+
     public CustomRecyclerView getCrv() {
         return crv;
 
+    }
+
+    public EditText getEtSeat() {
+        return etSeat;
     }
 
     public void setPayWay(String payWay){

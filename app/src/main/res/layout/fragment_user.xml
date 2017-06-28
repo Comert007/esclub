@@ -57,8 +57,8 @@
             </LinearLayout>
         </LinearLayout>
         <ImageView
-            android:layout_width="@dimen/wwpx139"
-            android:layout_height="@dimen/wwpx139"
+            android:layout_width="@dimen/wwpx100"
+            android:layout_height="@dimen/wwpx100"
             android:src="@mipmap/ic_user_right"/>
     </LinearLayout>
     <include layout="@layout/layout_space_line"/>

@@ -68,11 +68,18 @@ public class CommitOrderActivity extends BaseActivity<CommitOrderView,CartModel>
         }
 
         v.setTotalPrice(totalPrice(goodsItems)+"");
+        v.setSeat();
     }
 
 
     @OnClick({R.id.tv_commit})
     public void onCommit(){
+        String seatNo = v.getEtSeat().getText().toString().trim();
+        if (TextUtils.isEmpty(seatNo)){
+            showToast("请输入桌位编号");
+            return;
+        }
+
        if (TextUtils.equals(Constant.ALIPAY,v.getPayway())){
            onAlipay();
        }else {
@@ -86,7 +93,8 @@ public class CommitOrderActivity extends BaseActivity<CommitOrderView,CartModel>
 
             @Override
             public void onNext(AlipayBean alipayBean) {
-                alipay(alipayBean);
+//                alipay(alipayBean);
+                payComplete();
             }
         });
     }
@@ -115,7 +123,8 @@ public class CommitOrderActivity extends BaseActivity<CommitOrderView,CartModel>
                 new HttpSubscriber<WechatPayBean>(this,true) {
                     @Override
                     public void onNext(WechatPayBean wechatPayBean) {
-                        weChat(wechatPayBean);
+//                        weChat(wechatPayBean);
+                        payComplete();
                     }
                 });
     }
@@ -156,6 +165,7 @@ public class CommitOrderActivity extends BaseActivity<CommitOrderView,CartModel>
 
 
     public void payComplete(){
+        showToast(getString(R.string.toast_recharge_success));
         Intent intent = new Intent();
         CommitOrderActivity.this.setResult(Activity.RESULT_OK,intent);
         finish();

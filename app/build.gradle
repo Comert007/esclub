@@ -70,4 +70,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.eftimoff:android-pathview:1.0.8@aar'
     compile 'com.github.lovetuzitong:MultiImageSelector:1.2'
+    compile 'com.wdullaer:materialdatetimepicker:3.2.2'
 }

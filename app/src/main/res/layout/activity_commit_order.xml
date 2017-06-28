@@ -41,6 +41,7 @@
                 android:textSize="@dimen/wwpx28"/>
         </LinearLayout>
 
+        <include layout="@layout/layout_space_line"/>
         <ww.com.core.widget.CustomRecyclerView
             android:id="@+id/crv"
             android:layout_width="match_parent"
@@ -129,7 +130,32 @@
                 android:layout_height="wrap_content"
                 android:checked="false"/>
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_seat_tip"
+            style="@style/ContentText.ExPlain"
+                  android:paddingLeft="@dimen/wwpx21"
+                  android:textColor="@color/color_b3b3b3"
+                  android:layout_marginTop="@dimen/wwpx21"
+        android:text="由于您没预约，需输入送达到的桌位号"/>
+        <LinearLayout
+           android:layout_marginTop="@dimen/wwpx21"
+            style="@style/UserLLay">
+            <TextView
+                style="@style/UserText"
+                android:layout_marginLeft="@dimen/wwpx15"
+                android:text="桌位编号"/>
+            <EditText
+                android:id="@+id/et_seat"
+                android:hint="请输入编号"
+                android:inputType="number"
+                android:maxLength="11"
+                style="@style/BookRightText"/>
+        </LinearLayout>
+        <include layout="@layout/layout_space_line"/>
     </LinearLayout>
+
 
     <include layout="@layout/layout_space_line"/>
 

@@ -17,6 +17,7 @@ public class TableAreaInfoEntity implements Serializable{
 
     private String id;
     private String name;
+    private String status;
 
     public String getId() {
         return id;
@@ -34,11 +35,20 @@ public class TableAreaInfoEntity implements Serializable{
         this.name = name;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "TableAreaInfoEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

@@ -47,7 +47,8 @@
             android:theme="@style/AnimationActivity"
             android:name=".activity.home.ShareActivity"/>
 
-        <activity android:name=".activity.cart.CommitOrderActivity"/>
+        <activity android:name=".activity.cart.CommitOrderActivity"
+                    android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activity.guess.GuessDetailActivity"/>
         <activity android:name=".activity.guess.GuessEditActivity"/>
         <activity android:name=".activity.start.LoginActivity"/>

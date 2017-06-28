@@ -7,4 +7,142 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:titleLeftIco="@mipmap/arrow_back_normal"
         app:titleText="@string/user_book_seat"/>
+
+
+
+
+    <LinearLayout
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="姓名"/>
+        <EditText
+            android:id="@+id/et_name"
+            android:maxLength="10"
+            android:hint="请输入姓名"
+            style="@style/BookRightText"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="人数"/>
+        <EditText
+            android:inputType="number"
+            android:maxLength="4"
+            android:id="@+id/et_num"
+            android:hint="请输入人数"
+            style="@style/BookRightText"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+    <LinearLayout
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="联系电话"/>
+        <EditText
+            android:id="@+id/et_phone"
+            android:hint="请输入联系电话"
+            android:inputType="number"
+            android:maxLength="11"
+            style="@style/BookRightText"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+    <!--<TextView-->
+        <!--android:layout_marginTop="@dimen/wwpx15"-->
+        <!--android:layout_marginBottom="@dimen/wwpx15"-->
+        <!--android:paddingLeft="@dimen/wwpx21"-->
+        <!--android:textColor="@color/color_515151"-->
+        <!--style="@style/ContentText.ExPlain"-->
+        <!--android:text="请选择预定位置"/>-->
+
+
+    <View android:layout_width="match_parent"
+          android:layout_marginTop="@dimen/wwpx21"
+          android:background="@color/color_dadada"
+          android:layout_height="2px"/>
+
+    <LinearLayout
+        android:id="@+id/ll_book_area"
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="预定区域"/>
+
+        <TextView
+            android:id="@+id/tv_book_area"
+            android:layout_marginRight="@dimen/wwpx10"
+            android:gravity="center_vertical|right"
+            style="@style/UserText"/>
+        <ImageView
+            style="@style/UserImage"
+            android:src="@mipmap/ic_arrow_right"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_book_table"
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="预定座位"/>
+
+        <TextView
+            android:id="@+id/tv_book_table"
+            android:layout_marginRight="@dimen/wwpx10"
+            android:gravity="center_vertical|right"
+            style="@style/UserText"/>
+        <ImageView
+            style="@style/UserImage"
+            android:src="@mipmap/ic_arrow_right"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_arrive_time"
+        style="@style/UserLLay">
+        <TextView
+            style="@style/UserText"
+            android:layout_marginLeft="@dimen/wwpx15"
+            android:text="到达时间"/>
+
+        <TextView
+            android:id="@+id/tv_arrive_time"
+            android:layout_marginRight="@dimen/wwpx10"
+            android:gravity="center_vertical|right"
+            style="@style/UserText"/>
+        <ImageView
+            style="@style/UserImage"
+            android:src="@mipmap/ic_arrow_right"/>
+    </LinearLayout>
+    <include layout="@layout/layout_space_line"/>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_marginBottom="@dimen/wwpx30"
+                  android:layout_height="match_parent"
+                  android:gravity="center_horizontal|bottom">
+        <Button
+            android:id="@+id/btn_book"
+            android:layout_width="@dimen/wwpx300"
+            android:enabled="true"
+            android:layout_height="@dimen/wwpx80"
+            android:background="@drawable/btn_black_shape"
+            android:text="预定"/>
+    </LinearLayout>
+
+
+</FrameLayout>
+
+
+
 </LinearLayout>

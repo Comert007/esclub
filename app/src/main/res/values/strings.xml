@@ -25,6 +25,7 @@
     <string name="dialog_title_tip">温馨提示</string>
     <string name="dialog_btn_repay">重试</string>
     <string name="dialog_btn_cancel">取消</string>
+    <string name="dialog_btn_sure">确定</string>
     <string name="dialog_btn_ver_update_sure">更新</string>
     <string name="cart_is_empty">购物车没有你喜欢的物品哦</string>
     <string name="str_wx_no_install">请确认微信是否安装</string>
@@ -34,4 +35,6 @@
     <string name="vote_success">投注成功</string>
     <string name="vote_fail">投注失败</string>
     <string name="toast_sdcard_exception">sd卡异常</string>
+    <string name="dialog_login_out">确定退出登录？</string>
+    <string name="login_out_success">退出登录成功</string>
 </resources>

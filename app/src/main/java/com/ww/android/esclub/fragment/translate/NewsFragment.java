@@ -97,9 +97,9 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
         v.getBanner().setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                if (banner.size()>0) {
+                if (banner.size() > 0) {
                     NewsItem item = banner.get(position);
-                    EsNewsActivity.start(getContext(),item);
+                    EsNewsActivity.start(getContext(), item);
                 }
             }
         });
@@ -125,14 +125,18 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
                         if (items != null && items.size() > 0) {
 
                             startBanner(banner);
-                            adapter.appendList(items);
+                            if (nowPage== Constant.PAGE_ONE){
+                                adapter.addList(items);
+                            }else {
+                                adapter.appendList(items);
+                            }
 
                             if (currentPage != totalPages && currentPage == nowPage) {
                                 v.getCsr().setFooterRefreshAble(true);
                                 currentPage++;
 
                             } else {
-                                v.getCsr().setEnableRefresh(false);
+                                v.getCsr().setFooterRefreshAble(false);
                             }
 
                             if (nowPage != Constant.PAGE_ONE) {
@@ -149,8 +153,6 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
 
     @Override
     public void onItemClick(int position, View v) {
-        if (position< adapter.getItemCount()) {
-            EsNewsActivity.start(getContext(), adapter.getItem(position));
-        }
+        EsNewsActivity.start(getContext(), adapter.getItem(position));
     }
 }

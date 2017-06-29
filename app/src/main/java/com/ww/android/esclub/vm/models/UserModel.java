@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.trello.rxlifecycle.LifecycleTransformer;
 import com.ww.android.esclub.ListBean;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
@@ -46,7 +47,7 @@ public class UserModel implements IModel {
                     public ListBean<OrderCentreBean> call(ResponseBean responseBean) {
                         try {
                             ListBean<OrderCentreBean> listBean = JSON.parseObject(responseBean
-                                    .getData(), ListBean.class);
+                                    .getData(), new TypeReference<ListBean<OrderCentreBean>>(){});
                             return listBean;
                         } catch (Exception e) {
                             throw new ApiException(responseBean);
@@ -72,7 +73,7 @@ public class UserModel implements IModel {
                     public ListBean<OrderDetailBean> call(ResponseBean responseBean) {
                         try {
                             ListBean<OrderDetailBean> listBean = JSON.parseObject(responseBean
-                                    .getData(), ListBean.class);
+                                    .getData(), new TypeReference<ListBean<OrderDetailBean>>(){});
                             return listBean;
 
                         } catch (Exception e) {

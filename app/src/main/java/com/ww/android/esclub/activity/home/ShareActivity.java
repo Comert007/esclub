@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.windward.sharelibrary.ShareResponse;
+import com.windward.sharelibrary.qq.BaseUIListener;
+import com.windward.sharelibrary.qq.WW_QQUtil;
 import com.windward.sharelibrary.wxapi.WW_WXUtils;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.BaseActivity;
@@ -31,7 +33,7 @@ public class ShareActivity extends BaseActivity<VoidView,VoidModel> {
 
     public static void start(Context context,NewsItem item) {
         Intent intent = new Intent(context, ShareActivity.class);
-        intent.putExtra("newsItem",item);
+        intent.putExtra("newsItem",  item);
         context.startActivity(intent);
         ((Activity) context).overridePendingTransition(R.anim.anim_bottom_enter,R.anim.anim_bottom_exit);
     }
@@ -72,8 +74,10 @@ public class ShareActivity extends BaseActivity<VoidView,VoidModel> {
                 WW_WXUtils.shareWebToWx(this,0,createShare());
                 break;
             case R.id.tv_qq:
+                WW_QQUtil.shareImageTextToQQ(this,createShare(),new BaseUIListener(this));
                 break;
             case R.id.tv_qzone:
+                WW_QQUtil.shareImageTextToQzone(this,createShare(),new BaseUIListener(this));
                 break;
         }
 
@@ -83,7 +87,8 @@ public class ShareActivity extends BaseActivity<VoidView,VoidModel> {
         ShareResponse shareResponse = new ShareResponse();
         NewsItem item = (NewsItem) getIntent().getSerializableExtra("newsItem");
         shareResponse.setTitle(item.getTitle());
-        shareResponse.setDescription("");
+        shareResponse.setImage_url(item.getCover());
+        shareResponse.setDescription(item.getTitle());
         shareResponse.setTarget_url(item.getShare_url());
         return shareResponse;
     }
@@ -93,4 +98,5 @@ public class ShareActivity extends BaseActivity<VoidView,VoidModel> {
         super.finish();
         overridePendingTransition(R.anim.anim_bottom_enter,R.anim.anim_bottom_exit);
     }
+
 }

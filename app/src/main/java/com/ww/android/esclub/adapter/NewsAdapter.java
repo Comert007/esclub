@@ -10,6 +10,7 @@ import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.bean.home.NewsItem;
 import com.ww.android.esclub.listener.OnItemClickListener;
+import com.ww.android.esclub.utils.TimeUtils;
 
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
@@ -48,8 +49,8 @@ public class NewsAdapter extends RvAdapter<NewsItem> {
         ImageView ivThumb;
         @BindView(R.id.tv_title)
         TextView tvTitle;
-        @BindView(R.id.tv_explain)
-        TextView tvExplain;
+//        @BindView(R.id.tv_explain)
+//        TextView tvExplain;
         @BindView(R.id.tv_time)
         TextView tvTime;
         @BindView(R.id.tv_read)
@@ -63,19 +64,19 @@ public class NewsAdapter extends RvAdapter<NewsItem> {
         public void onBindData(int i, NewsItem item) {
 
 
-
             ImageLoader.getInstance().displayImage
                     (item.getCover(), ivThumb,
-                    BaseApplication.getDisplayImageOptions(R.mipmap.test));
+                    BaseApplication.getDisplayImageOptions(R.mipmap.ic_default));
 
+            tvTitle.setText(item.getTitle());
             tvRead.setText(item.getView_num());
-            tvTime.setText(item.getNewstime());
+            tvTime.setText(TimeUtils.passNowTime(item.getNewstime()));
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (onItemClickListener!=null){
-                        onItemClickListener.onItemClick(getAdapterPosition(),v);
+                        onItemClickListener.onItemClick(position,v);
                     }
                 }
             });

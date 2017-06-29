@@ -18,4 +18,7 @@ public class AppConfig {
     public static final String WECHAT_SECRET = "8f2e14c849b710a42cf8721220d85529";
     public static final String WECHAT_SCOPE = "snsapi_userinfo";
     public static final String WECHAT_STATE = "wechat_login_esport";
+
+    public static final String QQ_APPID ="1106181599";
+    public static final String QQ_APPKEY="eEI9NDiYpTT5iAMe";
 }

@@ -1,6 +1,8 @@
 package com.ww.android.esclub.activity.start;
 
+import android.Manifest;
 import android.content.DialogInterface;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
@@ -23,7 +25,13 @@ import com.ww.android.esclub.utils.DialogUtil;
 import com.ww.android.esclub.vm.models.start.StartModel;
 import com.ww.mvp.view.VoidView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
+import me.weyye.hipermission.HiPermission;
+import me.weyye.hipermission.PermissionCallback;
+import me.weyye.hipermission.PermissionItem;
 
 /**
  * Created by feng on 2017/6/11.
@@ -45,7 +53,7 @@ public class StartActivity extends BaseActivity<VoidView,StartModel> {
     protected void init() {
         pathView.getPathAnimator().
                 delay(100).
-                duration(2000).
+                duration(2500).
                 interpolator(new AccelerateDecelerateInterpolator()).
                 start();
 
@@ -55,7 +63,7 @@ public class StartActivity extends BaseActivity<VoidView,StartModel> {
 
                 onSysParams();
             }
-        },2200);
+        },2500);
 
     }
 
@@ -78,7 +86,7 @@ public class StartActivity extends BaseActivity<VoidView,StartModel> {
 
                 @Override
                 public void onNext(SystemConfigBean systemConfigBean) {
-                    startActivity();
+                    onStartPermissionn();
                 }
 
                 @Override
@@ -106,6 +114,46 @@ public class StartActivity extends BaseActivity<VoidView,StartModel> {
         }
     }
 
+
+    private void onStartPermissionn(){
+        final List<PermissionItem> permissionItems = new ArrayList<>();
+        permissionItems.add(new PermissionItem(Manifest.permission.READ_PHONE_STATE,
+                "Phone",
+                R.drawable.permission_ic_phone));
+        permissionItems.add(new PermissionItem(Manifest.permission.CAMERA,
+                "Camera",
+                R.drawable.permission_ic_camera));
+        permissionItems.add(new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        "Storage",
+                        R.drawable.permission_ic_storage)
+                );
+        HiPermission.create(this).
+                permissions(permissionItems)
+                .style(R.style.PermissionBlueStyle)
+                .filterColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimary, getTheme()))
+                .checkMutiPermission(new PermissionCallback() {
+            @Override
+            public void onClose() {
+                showToast("权限请求取消");
+            }
+
+            @Override
+            public void onFinish() {
+
+                startActivity();
+            }
+
+            @Override
+            public void onDeny(String permission, int position) {
+            }
+
+            @Override
+            public void onGuarantee(String permission, int position) {
+
+            }
+        });
+
+    }
 
 //
 private void showDialogErr(String str) {

@@ -64,7 +64,7 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
     @Override
     protected void init() {
 
-
+        v.showNotice();
         initOptionPicker();
         initTimePicker();
 
@@ -90,7 +90,6 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
 
     private void initAreaDialog() {
         areaDialog = new EsDialog(this, areaItems, 1);
-
 
         areaDialog.setOnSelectedListener(new EsDialog.onSelectedListener<TableAreaInfoBean>() {
             @Override

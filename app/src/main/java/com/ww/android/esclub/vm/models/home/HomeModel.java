@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.trello.rxlifecycle.LifecycleTransformer;
 import com.ww.android.esclub.ListBean;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
@@ -38,7 +39,9 @@ public class HomeModel implements IModel {
                     @Override
                     public ListBean<NewsItem> call(ResponseBean responseBean) {
                         try{
-                            ListBean<NewsItem> listBean = JSON.parseObject(responseBean.getData(),ListBean.class);
+                            ListBean<NewsItem> listBean = JSON.parseObject(responseBean.getData(),
+                                    new TypeReference<ListBean<NewsItem>>(){});
+
                             return listBean;
                         }catch (Exception e){
                             throw new ApiException(responseBean);
@@ -62,7 +65,8 @@ public class HomeModel implements IModel {
                     public ListBean<CommentBean> call(ResponseBean responseBean) {
                         try {
 
-                            ListBean<CommentBean> listBean = JSON.parseObject(responseBean.getData(),ListBean.class);
+                            ListBean<CommentBean> listBean = JSON.parseObject(responseBean.getData(),
+                                    new TypeReference<ListBean<CommentBean>>(){});
                             return listBean;
                         }catch (Exception e){
                             throw new ApiException(responseBean);

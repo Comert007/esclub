@@ -8,6 +8,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.bean.home.CommentBean;
+import com.ww.android.esclub.bean.start.UserBean;
 
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
@@ -56,7 +57,10 @@ public class CommentAdapter extends RvAdapter<CommentBean> {
             ImageLoader.getInstance().
                     displayImage(bean.getAvatar(),rivHeader, BaseApplication.getDisplayImageOptions(R.mipmap.ic_header_default));
             tvName.setText(bean.getNickname());
-            tvLevel.setText(bean.getRank());
+            UserBean user = BaseApplication.getInstance().getUserBean();
+            if (user!=null) {
+                tvLevel.setText("lv." +user.getLevel());
+            }
             tvTime.setText(bean.getCreated());
             tvComment.setText(bean.getComment());
         }

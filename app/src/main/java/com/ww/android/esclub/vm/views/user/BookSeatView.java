@@ -6,7 +6,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
+import com.ww.android.esclub.bean.start.BookTableInfoBean;
+import com.ww.android.esclub.bean.start.SystemConfigBean;
 import com.ww.mvp.view.IView;
 
 import butterknife.BindView;
@@ -29,6 +32,19 @@ public class BookSeatView implements IView {
     TextView tvBookArea;
     @BindView(R.id.tv_arrive_time)
     TextView tvArriveTime;
+    @BindView(R.id.tv_notice)
+    TextView tvNotice;
+
+    public void showNotice(){
+        SystemConfigBean configBean = BaseApplication.getInstance().getSystemConfigBean();
+        if (configBean!=null && configBean.book_table_info!=null){
+            BookTableInfoBean bean = configBean.book_table_info;
+            tvNotice.setText("预定开始时间："+bean.getStart_time()+"。\n"+
+            "预定截至时间："+bean.getEnd_time()+"。\n"+
+            "提前预定时间：从当前时间到未来"+bean.getAdvance_time()+"小时之内。\n"+
+            "迟到预留时间："+bean.getReserve_time()+"分钟");
+        }
+    }
 
     @Override
     public void onAttach(@NonNull Activity activity, @NonNull View view) {

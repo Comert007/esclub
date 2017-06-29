@@ -56,7 +56,7 @@ public class BaseApplication extends WWApplication {
         Debug.setDebug(debug);
         Debug.setTag("EsClub");
         SharePlatConfig.setWeiXin(AppConfig.WECHAT_APPID,AppConfig.WECHAT_SECRET);
-
+        SharePlatConfig.setQQZone(AppConfig.QQ_APPID,AppConfig.QQ_APPKEY);
         initImageLoader(getApplicationContext());
         OkHttpRequest.setLogging(AppConfig.Debug);
     }

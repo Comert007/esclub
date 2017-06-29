@@ -6,16 +6,22 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.BaseActivity;
 import com.ww.android.esclub.adapter.TranslateTabAdapter;
 import com.ww.android.esclub.bean.home.NewsItem;
+import com.ww.android.esclub.config.Constant;
 import com.ww.android.esclub.fragment.home.CommentFragment;
 import com.ww.android.esclub.fragment.home.EsNewsFragment;
 import com.ww.android.esclub.widget.TranslateTabBar;
 import com.ww.mvp.model.VoidModel;
 import com.ww.mvp.view.VoidView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +49,7 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
 
     public static void start(Context context, NewsItem item) {
         Intent intent = new Intent(context, EsNewsActivity.class);
-        intent.putExtra("newsItem",item);
+        intent.putExtra("newsItem", item);
         context.startActivity(intent);
     }
 
@@ -66,6 +72,7 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
 
     @Override
     protected void init() {
+        EventBus.getDefault().register(this);
         item = (NewsItem) getIntent().getSerializableExtra("newsItem");
 
         translateTabBar.setOnTabChangeListener(new TranslateTabBar.OnTabChangeListener() {
@@ -82,6 +89,13 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
         viewPager.setOffscreenPageLimit(3);
 
         viewPager.setOnPageChangeListener(pageChangeListener);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCommentEvent(String comment){
+        if (!TextUtils.isEmpty(comment) &&TextUtils.equals(Constant.COMMENT_SUCCESS,comment)){
+            translateTabBar.setCurrentIndex(1);
+        }
     }
 
     private void addFragment(){
@@ -119,4 +133,10 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
 
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

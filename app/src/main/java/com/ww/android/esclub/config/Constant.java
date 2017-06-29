@@ -32,5 +32,7 @@ public class Constant {
     public static final String GUESS_RULES = "guess_rules"; //竞猜规则
     public static final String RECHARGE_EXPLAIN = "recharge_explain"; //充值说明
     public static final String BOOK_TABLE_EXPLAIN = "book_table_explain"; //订座说明
+
+    public static final String COMMENT_SUCCESS="comment_success";
 }
 

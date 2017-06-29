@@ -45,7 +45,8 @@
                         android:layout_marginLeft="@dimen/wwpx20"
                         android:background="@drawable/bg_blue_shape"
                         android:gravity="center"
-                        android:text="LV.6" android:textSize="@dimen/wwpx20"/>
+                        android:text="LV.1"
+                        android:textSize="@dimen/wwpx20"/>
                 </LinearLayout>
 
                 <TextView

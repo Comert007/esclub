@@ -73,4 +73,6 @@ dependencies {
     compile 'com.eftimoff:android-pathview:1.0.8@aar'
     compile 'com.github.lovetuzitong:MultiImageSelector:1.2'
     compile 'com.wdullaer:materialdatetimepicker:3.2.2'
+    compile 'com.alibaba:fastjson:1.2.33'
+    compile 'me.weyye.hipermission:library:1.0.7'
 }

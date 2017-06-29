@@ -74,7 +74,7 @@ public class CommentFragment extends BaseFragment<RefreshView,HomeModel> {
             }
         });
 
-        onComment(true);
+
     }
 
     private void onComment(boolean showDialog){
@@ -96,14 +96,19 @@ public class CommentFragment extends BaseFragment<RefreshView,HomeModel> {
 
                 if (items!=null&& items.size()>0){
                     tvCommentNum.setText(totalNum+"条评论");
-                    adapter.appendList(items);
+                    if (nowPage ==Constant.PAGE_ONE){
+                        adapter.addList(items);
+                    }else {
+                        adapter.appendList(items);
+                    }
+
 
                     if (currentPage != totalPages && currentPage == nowPage) {
                         v.getCsr().setFooterRefreshAble(true);
                         currentPage++;
 
                     } else {
-                        v.getCsr().setEnableRefresh(false);
+                        v.getCsr().setFooterRefreshAble(false);
                     }
 
 
@@ -116,11 +121,17 @@ public class CommentFragment extends BaseFragment<RefreshView,HomeModel> {
 
             }
 
-            @Override
-            public void onEnd() {
-                super.onEnd();
-                v.getCsr().setEnableRefresh(false);
-            }
+//            @Override
+//            public void onEnd() {
+//                super.onEnd();
+//                v.getCsr().setEnableRefresh(false);
+//            }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        onComment(true);
     }
 }

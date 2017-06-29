@@ -13,9 +13,12 @@ import com.tencent.smtt.sdk.WebViewClient;
 import com.trello.rxlifecycle.FragmentEvent;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
+import com.ww.android.esclub.config.Constant;
 import com.ww.android.esclub.fragment.base.BaseFragment;
 import com.ww.android.esclub.vm.models.home.HomeModel;
 import com.ww.mvp.view.VoidView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -78,7 +81,9 @@ public class EsNewsFragment extends BaseFragment<VoidView, HomeModel> implements
                 @Override
                 public void onNext(String s) {
                     if (!TextUtils.isEmpty(s)){
+                        etComment.setText("");
                         showToast("评论成功");
+                        EventBus.getDefault().post(Constant.COMMENT_SUCCESS);
                     }
                 }
             });
@@ -86,4 +91,6 @@ public class EsNewsFragment extends BaseFragment<VoidView, HomeModel> implements
             showToast("评论不能为空");
         }
     }
+
+
 }

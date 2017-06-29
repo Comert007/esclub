@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.trello.rxlifecycle.LifecycleTransformer;
 import com.ww.android.esclub.ListBean;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
@@ -110,7 +111,8 @@ public class GuessModel implements IModel{
                     @Override
                     public ListBean<MatchBean> call(ResponseBean responseBean) {
                         try {
-                            ListBean<MatchBean> listBean = JSON.parseObject(responseBean.getData(),ListBean.class);
+                            ListBean<MatchBean> listBean = JSON.parseObject(responseBean.getData(),
+                                    new TypeReference<ListBean<MatchBean>>(){});
                             return listBean;
                         }catch (Exception e){
                             throw new ApiException(responseBean);
@@ -129,7 +131,8 @@ public class GuessModel implements IModel{
                     @Override
                     public ListBean<GuessDetailBean> call(ResponseBean responseBean) {
                         try {
-                            ListBean<GuessDetailBean> listBean = JSONObject.parseObject(responseBean.getData(),ListBean.class);
+                            ListBean<GuessDetailBean> listBean = JSONObject.parseObject(responseBean.getData(),
+                                    new TypeReference<ListBean<GuessDetailBean>>(){});
                             return listBean;
                         }catch (Exception e){
                             throw new ApiException(responseBean);

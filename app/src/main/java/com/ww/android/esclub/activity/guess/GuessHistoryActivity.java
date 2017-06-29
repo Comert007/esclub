@@ -54,6 +54,7 @@ public class GuessHistoryActivity extends BaseActivity<GuessHistoryView,GuessMod
 
 
         adapter = new GuessAdapter(this);
+        v.getCsr().setEnableRefresh(true);
         v.getCrv().setAdapter(adapter);
         adapter.setOnItemClickListener(this);
 
@@ -104,14 +105,18 @@ public class GuessHistoryActivity extends BaseActivity<GuessHistoryView,GuessMod
                         int nowPage = Integer.valueOf(pagingBean.getCurrent_page());
 
                         if (items != null && items.size() > 0) {
-                            adapter.appendList(items);
+                            if (nowPage== Constant.PAGE_ONE){
+                                adapter.addList(items);
+                            }else {
+                                adapter.appendList(items);
+                            }
 
                             if (currentPage != totalPages && currentPage == nowPage) {
                                 v.getCsr().setFooterRefreshAble(true);
                                 currentPage++;
 
                             } else {
-                                v.getCsr().setEnableRefresh(false);
+                                v.getCsr().setFooterRefreshAble(false);
                             }
 
                             if (nowPage != Constant.PAGE_ONE) {

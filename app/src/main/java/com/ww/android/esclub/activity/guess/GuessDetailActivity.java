@@ -67,6 +67,7 @@ public class GuessDetailActivity extends BaseActivity<GuessDetailView,GuessModel
         adapter = new GuessDetailAdapter(this,matchType);
         adapter.setOnVoteListener(this);
         v.getCrv().setAdapter(adapter);
+        v.getCsr().setEnableRefresh(true);
 
         initData();
     }
@@ -136,14 +137,18 @@ public class GuessDetailActivity extends BaseActivity<GuessDetailView,GuessModel
 
 
         if (items != null && items.size() > 0) {
-            adapter.appendList(items);
+            if (nowPage== Constant.PAGE_ONE){
+                adapter.addList(items);
+            }else {
+                adapter.appendList(items);
+            }
 
             if (currentPage != totalPages && currentPage == nowPage) {
                 v.getCsr().setFooterRefreshAble(true);
                 currentPage++;
 
             } else {
-                v.getCsr().setEnableRefresh(false);
+                v.getCsr().setFooterRefreshAble(false);
             }
 
             if (nowPage != Constant.PAGE_ONE) {

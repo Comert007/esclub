@@ -101,7 +101,11 @@ public class OrderCentreActivity extends BaseActivity<OrderCentreView,UserModel>
                 int nowPage = Integer.valueOf(pagingBean.getCurrent_page());
 
                 if (items != null && items.size() > 0) {
-                    adapter.appendList(items);
+                    if (nowPage== Constant.PAGE_ONE){
+                        adapter.addList(items);
+                    }else {
+                        adapter.appendList(items);
+                    }
 
                     if (currentPage != totalPages && currentPage == nowPage) {
                         v.getCsr().setFooterRefreshAble(true);

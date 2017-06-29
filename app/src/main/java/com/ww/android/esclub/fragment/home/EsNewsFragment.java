@@ -1,14 +1,15 @@
 package com.ww.android.esclub.fragment.home;
 
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 import com.trello.rxlifecycle.FragmentEvent;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
@@ -39,6 +40,8 @@ public class EsNewsFragment extends BaseFragment<VoidView, HomeModel> implements
 
     @Override
     protected void init() {
+        getActivity().getWindow().setFormat(PixelFormat.TRANSLUCENT);
+
         etComment.setOnEditorActionListener(this);
 
         Bundle bundle = getArguments();
@@ -46,10 +49,10 @@ public class EsNewsFragment extends BaseFragment<VoidView, HomeModel> implements
         id = bundle.getString("id","0");
 
         webView.loadUrl(url);
-        webView.setWebViewClient(new WebViewClient() {
+        webView.setWebViewClient(new WebViewClient(){
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
+            public boolean shouldOverrideUrlLoading(WebView webView, String url) {
+                webView.loadUrl(url);
                 return true;
             }
         });

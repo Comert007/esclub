@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.BaseActivity;
 import com.ww.android.esclub.adapter.TranslateTabAdapter;
+import com.ww.android.esclub.bean.home.NewsItem;
 import com.ww.android.esclub.fragment.home.CommentFragment;
 import com.ww.android.esclub.fragment.home.EsNewsFragment;
 import com.ww.android.esclub.widget.TranslateTabBar;
@@ -38,11 +39,11 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
     private List<Fragment> fragments;
     private FragmentManager fragmentManager;
     private TranslateTabAdapter adapter;
+    private NewsItem item;
 
-    public static void start(Context context,String url,String id) {
+    public static void start(Context context, NewsItem item) {
         Intent intent = new Intent(context, EsNewsActivity.class);
-        intent.putExtra("id",id);
-        intent.putExtra("content_url",url);
+        intent.putExtra("newsItem",item);
         context.startActivity(intent);
     }
 
@@ -60,11 +61,13 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
     @Override
     public void onTitleRight() {
         super.onTitleRight();
-        ShareActivity.start(this,contentUrl);
+        ShareActivity.start(this,item);
     }
 
     @Override
     protected void init() {
+        item = (NewsItem) getIntent().getSerializableExtra("newsItem");
+
         translateTabBar.setOnTabChangeListener(new TranslateTabBar.OnTabChangeListener() {
             @Override
             public void onChange(int index) {
@@ -85,8 +88,8 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
         if (fragments==null){
             fragments = new ArrayList<>();
         }
-        String id = getIntent().getStringExtra("id");
-        contentUrl = getIntent().getStringExtra("content_url");
+        String id = item.getId();
+        contentUrl = item.getContent_url();
         fragments.add(createFragment(new EsNewsFragment(),id,contentUrl));
         fragments.add(createFragment(new CommentFragment(),id,contentUrl));
     }

@@ -42,7 +42,8 @@
 
         </activity>
 
-        <activity android:name=".activity.home.EsNewsActivity"/>
+        <activity android:name=".activity.home.EsNewsActivity"
+                  android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity
             android:theme="@style/AnimationActivity"
             android:name=".activity.home.ShareActivity"/>

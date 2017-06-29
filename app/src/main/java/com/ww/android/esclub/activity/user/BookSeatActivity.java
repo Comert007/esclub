@@ -11,6 +11,7 @@ import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.BaseActivity;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
+import com.ww.android.esclub.bean.start.BookTableInfoBean;
 import com.ww.android.esclub.bean.start.SystemConfigBean;
 import com.ww.android.esclub.bean.start.TableAreaInfoBean;
 import com.ww.android.esclub.bean.start.TableAreaInfoEntity;
@@ -19,9 +20,11 @@ import com.ww.android.esclub.vm.models.UserModel;
 import com.ww.android.esclub.vm.views.user.BookSeatView;
 import com.ww.android.esclub.widget.EsDialog;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.OnClick;
@@ -40,9 +43,11 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
     private EsDialog tableDialog;
     private String areaId;
     private String tableId;
-    private TimePickerDialog timePicker;
+    //    private TimePickerDialog timePicker;
     private String timestamp;
-    private int  index = -1;
+    private int index = -1;
+
+    private TimePickerDialog timePicker;
 
     private List<String> ids = new ArrayList<>();
 
@@ -197,7 +202,7 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
 
 
     private void onBookTable(String name, String num, String phone) {
-        m.onBookTable(name, num, ids,timestamp, phone, bindUntilEvent
+        m.onBookTable(name, num, ids, timestamp, phone, bindUntilEvent
                         (ActivityEvent.DESTROY),
                 new HttpSubscriber<Boolean>(this, true) {
 
@@ -212,8 +217,9 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
                 });
     }
 
-    private void onUserInfo(){
-        m.onUserInfo(bindUntilEvent(ActivityEvent.DESTROY), new HttpSubscriber<UserBean>(BookSeatActivity.this,true) {
+    private void onUserInfo() {
+        m.onUserInfo(bindUntilEvent(ActivityEvent.DESTROY), new HttpSubscriber<UserBean>
+                (BookSeatActivity.this, true) {
             @Override
             public void onNext(UserBean userBean) {
                 showToast("预定成功");
@@ -226,6 +232,7 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
 
     private void initTimePicker() {
         Calendar now = Calendar.getInstance();
+
         timePicker = TimePickerDialog.newInstance(
                 BookSeatActivity.this,
                 now.get(Calendar.HOUR),
@@ -233,6 +240,12 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
                 now.get(Calendar.SECOND),
                 true
         );
+        SystemConfigBean configBean = BaseApplication.getInstance().getSystemConfigBean();
+
+        if (configBean != null && configBean.book_table_info != null) {
+            BookTableInfoBean bean = configBean.book_table_info;
+            Debug.d("startTime:"+bean.getStart_time()+"\n"+"endTime:"+bean.getEnd_time());
+        }
         timePicker.setVersion(TimePickerDialog.Version.VERSION_2);
 
     }
@@ -243,25 +256,25 @@ public class BookSeatActivity extends BaseActivity<BookSeatView, UserModel> impl
         onBackPressed();
     }
 
+
+
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-        Debug.d("hour:" + hourOfDay + ", minute:" + minute + ", second:" + second);
         Calendar now = Calendar.getInstance();
+
         String time = now.get(Calendar.YEAR) + "-" + (now.get(Calendar.MONTH) + 1) + "-" + now
-                .get(Calendar.DAY_OF_MONTH) + " " + hourOfDay + ":" + minute + ":" + second;
-        v.setTvArriveTime(time);
-        timestamp = date2TimeStamp(time,"yyyy-MM-dd HH:mm:ss");
-        Debug.d("time:" + timestamp);
+                .get(Calendar.DAY_OF_MONTH) + " " + hourOfDay + ":" + minute + ":" + "00";
 
-    }
-
-    public String date2TimeStamp(String date_str, String format) {
+        SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat(format);
-            return String.valueOf(sdf.parse(date_str).getTime());
-        } catch (Exception e) {
+            Date date = simple.parse(time);
+            timestamp = simple.format(date).toString();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
-        return "";
+
+        v.setTvArriveTime(timestamp);
+        Debug.d("time:" + timestamp);
+
     }
 }

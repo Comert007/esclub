@@ -1,6 +1,5 @@
 package com.ww.android.esclub.fragment.translate;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -20,7 +19,6 @@ import com.ww.android.esclub.vm.views.BannerView;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ww.com.core.Debug;
@@ -52,16 +50,6 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
         if (urls == null) {
             urls = new ArrayList<>();
         }
-        urls.add("http://ossweb-img.qq" +
-                ".com/upload/adw/image/1496714012/1496714012.jpg?_r=1496822856");
-        urls.add("http://ossweb-img.qq" +
-                ".com/upload/adw/image/1496822855/1496822855.jpg?_r=1496822856");
-        urls.add("http://ossweb-img.qq" +
-                ".com/upload/adw/image/1496800468/1496800468.jpg?_r=1496822856");
-        urls.add("http://ossweb-img.qq" +
-                ".com/upload/adw/image/1496727632/1496727632.jpg?_r=1496822856");
-        urls.add("http://ossweb-img.qq" +
-                ".com/upload/adw/image/1496718634/1496718634.jpg?_r=1496822856");
 
 
         footView = LayoutInflater.from(getContext()).inflate(R.layout.layout_foot_view, null);
@@ -99,6 +87,11 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
 
 
     private void startBanner(final List<NewsItem> banner) {
+        urls.clear();
+        for (NewsItem item : banner) {
+            urls.add(item.getBanner_cover());
+        }
+
         v.setUrls(urls);
         v.startBanner();
         v.getBanner().setOnBannerListener(new OnBannerListener() {
@@ -106,11 +99,7 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
             public void OnBannerClick(int position) {
                 if (banner.size()>0) {
                     NewsItem item = banner.get(position);
-                    String url = item.getContent_url();
-                    if (TextUtils.isEmpty(url)) {
-                        url = "http://news.maxjia.com/maxnews/app/detail/ow/71579";
-                    }
-                    EsNewsActivity.start(getContext(), url, item.getId());
+                    EsNewsActivity.start(getContext(),item);
                 }
             }
         });
@@ -133,10 +122,9 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
                         int nowPage = Integer.valueOf(newsItemListBean.getPaging()
                                 .getCurrent_page());
 
-                        startBanner(banner);
                         if (items != null && items.size() > 0) {
 
-//                            startBanner(banner);
+                            startBanner(banner);
                             adapter.appendList(items);
 
                             if (currentPage != totalPages && currentPage == nowPage) {
@@ -152,37 +140,17 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
                             }
 
                         } else {
-                            test();
                             v.getCsr().setEnableRefresh(false);
                         }
-
-
                     }
                 });
     }
 
-    private void test() {
-        List<NewsItem> items = new ArrayList<>();
-        List<String> titles = Arrays.asList(getResources().getStringArray(R.array.home_test));
-        for (int i = 0; i < 5; i++) {
-            NewsItem item = new NewsItem();
-            item.setCover(urls.get(i));
-            item.setNewstime((i + 1) + "小时前");
-            item.setTitle(titles.get(i));
-            item.setView_num(((i + 1) * 10 + 2) + "");
-            items.add(item);
-        }
-
-        adapter.addList(items);
-    }
 
     @Override
     public void onItemClick(int position, View v) {
-        String url = adapter.getItem(position).getContent_url();
-        String id = adapter.getItem(position).getId();
-        if (TextUtils.isEmpty(url)){
-            url = "http://news.maxjia.com/maxnews/app/detail/ow/71579";
+        if (position< adapter.getItemCount()) {
+            EsNewsActivity.start(getContext(), adapter.getItem(position));
         }
-        EsNewsActivity.start(getContext(),url,id);
     }
 }

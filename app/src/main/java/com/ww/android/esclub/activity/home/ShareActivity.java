@@ -12,6 +12,7 @@ import com.windward.sharelibrary.ShareResponse;
 import com.windward.sharelibrary.wxapi.WW_WXUtils;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.BaseActivity;
+import com.ww.android.esclub.bean.home.NewsItem;
 import com.ww.mvp.model.VoidModel;
 import com.ww.mvp.view.VoidView;
 
@@ -28,9 +29,9 @@ import ww.com.core.ScreenUtil;
 
 public class ShareActivity extends BaseActivity<VoidView,VoidModel> {
 
-    public static void start(Context context,String contentUrl) {
+    public static void start(Context context,NewsItem item) {
         Intent intent = new Intent(context, ShareActivity.class);
-        intent.putExtra("contentUrl",contentUrl);
+        intent.putExtra("newsItem",item);
         context.startActivity(intent);
         ((Activity) context).overridePendingTransition(R.anim.anim_bottom_enter,R.anim.anim_bottom_exit);
     }
@@ -80,9 +81,10 @@ public class ShareActivity extends BaseActivity<VoidView,VoidModel> {
 
     private ShareResponse createShare(){
         ShareResponse shareResponse = new ShareResponse();
-        shareResponse.setTitle("微信分享测试");
-        shareResponse.setDescription("微信分享测试描述");
-        shareResponse.setTarget_url(getIntent().getStringExtra("contentUrl"));
+        NewsItem item = (NewsItem) getIntent().getSerializableExtra("newsItem");
+        shareResponse.setTitle(item.getTitle());
+        shareResponse.setDescription("");
+        shareResponse.setTarget_url(item.getShare_url());
         return shareResponse;
     }
 

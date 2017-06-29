@@ -1,12 +1,15 @@
 package com.ww.android.esclub.bean.home;
 
+import java.io.Serializable;
+
 /**
  * Created by feng on 2017/6/23.
  */
 
-public class NewsItem {
+public class NewsItem implements Serializable{
 
 
+    private static final long serialVersionUID = 4638759440899228798L;
     private String id;
     private String banner_cover;
     private String cover;

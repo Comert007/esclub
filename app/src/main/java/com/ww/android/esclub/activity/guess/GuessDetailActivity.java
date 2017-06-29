@@ -36,7 +36,7 @@ public class GuessDetailActivity extends BaseActivity<GuessDetailView,GuessModel
     private int currentPage = Constant.PAGE_ONE;
     private View footView;
     private String id;
-    private int matchType;
+    private int matchType = MATCH;
     private MatchBean matchBean;
 
     public static final int MATCH=1;

@@ -1,6 +1,5 @@
 package com.ww.android.esclub.activity.user;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,8 +18,6 @@ import com.ww.android.esclub.config.Constant;
 import com.ww.android.esclub.utils.DialogUtil;
 import com.ww.android.esclub.vm.models.UserModel;
 import com.ww.mvp.view.VoidView;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -87,18 +84,9 @@ public class SettingActivity extends BaseActivity<VoidView,UserModel> {
                             public void onNext(Boolean aBoolean) {
                                 showToast(getString(R.string.login_out_success));
                                 BaseApplication.getInstance().setUserBean(null);
-                                List<Activity> actys = BaseApplication
-                                        .getInstance().getRunActivity();
-                                for (Activity activity : actys) {
-                                    if (!activity.isFinishing()&& !activity
-                                            .getClass()
-                                            .getCanonicalName()
-                                            .equals(LoginActivity.class
-                                                    .getCanonicalName())) {
-                                        activity.finish();
-                                    }
-                                }
+                                BaseApplication.getInstance().clearTopTask(SettingActivity.this);
                                 LoginActivity.start(SettingActivity.this);
+                                SettingActivity.this.finish();
                             }
                         });
                     }

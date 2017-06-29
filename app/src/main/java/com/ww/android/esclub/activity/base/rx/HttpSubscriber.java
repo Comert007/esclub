@@ -13,8 +13,6 @@ import com.ww.android.esclub.utils.DialogUtil;
 import com.ww.android.esclub.utils.ToastUtil;
 import com.ww.android.esclub.widget.EsProgressDialog;
 
-import java.util.List;
-
 import rx.Subscriber;
 
 /**
@@ -94,17 +92,7 @@ public abstract class HttpSubscriber<T> extends Subscriber<T> {
                         new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        List<Activity> actys = BaseApplication
-                                .getInstance().getRunActivity();
-                        for (Activity activity : actys) {
-                            if (!activity.isFinishing()&& !activity
-                                    .getClass()
-                                    .getCanonicalName()
-                                    .equals(LoginActivity.class
-                                            .getCanonicalName())) {
-                                activity.finish();
-                            }
-                        }
+                        BaseApplication.getInstance().clearTopTask((Activity) context);
                         LoginActivity.start(context);
                     }
                 });

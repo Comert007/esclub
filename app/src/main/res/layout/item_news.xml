@@ -9,7 +9,7 @@
           android:background="@color/color_e1e6eb"/>
 
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+                  android:layout_height="@dimen/wwpx190"
                   android:background="@color/color_white"
                   android:orientation="horizontal"
                   android:gravity="center_vertical"
@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/iv_thumb"
-            android:layout_width="@dimen/wwpx258"
+            android:layout_width="@dimen/wwpx173"
             android:layout_height="@dimen/wwpx173"/>
 
         <LinearLayout android:layout_width="match_parent"

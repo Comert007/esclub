@@ -2,7 +2,29 @@
 <LinearLayout style="@style/LlayFill"
               xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <FrameLayout
+        android:id="@+id/fl_video"
+        android:visibility="gone"
+        android:background="@color/color_f0f1f1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wwpx300">
+
+        <ImageView
+            android:id="@+id/iv_video"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/iv_goto_video"
+            android:src="@mipmap/ic_video"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/wwpx128"
+            android:layout_height="@dimen/wwpx128"/>
+    </FrameLayout>
+
     <com.tencent.smtt.sdk.WebView
+        android:layout_marginTop="@dimen/wwpx21"
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="0px"

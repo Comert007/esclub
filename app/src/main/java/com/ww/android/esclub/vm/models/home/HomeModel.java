@@ -96,4 +96,11 @@ public class HomeModel implements IModel {
                 .subscribe(httpSubscriber);
     }
 
+    public void onYouKuAddress(String url,LifecycleTransformer transformer,HttpSubscriber<String> httpSubscriber){
+        HomeApi.onYouKuAddress(url)
+                .compose(RxHelper.<String>cutMain())
+                .compose(transformer)
+                .subscribe(httpSubscriber);
+    }
+
 }

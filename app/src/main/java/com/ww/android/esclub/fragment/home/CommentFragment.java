@@ -11,6 +11,7 @@ import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
 import com.ww.android.esclub.adapter.home.CommentAdapter;
 import com.ww.android.esclub.bean.PagingBean;
 import com.ww.android.esclub.bean.home.CommentBean;
+import com.ww.android.esclub.bean.home.NewsItem;
 import com.ww.android.esclub.config.Constant;
 import com.ww.android.esclub.fragment.base.BaseFragment;
 import com.ww.android.esclub.vm.models.home.HomeModel;
@@ -44,7 +45,10 @@ public class CommentFragment extends BaseFragment<RefreshView,HomeModel> {
 
     @Override
     protected void init() {
-        id = getArguments().getString("id","");
+        NewsItem item = (NewsItem) getArguments().getSerializable("newsItem");
+        if (item!=null) {
+            id = item.getId();
+        }
 
         footView = LayoutInflater.from(getContext()).inflate(R.layout.layout_foot_view, null);
         ScreenUtil.scale(footView);
@@ -116,7 +120,7 @@ public class CommentFragment extends BaseFragment<RefreshView,HomeModel> {
                         v.getCrv().removeFooterView(footView);
                     }
                 }else {
-                    v.getCsr().setEnableRefresh(false);
+                    v.getCsr().setFooterRefreshAble(false);
                 }
 
             }

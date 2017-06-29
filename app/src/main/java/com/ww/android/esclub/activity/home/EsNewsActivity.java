@@ -46,10 +46,12 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
     private FragmentManager fragmentManager;
     private TranslateTabAdapter adapter;
     private NewsItem item;
+    private String type;
 
-    public static void start(Context context, NewsItem item) {
+    public static void start(Context context, NewsItem item,String type) {
         Intent intent = new Intent(context, EsNewsActivity.class);
         intent.putExtra("newsItem", item);
+        intent.putExtra("type",type);
         context.startActivity(intent);
     }
 
@@ -74,6 +76,7 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
     protected void init() {
         EventBus.getDefault().register(this);
         item = (NewsItem) getIntent().getSerializableExtra("newsItem");
+        type = getIntent().getStringExtra("type");
 
         translateTabBar.setOnTabChangeListener(new TranslateTabBar.OnTabChangeListener() {
             @Override
@@ -102,16 +105,14 @@ public class EsNewsActivity extends BaseActivity<VoidView,VoidModel> {
         if (fragments==null){
             fragments = new ArrayList<>();
         }
-        String id = item.getId();
-        contentUrl = item.getContent_url();
-        fragments.add(createFragment(new EsNewsFragment(),id,contentUrl));
-        fragments.add(createFragment(new CommentFragment(),id,contentUrl));
+        fragments.add(createFragment(new EsNewsFragment(),item,type));
+        fragments.add(createFragment(new CommentFragment(),item,type));
     }
 
-    private Fragment createFragment(Fragment fragment,String id,String content_url){
+    private Fragment createFragment(Fragment fragment,NewsItem item,String type){
         Bundle bundle = new Bundle();
-        bundle.putString("id",id);
-        bundle.putString("content_url",content_url);
+        bundle.putSerializable("newsItem",item);
+        bundle.putString("type",type);
         fragment.setArguments(bundle);
         return fragment;
     }

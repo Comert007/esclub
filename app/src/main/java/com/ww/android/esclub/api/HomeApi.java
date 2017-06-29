@@ -43,4 +43,9 @@ public class HomeApi extends BaseApi {
 
         return onPost(getActionUrl("/news/comment"),params);
     }
+
+    public static final Observable<String> onYouKuAddress(String url){
+        AjaxParams params = new AjaxParams();
+        return onGet(url,params);
+    }
 }

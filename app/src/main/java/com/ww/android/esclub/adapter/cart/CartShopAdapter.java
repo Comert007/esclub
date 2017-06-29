@@ -60,6 +60,7 @@ public class CartShopAdapter extends RvAdapter<GoodsItem> {
 
         @Override
         public void onBindData(int i, final GoodsItem item) {
+
             tvName.setText(item.getName());
             tvPrice.setText("￥"+item.getPrice());
             tvNum.setText(item.getNum()+"");

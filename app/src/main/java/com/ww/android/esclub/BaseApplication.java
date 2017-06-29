@@ -1,6 +1,5 @@
 package com.ww.android.esclub;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
@@ -19,9 +18,6 @@ import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.config.AppConfig;
 import com.ww.mvp.WWApplication;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import ww.com.core.Debug;
 import ww.com.core.utils.ACache;
 import ww.com.core.utils.PhoneUtils;
@@ -34,7 +30,6 @@ import ww.com.http.OkHttpRequest;
 public class BaseApplication extends WWApplication {
 
     private static BaseApplication instance;
-    private ArrayList<Activity> runActivity = new ArrayList<Activity>();
 
     private ACache cache;
     private UserBean userBean;
@@ -132,22 +127,6 @@ public class BaseApplication extends WWApplication {
         return userBean;
     }
 
-    public ArrayList<Activity> getRunActivity() {
-        return runActivity;
-    }
-
-    public void exitApp(Activity activity) {
-        if(this.runActivity != null) {
-            Iterator var1 = this.runActivity.iterator();
-
-            while(var1.hasNext()) {
-                Activity act = (Activity)var1.next();
-                if (act != activity) {
-                    act.finish();
-                }
-            }
-        }
-    }
 
     public static void initImageLoader(Context context) {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(

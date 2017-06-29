@@ -99,7 +99,7 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
             public void OnBannerClick(int position) {
                 if (banner.size() > 0) {
                     NewsItem item = banner.get(position);
-                    EsNewsActivity.start(getContext(), item);
+                    EsNewsActivity.start(getContext(), item,type);
                 }
             }
         });
@@ -153,6 +153,6 @@ public class NewsFragment extends BaseFragment<BannerView, HomeModel> implements
 
     @Override
     public void onItemClick(int position, View v) {
-        EsNewsActivity.start(getContext(), adapter.getItem(position));
+        EsNewsActivity.start(getContext(), adapter.getItem(position),type);
     }
 }

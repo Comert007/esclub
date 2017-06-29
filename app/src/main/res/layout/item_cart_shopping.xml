@@ -10,6 +10,8 @@
         <TextView
             android:id="@+id/tv_name"
             style="@style/ShareText"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/wwpx21"
             android:layout_height="match_parent"
             android:text="泸州老窖"
             android:textSize="@dimen/wwpx30"

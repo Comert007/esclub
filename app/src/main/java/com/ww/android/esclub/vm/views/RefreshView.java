@@ -2,6 +2,7 @@ package com.ww.android.esclub.vm.views;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -53,6 +54,7 @@ public class RefreshView implements IView {
         crv.addEmpty(emptyView);
 
         csr.setRefreshView(crv);
+        csr.setColorSchemeColors(new int[]{Color.parseColor("#14191d"), -65536});
         csr.setEnableRefresh(false);
 
     }

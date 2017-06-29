@@ -128,7 +128,6 @@ public class BaseApi {
         }
 
         return get(url, params)
-                .compose(RxHelper.<ResponseBody>cutMain())
                 .map(new StringFunc());
     }
 

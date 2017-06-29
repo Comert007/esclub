@@ -63,7 +63,6 @@ public class NewsAdapter extends RvAdapter<NewsItem> {
         @Override
         public void onBindData(int i, NewsItem item) {
 
-
             ImageLoader.getInstance().displayImage
                     (item.getCover(), ivThumb,
                     BaseApplication.getDisplayImageOptions(R.mipmap.ic_default));

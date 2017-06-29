@@ -80,11 +80,12 @@ public class EsNewsFragment extends BaseFragment<VoidView, HomeModel> implements
             ivVideo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String vid = onParseId(item.getVideo_url());
-                    if (TextUtils.isEmpty(vid)){
-                        VideoActivity.start(getContext(),item.getVideo_url());
-                    }else {
+                    String video_url = item.getVideo_url();
+                    if (video_url.startsWith("http://v.youku.com/")){
+                        String vid = onParseId(item.getVideo_url());
                         onParseVideo(deployUrl(vid));
+                    }else {
+                        VideoActivity.start(getContext(),video_url);
                     }
                 }
             });

@@ -56,4 +56,10 @@ public class GuessEditActivity extends BaseActivity<VoidView,VoidModel> {
             }
         });
     }
+
+    @Override
+    public void onTitleLeft() {
+        super.onTitleLeft();
+        onBackPressed();
+    }
 }

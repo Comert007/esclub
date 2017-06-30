@@ -12,6 +12,8 @@
             style="@style/ShareText"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/wwpx21"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:layout_height="match_parent"
             android:text="泸州老窖"
             android:textSize="@dimen/wwpx30"

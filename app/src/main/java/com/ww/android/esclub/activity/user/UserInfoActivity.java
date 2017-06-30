@@ -1,11 +1,15 @@
 package com.ww.android.esclub.activity.user;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.design.widget.BottomSheetDialog;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.trello.rxlifecycle.ActivityEvent;
 import com.ww.android.esclub.BaseApplication;
@@ -22,8 +26,10 @@ import com.ww.android.esclub.vm.views.user.UserInfoView;
 import java.util.ArrayList;
 import java.util.Map;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ww.com.core.Debug;
+import ww.com.core.ScreenUtil;
 import ww.com.core.exception.StorageSpaceException;
 import ww.com.core.utils.PermissionDispose;
 
@@ -39,6 +45,7 @@ public class UserInfoActivity extends BaseActivity<UserInfoView,UserModel> imple
     private PermissionDispose dispose;
     private String path;
     private String nickname;
+    private BottomSheetDialog bottomDialog;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, UserInfoActivity.class);
@@ -58,14 +65,15 @@ public class UserInfoActivity extends BaseActivity<UserInfoView,UserModel> imple
         dispose = PermissionDispose.init(this, this);
     }
 
-    @OnClick({R.id.tv_nickname,R.id.riv_header,R.id.btn_save})
+    @OnClick({R.id.ll_header,R.id.ll_nickname,R.id.btn_save})
     public void onModify(View view){
         switch (view.getId()){
-            case R.id.tv_nickname:
+            case R.id.ll_nickname:
                 GuessEditActivity.start(this);
                 break;
-            case R.id.riv_header:
-                onChange();
+            case R.id.ll_header:
+//                onChange();
+                showBottomDialog();
                 break;
             case R.id.btn_save:
                 if (TextUtils.isEmpty(path)&& TextUtils.isEmpty(nickname)){
@@ -92,12 +100,50 @@ public class UserInfoActivity extends BaseActivity<UserInfoView,UserModel> imple
         });
     }
 
+
+    private void showBottomDialog(){
+        if (bottomDialog==null) {
+            bottomDialog = new BottomSheetDialog(this,R.style.CustomerDialogStyle);
+            View view = LayoutInflater.from(this).inflate(R.layout.layout_bottom_sheet_dialog,null);
+            ScreenUtil.scale(view);
+            TextView tvDialogCamera = ButterKnife.findById(view,R.id.tv_dialog_camera);
+            TextView tvDialogPhoto = ButterKnife.findById(view,R.id.tv_dialog_photo);
+            TextView tvDialogCancel = ButterKnife.findById(view,R.id.tv_dialog_cancel);
+            tvDialogCamera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        pick.startCamera();
+                    } catch (StorageSpaceException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            tvDialogPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onChange();
+                }
+            });
+
+            tvDialogCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bottomDialog.dismiss();
+                }
+            });
+            bottomDialog.setContentView(view);
+        }
+        bottomDialog.show();
+    }
+
     private void onChange(){
         int version =Build.VERSION.SDK_INT;
         if (version>20) {
             dispose.requestPermission(PERMISSION_REQUEST_CODE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }else {
-            pick.startAlbumSingle(false);
+            pick.startAlbumSingle();
         }
     }
 
@@ -105,13 +151,16 @@ public class UserInfoActivity extends BaseActivity<UserInfoView,UserModel> imple
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data!=null){
+
+
+        if (resultCode== Activity.RESULT_OK){
             if (requestCode ==GuessEditActivity.REQUEST_EDIT_CODE ) {
                 String nickname = data.getStringExtra("text");
                 this.nickname = nickname;
                 v.setNickname(nickname);
             }else {
                 try {
+                    Debug.d("--------->>>>>>>onActivityResult");
                     pick.onActivityResult(requestCode, resultCode, data);
                 } catch (StorageSpaceException e) {
                     e.printStackTrace();
@@ -119,6 +168,8 @@ public class UserInfoActivity extends BaseActivity<UserInfoView,UserModel> imple
                     throw new ApiException(getString(R.string.toast_sdcard_exception));
                 }
             }
+        }else {
+            Debug.d("the data is null");
         }
     }
 
@@ -139,7 +190,7 @@ public class UserInfoActivity extends BaseActivity<UserInfoView,UserModel> imple
 
     @Override
     public void onSuccess(int i, Map<String, Integer> map) {
-        pick.startAlbumSingle(true);
+        pick.startAlbumSingle();
     }
 
     @Override
@@ -158,4 +209,5 @@ public class UserInfoActivity extends BaseActivity<UserInfoView,UserModel> imple
         super.onTitleLeft();
         onBackPressed();
     }
+
 }

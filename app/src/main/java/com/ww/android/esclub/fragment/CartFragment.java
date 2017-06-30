@@ -26,6 +26,7 @@ import com.ww.android.esclub.vm.views.CartView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.OnClick;
 import ww.com.core.Debug;
 import ww.com.core.ScreenUtil;
 
@@ -194,6 +195,20 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
     }
 
 
+    @OnClick(R.id.tv_clean_shopping)
+    public void onCleanShopping(){
+        shoppingResult.clear();
+        v.showShopRes(false);
+        v.setTip(countSize() + "");
+        v.showShoppingContent();
+        cartShopAdapter.notifyDataSetChanged();
+
+        List<GoodsItem> goodsItems = cartItemAdapter.getList();
+        for (GoodsItem goodsItem : goodsItems) {
+            goodsItem.setNum(0);
+        }
+        cartItemAdapter.notifyDataSetChanged();
+    }
     //大于0 说明有相同的存在
     private int checkIsSame(List<GoodsItem> goodsItems, GoodsItem item) {
         int index = -1;
@@ -225,7 +240,7 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
 
 
         v.showShopRes(true);
-        v.setTip(shoppingResult.size() + "");
+        v.setTip(countSize() + "");
 
         cartShopAdapter.notifyDataSetChanged();
     }
@@ -243,11 +258,11 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
             throw new ApiException(getString(R.string.error_of_application));
         }
 
-        if (shoppingResult.size() == 0) {
+        if (isListNull()) {
             v.showShopRes(false);
         }
 
-        v.setTip(shoppingResult.size() + "");
+        v.setTip(countSize() + "");
 
         cartShopAdapter.notifyDataSetChanged();
     }
@@ -263,13 +278,18 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
         }else {
             throw new ApiException(getString(R.string.error_of_application));
         }
-
+        v.setTip(countSize() + "");
         cartItemAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onShopMinus(int position, View view) {
-        GoodsItem item = cartItemAdapter.getItem(position);
+        GoodsItem item = cartShopAdapter.getItem(position);
+        if (0==item.getNum()){
+            cartShopAdapter.removeItem(item);
+            shoppingResult.remove(position);
+            cartShopAdapter.notifyDataSetChanged();
+        }
         int index = checkIsSame(cartItemAdapter.getList(),item);
         if (index >= 0){
             cartItemAdapter.notifyItemChanged(index,item);
@@ -277,12 +297,15 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
             throw new ApiException(getString(R.string.error_of_application));
         }
 
+
         if (isListNull()){
             shoppingResult.clear();
             v.showShopRes(false);
-            v.setTip(shoppingResult.size() + "");
+            v.setTip(countSize() + "");
             v.showShoppingContent();
             cartShopAdapter.notifyDataSetChanged();
+        }else {
+            v.setTip(countSize() + "");
         }
 
         cartItemAdapter.notifyDataSetChanged();
@@ -290,7 +313,7 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
 
     private boolean isListNull(){
         boolean isNull = true;
-        for (GoodsItem goodsItem : cartShopAdapter.getList()) {
+        for (GoodsItem goodsItem : shoppingResult) {
             Debug.d(goodsItem.getNum()+"");
             if (0!=goodsItem.getNum()){
                 isNull = false;
@@ -300,6 +323,17 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
         return isNull;
     }
 
+    //计算购物车数量
+    private int countSize(){
+        int count=0;
+        if (shoppingResult!=null && shoppingResult.size()>0) {
+            for (int i = 0; i < shoppingResult.size(); i++) {
+                GoodsItem item = shoppingResult.get(i);
+                count += item.getNum();
+            }
+        }
+        return count;
+    }
 
     class RecyclerViewListener extends RecyclerView.OnScrollListener {
         @Override

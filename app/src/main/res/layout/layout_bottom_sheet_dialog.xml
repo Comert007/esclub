@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/wwpx20"
+                android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/bottom_dialog_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_dialog_cancel"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/options_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_dialog_camera"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/wwpx28"
+                android:text="相机"
+                android:textSize="@dimen/wwpx28"
+                android:textColor="@color/color_0b86ee"
+                android:layout_height="wrap_content"/>
+
+            <include layout="@layout/layout_space_line"/>
+            <TextView
+                android:id="@+id/tv_dialog_photo"
+                android:layout_width="match_parent"
+                android:padding="@dimen/wwpx28"
+                android:textSize="@dimen/wwpx28"
+                android:text="相册"
+                android:gravity="center"
+                android:textColor="@color/color_0b86ee"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_dialog_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom_dialog_ll"
+        android:layout_marginTop="@dimen/wwpx21"
+        android:background="@drawable/bottom_dialog_cancel"
+        android:gravity="center"
+        android:padding="@dimen/wwpx28"
+        android:text="取消"
+        android:textColor="@color/color_b3b3b3"
+        android:textSize="@dimen/wwpx28" />
+
+</RelativeLayout>

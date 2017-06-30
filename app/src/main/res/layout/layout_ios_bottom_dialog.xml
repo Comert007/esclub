@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_marginBottom="@dimen/wwpx25">
+
+    <LinearLayout
+        android:id="@+id/bottom_dialog_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_dialog_cancel"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bottom_dialog_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/wwpx21"
+            android:clickable="false"
+            android:gravity="center"
+            android:textColor="@color/color_0b86ee"
+            android:textSize="@dimen/wwpx28" />
+
+        <View
+            android:id="@+id/bottom_dialog_title_line"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/color_b3b3b3" />
+
+        <LinearLayout
+            android:id="@+id/options_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/bottom_dialog_cancel_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom_dialog_ll"
+        android:layout_marginTop="@dimen/wwpx21"
+        android:background="@drawable/bottom_dialog_cancel"
+        android:gravity="center"
+        android:padding="@dimen/wwpx28"
+        android:text="取消"
+        android:textColor="@color/color_b3b3b3"
+        android:textSize="@dimen/wwpx28" />
+
+</RelativeLayout>

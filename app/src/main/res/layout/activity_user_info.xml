@@ -9,12 +9,14 @@
         app:titleLeftIco="@mipmap/arrow_back_normal"
         app:titleText="@string/user_info"/>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="@dimen/wwpx120"
-                  android:background="@color/color_white"
-                  android:gravity="center_vertical"
-                  android:paddingLeft="@dimen/wwpx21"
-                  android:paddingRight="@dimen/wwpx21">
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wwpx120"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/wwpx21"
+        android:paddingRight="@dimen/wwpx21">
         <TextView style="@style/ContentText"
                   android:layout_weight="1"
                   android:text="头像"/>
@@ -34,6 +36,7 @@
     <include layout="@layout/layout_space_line"/>
 
     <LinearLayout
+        android:id="@+id/ll_nickname"
         android:layout_width="match_parent"
                   android:layout_height="@dimen/wwpx120"
                   android:background="@color/color_white"

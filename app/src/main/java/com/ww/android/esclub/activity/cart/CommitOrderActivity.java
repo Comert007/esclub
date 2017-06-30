@@ -81,14 +81,14 @@ public class CommitOrderActivity extends BaseActivity<CommitOrderView,CartModel>
         }
 
        if (TextUtils.equals(Constant.ALIPAY,v.getPayway())){
-           onAlipay();
+           onAlipay(seatNo);
        }else {
-           onWeChat();
+           onWeChat(seatNo);
        }
     }
 
-    private void onAlipay(){
-        m.onAlipay(test_id, goodsItems, bindUntilEvent(ActivityEvent.DESTROY),
+    private void onAlipay(String seatNo){
+        m.onAlipay(seatNo, goodsItems, bindUntilEvent(ActivityEvent.DESTROY),
                 new HttpSubscriber<AlipayBean>(this,true) {
 
             @Override
@@ -118,8 +118,8 @@ public class CommitOrderActivity extends BaseActivity<CommitOrderView,CartModel>
 
 
 
-    private void onWeChat(){
-        m.onWeChat(test_id, goodsItems, bindUntilEvent(ActivityEvent.DESTROY),
+    private void onWeChat(String seatNo){
+        m.onWeChat(seatNo, goodsItems, bindUntilEvent(ActivityEvent.DESTROY),
                 new HttpSubscriber<WechatPayBean>(this,true) {
                     @Override
                     public void onNext(WechatPayBean wechatPayBean) {

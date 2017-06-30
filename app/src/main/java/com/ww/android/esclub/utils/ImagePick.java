@@ -231,6 +231,7 @@ public class ImagePick {
      * @throws StorageSpaceException
      */
     public void startCamera() throws StorageSpaceException {
+        Debug.d("------------>>>>>startCamera");
         checkSdcard();
         String path = getImgFile();
         File file = FileUtils.createNewFile(path);
@@ -238,8 +239,18 @@ public class ImagePick {
             throw new StorageSpaceException("Failed to create file");
         }
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Uri uri = Uri.fromFile(file);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID+".fileprovider",
+                   file);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        }
+
+
         if (file != null) {
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         }
         mCurrImgFile = path;
         if (this.fragment != null) {
@@ -247,6 +258,7 @@ public class ImagePick {
             return;
         }
         activity.startActivityForResult(intent, INTENT_REQUEST_CODE_CAMERA);
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) throws StorageSpaceException {

@@ -79,6 +79,12 @@ public class WebViewActivity extends BaseActivity<VoidView, VoidModel> {
     }
 
 
+    @Override
+    public void onTitleLeft() {
+        super.onTitleLeft();
+        onBackPressed();
+    }
+
     private Map<String, String> getCustomHeaders()
     {
         Map<String, String> headers = new HashMap<>();

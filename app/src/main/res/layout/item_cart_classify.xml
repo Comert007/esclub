@@ -27,6 +27,8 @@
             <TextView
                 android:id="@+id/tv_name"
                 style="@style/ContentText"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:text="泸州老窖" android:textColor="@color/color_333333"/>
             <TextView
                 android:id="@+id/tv_month_num"

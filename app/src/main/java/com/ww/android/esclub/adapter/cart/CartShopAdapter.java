@@ -96,6 +96,7 @@ public class CartShopAdapter extends RvAdapter<GoodsItem> {
 
                     if (0 ==item.getNum()) {
                         llLeft.setVisibility(View.GONE);
+//                        removeItem(item);
                     }
                     if (onShopAction!=null){
                         onShopAction.onShopMinus(position,v);

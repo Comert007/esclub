@@ -12,12 +12,13 @@ import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
-import com.windward.sharelibrary.ShareMedia;
 import com.windward.sharelibrary.SharePlatConfig;
 import com.windward.sharelibrary.ShareResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.windward.sharelibrary.ShareMedia.QQ;
 
 public class WW_QQUtil {
 
@@ -27,7 +28,7 @@ public class WW_QQUtil {
     public static Tencent getInstance(Context context) {
         if (mTencent == null) {
             SharePlatConfig.QQZone qq = (SharePlatConfig.QQZone) SharePlatConfig.configs.get
-                    (ShareMedia.QQ);
+                    (QQ);
             mTencent = Tencent.createInstance(qq.appId, context
                     .getApplicationContext());
         }
@@ -49,7 +50,7 @@ public class WW_QQUtil {
      */
     private static boolean isConfig(Context context) {
         SharePlatConfig.QQZone qq = (SharePlatConfig.QQZone) SharePlatConfig.configs.get
-                (ShareMedia.QQ);
+                (QQ);
         if (!TextUtils.isEmpty(qq.appId) && !TextUtils.isEmpty(qq.appKey))
             return true;
         else {
@@ -70,6 +71,26 @@ public class WW_QQUtil {
             for (int i = 0; i < pinfo.size(); i++) {
                 String pn = pinfo.get(i).packageName;
                 if (pn.equals("com.tencent.mobileqq")) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断QQ是否安装
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isQZoneAvailable(Context context) {
+        final PackageManager packageManager = context.getPackageManager();
+        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);
+        if (pinfo != null) {
+            for (int i = 0; i < pinfo.size(); i++) {
+                String pn = pinfo.get(i).packageName;
+                if (pn.equals("com.qzone")) {
                     return true;
                 }
             }
@@ -99,6 +120,19 @@ public class WW_QQUtil {
     private static void canShare(Activity context) {
         if (!isQQClientAvailable(context)) {
             Toast.makeText(context, "您还未安装QQ客户端,请先下载安装最新的QQ手机客户端。",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!isConfig(context)) {
+            Toast.makeText(context, "QQ_APPID未配置", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
+
+    private static void canShareQzone(Activity context){
+        if (!isQZoneAvailable(context)) {
+            Toast.makeText(context, "您还未安装QQ空间客户端,请先下载安装最新的QQ空间客户端。",
                     Toast.LENGTH_LONG).show();
             return;
         }
@@ -303,21 +337,18 @@ public class WW_QQUtil {
                                              IUiListener listener){
         canShare(context);
 
-        mTencent = getInstance(context.getApplicationContext());
+        Tencent tencent = getInstance(context.getApplicationContext());
         Bundle params = new Bundle();
-        params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE,
-                QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
+        params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE,QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
         params.putString(QzoneShare.SHARE_TO_QQ_TITLE, title);// 必填
         params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, summary);// 选填
-        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, TextUtils
-                .isEmpty(target_url) ? QQ_APP_REDIRECTURL :
-                target_url);
-        // 必填;
-        ArrayList imageUrls = new ArrayList();
+        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, target_url);// 必填;
+
+        ArrayList<String> imageUrls = new ArrayList<>();
         imageUrls.add(image_url);
         params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imageUrls);
-        params.putInt(QzoneShare.SHARE_TO_QQ_EXT_INT, QQShare.SHARE_TO_QQ_FLAG_QZONE_AUTO_OPEN);
-        mTencent.shareToQzone(context, params, listener);
+
+        tencent.shareToQzone(context, params, listener);
     }
 
 
@@ -332,7 +363,7 @@ public class WW_QQUtil {
                                              IUiListener listener){
         canShare(context);
 
-        mTencent = getInstance(context.getApplicationContext());
+        Tencent tencent = getInstance(context.getApplicationContext());
         Bundle params = new Bundle();
         params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE,
                 QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
@@ -343,8 +374,7 @@ public class WW_QQUtil {
                 target_url);
 
         params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, image_urls);
-        params.putInt(QzoneShare.SHARE_TO_QQ_EXT_INT, QQShare.SHARE_TO_QQ_FLAG_QZONE_AUTO_OPEN);
-        mTencent.shareToQzone(context, params, listener);
+        tencent.shareToQzone(context, params, listener);
     }
 
 }

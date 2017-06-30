@@ -3,6 +3,7 @@ package com.windward.sharelibrary.qq;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.tencent.tauth.IUiListener;
@@ -33,6 +34,7 @@ public class BaseUIListener implements IUiListener {
                     UiError e = (UiError) msg.obj;
                     result ="分享失败";
                     Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
+                    Log.e("WW_Util:","Share:"+e.errorMessage+"\n"+e.errorDetail);
 //                    Util.showResultDialog(mContext, "errorMsg:" + e.errorMessage
 //                            + "errorDetail:" + e.errorDetail, "onError");
 //                    Util.dismissDialog();
@@ -40,7 +42,6 @@ public class BaseUIListener implements IUiListener {
                 case ON_CANCEL:
                     result = "用户取消";
                     Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
-//                    Util.toastMessage((Activity) mContext, "onCancel");
                     break;
             }
         }

@@ -38,9 +38,7 @@ public class GuessFragment extends BaseFragment<GuessView, GuessModel> implement
         v.getCrv().setAdapter(adapter);
         adapter.setOnItemClickListener(this);
 
-        v.showInfo();
 
-        onMatch();
     }
 
     @Override
@@ -63,5 +61,12 @@ public class GuessFragment extends BaseFragment<GuessView, GuessModel> implement
                 }
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        v.showInfo();
+        onMatch();
     }
 }

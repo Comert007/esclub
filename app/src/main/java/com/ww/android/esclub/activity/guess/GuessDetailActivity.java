@@ -2,10 +2,12 @@ package com.ww.android.esclub.activity.guess;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.trello.rxlifecycle.ActivityEvent;
+import com.ww.android.esclub.BaseApplication;
 import com.ww.android.esclub.ListBean;
 import com.ww.android.esclub.R;
 import com.ww.android.esclub.activity.base.BaseActivity;
@@ -14,6 +16,7 @@ import com.ww.android.esclub.adapter.guess.GuessDetailAdapter;
 import com.ww.android.esclub.bean.PagingBean;
 import com.ww.android.esclub.bean.guess.GuessDetailBean;
 import com.ww.android.esclub.bean.guess.MatchBean;
+import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.android.esclub.config.Constant;
 import com.ww.android.esclub.vm.models.GuessModel;
 import com.ww.android.esclub.vm.views.cart.GuessDetailView;
@@ -171,14 +174,43 @@ public class GuessDetailActivity extends BaseActivity<GuessDetailView,GuessModel
     }
 
     //投注
-    private void onGuessBet(GuessDetailBean bean){
-        m.onGuessBet(bean.getId(), bean.getOption(), bean.getPoint(),
+    private void onGuessBet(final GuessDetailBean bean){
+        if (TextUtils.isEmpty(bean.getOption())){
+            showToast("请选择投注队伍");
+            return;
+        }
+        if (TextUtils.isEmpty(bean.getPoint())){
+            showToast("请选择或输入投注点数");
+            return;
+        }
+        final UserBean user = BaseApplication.getInstance().getUserBean();
+        final int nowPoint = Integer.valueOf(user.getPoint());
+        final int votePoint = Integer.valueOf(bean.getPoint());
+        if (nowPoint<votePoint){
+            showToast("您的积分不足，请进行充值");
+            return;
+        }
+
+        m.onGuessBet(bean.getId(), bean.getOption(), votePoint+"",
                 bindUntilEvent(ActivityEvent.DESTROY), new HttpSubscriber<Boolean>(this,true) {
 
             @Override
             public void onNext(Boolean aBoolean) {
                 if (aBoolean){
+
+//                    user.setPoint((nowPoint-votePoint)+"");
+//                    BaseApplication.getInstance().setUserBean(user);
+                    m.onUserInfo(bindUntilEvent(ActivityEvent.DESTROY),
+                            new HttpSubscriber<UserBean>(GuessDetailActivity.this,true) {
+                        @Override
+                        public void onNext(UserBean userBean) {
+                            BaseApplication.getInstance().setUserBean(userBean);
+                        }
+                    });
                     showToast(getString(R.string.vote_success));
+                    currentPage = Constant.PAGE_ONE;
+                    onGuessDetail(true);
+
                 }else {
                     showToast(getString(R.string.vote_fail));
                 }

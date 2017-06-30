@@ -123,8 +123,11 @@
         <item name="android:paddingRight">@dimen/wwpx20</item>
         <item name="android:textSize">@dimen/wwpx26</item>
         <item name="android:textColor">@color/color_white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:focusable">true</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">@dimen/wwpx40</item>
     </style>
     <style name="BookRightText">
         <item name="android:layout_width">0px</item>

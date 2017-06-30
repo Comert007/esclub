@@ -66,7 +66,7 @@
             android:id="@+id/ll_guess_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_f5f5f5"
+            android:background="@color/color_white"
             android:orientation="vertical"
             android:paddingBottom="@dimen/wwpx20"
             android:paddingLeft="@dimen/wwpx28"
@@ -202,7 +202,8 @@
                 <EditText
                     android:id="@+id/et_vote"
                     style="@style/ViewBubble"
-                    android:text="其他"/>
+                    android:textColorHint="@color/color_white"
+                    android:hint="其他"/>
             </LinearLayout>
 
 

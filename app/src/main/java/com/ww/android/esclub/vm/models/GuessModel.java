@@ -12,9 +12,11 @@ import com.ww.android.esclub.ListBean;
 import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
 import com.ww.android.esclub.api.ApiException;
 import com.ww.android.esclub.api.GuessApi;
+import com.ww.android.esclub.api.convert.UserApi;
 import com.ww.android.esclub.bean.ResponseBean;
 import com.ww.android.esclub.bean.guess.GuessDetailBean;
 import com.ww.android.esclub.bean.guess.MatchBean;
+import com.ww.android.esclub.bean.start.UserBean;
 import com.ww.mvp.model.IModel;
 
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public class GuessModel implements IModel{
                             MatchBean matchBean = JSON.parseObject(json.getString("obj"),MatchBean.class);
                             List<MatchBean> matchBeanList = new ArrayList<>();
                             //&& !TextUtils.isEmpty(matchBean.getId())
-                            if (matchBean!=null) {
+                            if (matchBean!=null&& !TextUtils.isEmpty(matchBean.getId())) {
                                 matchBeanList.add(matchBean);
                             }
                             return matchBeanList;
@@ -67,7 +69,8 @@ public class GuessModel implements IModel{
                     @Override
                     public ListBean<GuessDetailBean> call(ResponseBean responseBean) {
                         try {
-                            ListBean<GuessDetailBean> listBean = JSONObject.parseObject(responseBean.getData(),ListBean.class);
+                            ListBean<GuessDetailBean> listBean = JSONObject.parseObject(responseBean.getData(),
+                                    new TypeReference<ListBean<GuessDetailBean>>(){});
                             return listBean;
                         }catch (Exception e){
                             throw new ApiException(responseBean);
@@ -144,5 +147,23 @@ public class GuessModel implements IModel{
     }
 
 
+
+    public void onUserInfo(LifecycleTransformer transformer,HttpSubscriber<UserBean> httpSubscriber){
+        UserApi.onUserInfo()
+                .map(new Func1<ResponseBean, UserBean>() {
+                    @Override
+                    public UserBean call(ResponseBean responseBean) {
+                        try {
+                            JSONObject json = JSON.parseObject(responseBean.getData());
+                            UserBean userBean = JSONObject.parseObject(json.getString("obj"),UserBean.class);
+                            return userBean;
+                        }catch (Exception e){
+                            throw new ApiException(responseBean);
+                        }
+                    }
+                }).compose(RxHelper.<UserBean>cutMain())
+                .compose(transformer)
+                .subscribe(httpSubscriber);
+    }
 
 }

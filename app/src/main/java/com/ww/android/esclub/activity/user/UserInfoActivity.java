@@ -175,6 +175,9 @@ public class UserInfoActivity extends BaseActivity<UserInfoView,UserModel> imple
 
     @Override
     public void onSinglePath(String path) {
+        if (bottomDialog.isShowing()){
+            bottomDialog.dismiss();
+        }
         Debug.d(path);
         if (TextUtils.isEmpty(path)) {
             return;

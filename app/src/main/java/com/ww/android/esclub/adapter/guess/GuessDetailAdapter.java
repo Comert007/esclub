@@ -27,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.BindViews;
+import ww.com.core.Debug;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
 
@@ -95,14 +96,6 @@ public class GuessDetailAdapter extends RvAdapter<GuessDetailBean> {
         RadioButton rbTeam2;
         @BindView(R.id.tv_guess_tip)
         TextView tvGuessTip;
-//        @BindView(R.id.tv_vote1)
-//        TextView tvVote1;
-//        @BindView(R.id.tv_vote2)
-//        TextView tvVote2;
-//        @BindView(R.id.tv_vote3)
-//        TextView tvVote3;
-//        @BindView(R.id.tv_vote4)
-//        TextView tvVote4;
         @BindView(R.id.et_vote)
         EditText etVote;
         @BindView(R.id.btn_vote)
@@ -156,8 +149,8 @@ public class GuessDetailAdapter extends RvAdapter<GuessDetailBean> {
                 }else {
                     rbTeam2.setChecked(true);
                 }
-                rbTeam1.setEnabled(true);
-                rbTeam2.setEnabled(true);
+                rbTeam1.setEnabled(false);
+                rbTeam2.setEnabled(false);
 
                 String point = bet.getPoint();
                 tvGuessTip.setText("投注积分");
@@ -167,15 +160,25 @@ public class GuessDetailAdapter extends RvAdapter<GuessDetailBean> {
 
             int pointA = Integer.valueOf(bean.getA_point());
             int pointB = Integer.valueOf(bean.getB_point());
-            int rateA = pointA*100/pointB;
-            int rateB = 100-rateA;
+            int total = pointA + pointB;
+            int rateA= 0;
+            int rateB =0;
+            if (total!=0){
+                rateA = (pointA*100/(pointA+pointB));
+                Debug.d("rateA:"+rateA);
+                rateB = 100-rateA;
+                pbGuess.setMax(total);
+            }else {
+                pbGuess.setMax(100);
+            }
+
             tvId.setText((i+1)+"");
             tvTitle.setText(bean.getTitle());
             tvTotalNum.setText(""+(pointA+pointB));
             tvTeamOne.setText(bean.getOption_a());
             tvTeamTwo.setText(bean.getOption_b());
-            pbGuess.setMax(pointA+pointB);
-            pbGuess.setSecondaryProgress(pointA+pointB);
+
+            pbGuess.setSecondaryProgress(total);
             pbGuess.setProgress(pointA);
             tvTeamOneFavorer.setText(rateA+"%");
             tvTeamTwoFavorer.setText(rateB+"%");
@@ -232,6 +235,7 @@ public class GuessDetailAdapter extends RvAdapter<GuessDetailBean> {
         }
 
         private void onSelectHistory(String point){
+            Debug.d("point:"+point);
             if (point5.equals(point)){
                 onSelectText(votes.get(0));
             }else if (point10.equals(point)){
@@ -241,22 +245,24 @@ public class GuessDetailAdapter extends RvAdapter<GuessDetailBean> {
             }else if (point20.equals(point)){
                 onSelectText(votes.get(3));
             }else {
-                onSelectEdit();
+                etVote.setText(point);
+                etVote.setEnabled(false);
+//                onSelectEdit();
             }
 
             for (TextView vote : votes) {
-                vote.setEnabled(true);
+                vote.setEnabled(false);
             }
-            etVote.setEnabled(true);
+            etVote.setEnabled(false);
         }
 
         private void onSelectText(View v){
+            etVote.setSelected(false);
             for (int i = 0; i < votes.size(); i++) {
                 TextView tv = votes.get(i);
-                if (tv == v){
-                    tv.setSelected(true);
-                }
+                tv.setSelected(false);
             }
+            v.setSelected(true);
         }
 
         private void onSelectEdit(){

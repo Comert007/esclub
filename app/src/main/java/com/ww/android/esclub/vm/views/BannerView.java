@@ -12,6 +12,7 @@ import com.youth.banner.loader.ImageLoader;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import ww.com.core.ScreenUtil;
 
 /**
  * Created by feng on 2017/6/7.
@@ -29,6 +30,7 @@ public class BannerView extends RefreshView{
     public void attach() {
         super.attach();
         bannerView = LayoutInflater.from(context).inflate(R.layout.view_banner,null);
+        ScreenUtil.scale(bannerView);
         banner = ButterKnife.findById(bannerView,R.id.banner);
 
     }

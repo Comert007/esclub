@@ -84,6 +84,7 @@ public class CartView implements IView {
         }
     }
 
+
     public void showShopping(int state) {
 
         TransitionManager.beginDelayedTransition(rlShop);
@@ -94,6 +95,10 @@ public class CartView implements IView {
         } else {
             rlShop.setVisibility(View.GONE);
         }
+    }
+
+    public boolean getVisible(){
+        return visiable;
     }
 
     //显示商品袋

@@ -1,5 +1,6 @@
 package com.ww.android.esclub.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -69,7 +70,9 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
                 if (shoppingResult.size() == 0) {
                     showToast(getString(R.string.cart_is_empty));
                 } else {
-                    CommitOrderActivity.start(getActivity(), shoppingResult);
+                    Intent intent = new Intent(getContext(), CommitOrderActivity.class);
+                    intent.putExtra("goods",shoppingResult);
+                    startActivityForResult(intent,CommitOrderActivity.requestCode);
                 }
 
             }
@@ -364,8 +367,20 @@ public class CartFragment extends BaseFragment<CartView, CartModel> implements O
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) {
+        if (resultCode == Activity.RESULT_OK) {
+            Debug.d("------->>>>>>clear");
             shoppingResult.clear();
+            v.showShopRes(false);
+            v.setTip(countSize() + "");
+            if (v.getVisible()){
+                v.showShoppingContent();
+            }
+            List<GoodsItem> items =cartItemAdapter.getList();
+            for (GoodsItem item : items) {
+                item.setNum(0);
+            }
+            cartItemAdapter.notifyDataSetChanged();
+
             cartShopAdapter.notifyDataSetChanged();
         }
     }

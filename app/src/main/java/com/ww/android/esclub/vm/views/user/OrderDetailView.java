@@ -31,7 +31,7 @@ public class OrderDetailView implements IView {
 
     @BindView(R.id.crv)
     CustomRecyclerView crv;
-    @BindView(R.id.tv_title)
+    @BindView(R.id.tv_title_content)
     TextView tvTitle;
     @BindView(R.id.tv_total_price)
     TextView tvTotalPrice;

@@ -30,7 +30,7 @@
                 <LinearLayout
                     style="@style/OrderDetailLlay">
                     <TextView
-                        android:id="@+id/tv_title"
+                        android:id="@+id/tv_title_content"
                         style="@style/OrderDetailText"
                         android:text="内容：xxxxxx"/>
                     <TextView

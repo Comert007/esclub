@@ -11,6 +11,7 @@ import com.ww.android.esclub.activity.base.rx.HttpSubscriber;
 import com.ww.android.esclub.adapter.user.OrderDetailAdapter;
 import com.ww.android.esclub.bean.user.OrderCentreBean;
 import com.ww.android.esclub.bean.user.OrderDetailBean;
+import com.ww.android.esclub.bean.user.OrderTableAreaBean;
 import com.ww.android.esclub.vm.models.UserModel;
 import com.ww.android.esclub.vm.views.user.OrderDetailView;
 
@@ -48,12 +49,15 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailView, UserModel
     private void initData() {
         orderCentreBean = (OrderCentreBean) getIntent().getSerializableExtra("detail");
         if (orderCentreBean != null) {
-            v.setTitle(orderCentreBean.getTitle());
+            v.setTitle("内容："+orderCentreBean.getTitle());
             v.setTotalPrice(orderCentreBean.getPrice());
             v.setNum(orderCentreBean.getType_num());
             v.setPayWay(orderCentreBean.getPay_type());
             v.setPayStatus(orderCentreBean.getStatus());
             v.setCreated(orderCentreBean.getCreated());
+            OrderTableAreaBean orderTableAreaBean = orderCentreBean.getTable_area();
+           String tablename = orderTableAreaBean.getTable().getName();
+            v.setAddress(orderTableAreaBean.getName()+"区"+tablename+"座");
         }
     }
 
